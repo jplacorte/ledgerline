@@ -29,8 +29,28 @@ const hasAside = Astro.slots.has('aside');
 </section>
 
 <style>
-  .page-hero { padding-block: var(--space-l) var(--space-2xl); border-bottom: 1px solid var(--rule); }
-  .ph-grid { display: grid; gap: var(--space-xl); align-items: end; margin-top: var(--space-xl); }
+  .page-hero {
+    position: relative;
+    padding-block: var(--space-xl) var(--space-2xl);
+    border-bottom: 1px solid var(--border-subtle);
+    background:
+      radial-gradient(circle at 50% 0%, rgba(0, 240, 160, 0.05) 0%, transparent 65%),
+      radial-gradient(circle at 85% 20%, rgba(56, 189, 248, 0.04) 0%, transparent 50%);
+    overflow: hidden;
+  }
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at 50% 0%, black 20%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 0%, black 20%, transparent 75%);
+    pointer-events: none;
+  }
+  .ph-grid { position: relative; z-index: 1; display: grid; gap: var(--space-xl); align-items: end; margin-top: var(--space-xl); }
   @media (min-width: 64rem) { .ph-grid.has-aside { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); } }
   .ph-copy { display: grid; gap: var(--space-m); justify-items: start; }
   h1 { font-size: clamp(2.5rem, 1.6rem + 3.4vw, 4.6rem); max-width: 16ch; }

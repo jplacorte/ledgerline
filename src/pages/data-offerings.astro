@@ -220,42 +220,119 @@ const faqs = [
 </BaseLayout>
 
 <style>
-  .jump { display: grid; inline-size: 100%; max-width: 34rem; border-top: 1px solid var(--rule); margin-top: var(--space-s); }
-  .jump a { display: grid; grid-template-columns: 2rem 1fr auto; gap: 0.5rem; padding: 0.75rem 0; border-bottom: 1px solid var(--rule); text-decoration: none; font-weight: 500; }
-  .jump .mono { font-size: var(--step--1); }
-  .hero-figs { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--ink); }
-  .hero-figs div { display: flex; flex-direction: column-reverse; padding: var(--space-m) var(--space-s) var(--space-s) 0; border-bottom: 1px solid var(--rule); }
-  .hero-figs dd { margin: 0; font-size: var(--step-4); line-height: 1; }
-  .hero-figs dt { font-size: var(--step--1); color: var(--muted); }
+  .jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: var(--space-m);
+  }
+  .jump a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 1rem;
+    background: var(--card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    font-size: var(--step--1);
+    font-weight: 500;
+    color: var(--ink);
+    transition: all 0.2s var(--ease);
+  }
+  .jump a:hover {
+    border-color: var(--border-bright);
+    background: var(--card-hover);
+    color: var(--accent);
+    transform: translateY(-1px);
+  }
+  .jump .mono { font-size: var(--step--2); color: var(--accent); }
+  .hero-figs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-l);
+    padding: var(--space-l);
+    gap: var(--space-m);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  }
+  .hero-figs div { display: flex; flex-direction: column-reverse; gap: 0.35rem; }
+  .hero-figs dd { margin: 0; font-size: var(--step-4); line-height: 1; color: var(--accent); font-feature-settings: 'tnum'; }
+  .hero-figs dt { font-size: var(--step--1); color: var(--muted); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.04em; }
   .copy { color: var(--ink-2); max-width: 60ch; }
-  .callout { padding: var(--space-m); border-left: 3px solid var(--accent); background: var(--card); }
-  .callout h3 { font-family: var(--font-sans); font-weight: 600; font-size: var(--step-0); }
-  .callout p { font-size: var(--step--1); margin-top: 0.35rem; }
-  .offer { display: grid; gap: var(--space-m); align-content: start; padding: var(--space-l); background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-l); box-shadow: var(--shadow-plate); }
+  .callout {
+    padding: var(--space-m);
+    border-left: 3px solid var(--accent);
+    background: var(--card);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    border: 1px solid var(--border-subtle);
+    border-left-width: 3px;
+  }
+  .callout h3 { font-family: var(--font-sans); font-weight: 600; font-size: var(--step-0); color: var(--ink); }
+  .callout p { font-size: var(--step--1); margin-top: 0.35rem; color: var(--ink-2); }
+  .offer {
+    display: grid;
+    gap: var(--space-m);
+    align-content: start;
+    padding: var(--space-xl);
+    background: linear-gradient(180deg, var(--card) 0%, rgba(13, 22, 38, 0.95) 100%);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-l);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    transition: border-color 0.2s var(--ease);
+  }
+  .offer:hover {
+    border-color: var(--border-bright);
+  }
   .offer-price { display: flex; align-items: baseline; gap: 0.4rem; }
-  .amount { font-family: var(--font-display); font-size: var(--step-5); line-height: 1; }
-  .works { font-size: var(--step--2); color: var(--muted); padding: 0.6rem 0.75rem; background: var(--paper); border-radius: var(--radius); }
+  .amount { font-family: var(--font-display); font-size: var(--step-5); line-height: 1; color: var(--ink); }
+  .works {
+    font-size: var(--step--2);
+    color: var(--muted);
+    padding: 0.6rem 0.75rem;
+    background: var(--paper-2);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+  }
   .two-lists { display: grid; gap: var(--space-m); grid-template-columns: 1fr 1fr; margin-top: var(--space-m); }
-  .two-lists h3 { font-size: var(--step--2); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.5rem; }
+  .two-lists h3 { font-size: var(--step--2); text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.5rem; }
   .two-lists li { font-size: var(--step--1); }
-  .ruled { border-block: 1px solid var(--rule); }
+  .ruled { border-block: 1px solid var(--border-subtle); }
   .reports { display: grid; gap: var(--space-m); }
   @media (min-width: 56rem) { .reports { grid-template-columns: repeat(3, 1fr); } }
-  .report { display: flex; flex-direction: column; gap: var(--space-s); padding: var(--space-l); background: var(--paper); border: 1px solid var(--rule); border-radius: var(--radius-l); }
-  .report .mono { font-size: var(--step--2); }
-  .report-price { font-size: var(--step-3); }
-  .report-price .muted { font-size: var(--step--1); font-family: var(--font-sans); }
+  .report {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    padding: var(--space-l);
+    background: var(--card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-l);
+    transition: transform 0.2s var(--ease), border-color 0.2s var(--ease);
+  }
+  .report:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-bright);
+  }
+  .report .mono { font-size: var(--step--2); color: var(--accent); }
+  .report-price { font-size: var(--step-3); color: var(--ink); font-weight: 700; }
+  .report-price .muted { font-size: var(--step--1); font-family: var(--font-sans); color: var(--muted); font-weight: normal; }
   .report-body { font-size: var(--step--1); color: var(--ink-2); }
   .report .checks { font-size: var(--step--1); }
   .report .btn { margin-top: auto; align-self: flex-start; }
-  .packs { display: grid; gap: var(--space-s); margin-top: var(--space-xl); max-width: 36rem; }
+  .packs { display: grid; gap: var(--space-s); margin-top: var(--space-xl); max-width: 38rem; }
+  table { width: 100%; border-collapse: collapse; }
   table caption { text-align: left; font-family: var(--font-mono); font-size: var(--step--2); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); padding-bottom: 0.75rem; }
-  .packs th, .packs td, .compat th, .compat td { text-align: left; padding: 0.75rem 1rem 0.75rem 0; border-bottom: 1px solid var(--rule); }
-  .packs thead th, .compat thead th { font-family: var(--font-mono); font-weight: 500; font-size: var(--step--2); text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); border-bottom: 1px solid var(--ink); }
-  .packs td { font-family: var(--font-mono); }
+  .packs th, .packs td, .compat th, .compat td { text-align: left; padding: 0.85rem 1rem 0.85rem 0.75rem; border-bottom: 1px solid var(--border-subtle); }
+  .packs thead th, .compat thead th { font-family: var(--font-mono); font-weight: 600; font-size: var(--step--2); text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); border-bottom: 1px solid var(--border-bright); background: rgba(255, 255, 255, 0.02); }
+  .packs tbody tr:hover, .compat tbody tr:hover { background: rgba(255, 255, 255, 0.02); }
+  .packs td { font-family: var(--font-mono); color: var(--ink); }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border-subtle); border-radius: var(--radius-l); background: var(--card); }
   .compat { min-width: 36rem; }
-  .compat tbody th { font-weight: 600; }
-  .compat td { font-family: var(--font-mono); }
-  .yes { color: var(--positive); }
-  .no { color: var(--faint); }
+  .compat tbody th { font-weight: 600; color: var(--ink); }
+  .compat td { font-family: var(--font-mono); text-align: center; }
+  .compat thead th:not(:first-child) { text-align: center; }
+  .yes { color: var(--accent); font-weight: bold; }
+  .no { color: var(--muted); opacity: 0.5; }
 </style>

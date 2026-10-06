@@ -24,20 +24,40 @@ const { tone = 'ink' } = Astro.props;
 </span>
 
 <style>
-  .wordmark { display: inline-flex; align-items: center; gap: 0.6rem; }
-  .glyph svg { inline-size: 1.9rem; block-size: 1.9rem; }
-  .tile { fill: var(--ink); }
-  .stem, .row { fill: var(--paper); }
-  .base { fill: var(--accent); }
+  .wordmark { display: inline-flex; align-items: center; gap: 0.65rem; }
+  .glyph svg {
+    inline-size: 2rem;
+    block-size: 2rem;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
+  }
+  .tile {
+    fill: #151c2e;
+    stroke: rgba(255, 255, 255, 0.14);
+    stroke-width: 1px;
+  }
+  .stem, .row { fill: #f8fafc; }
+  .base {
+    fill: var(--accent);
+    filter: drop-shadow(0 0 4px var(--accent));
+  }
   .name {
     font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 500;
-    letter-spacing: -0.02em;
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: -0.035em;
     line-height: 1;
+    color: var(--ink);
   }
-  .name em { font-style: italic; font-weight: 400; color: var(--accent-ink); }
-  .light .tile { fill: var(--paper); }
-  .light .stem, .light .row { fill: var(--night); }
-  .light .name em { color: #f08a5a; }
+  .name em {
+    font-style: normal;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent) 0%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-left: 1px;
+  }
+  .light .tile { fill: #101626; stroke: rgba(255, 255, 255, 0.15); }
+  .light .stem, .light .row { fill: #f8fafc; }
+  .light .base { fill: var(--accent); }
+  .light .name { color: #f8fafc; }
 </style>

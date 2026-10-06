@@ -137,7 +137,7 @@ const faqs = [
           <ScreenPlate screen={{ kind: 'weights', app: 'index', label: 'Thumbnail value' }} caption="Thumbnail value estimate" label="Fig. 3" title="Deal Index — Valuation" />
         </div>
         <div class="stack">
-          <h3>Industry Outlookted</h3>
+          <h3>Integrated</h3>
           <p class="muted">Inside Ledgerline Deals and Ledgerline Valuation, with central tendency, R-squared, standard deviation, and distribution statistics to support your multiple selection.</p>
           <ScreenPlate screen={{ kind: 'stats', app: 'index' }} caption="Statistics for selected transactions" label="Fig. 4" title="Deal Index — Statistics" />
         </div>
@@ -155,7 +155,7 @@ const faqs = [
           <li>Full access to 12,000+ completed transactions</li>
           <li>Monthly updates with new transactions</li>
           <li>Search, comp selection & thumbnail value estimates</li>
-          <li>Industry Outlooktion with Ledgerline Deals and Ledgerline Valuation</li>
+          <li>Integration with Ledgerline Deals and Ledgerline Valuation</li>
           <li>Ledgerline Deals & Ledgerline Valuation owners get standalone access free</li>
         </ul>
         <div class="btn-row">
@@ -178,26 +178,62 @@ const faqs = [
 </BaseLayout>
 
 <style>
-  .figures { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--ink); }
+  .figures {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    background: var(--card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-l);
+    padding: var(--space-l);
+    gap: var(--space-m);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  }
   @media (min-width: 48rem) { .figures { grid-template-columns: repeat(4, 1fr); } }
-  .figures > div { display: flex; flex-direction: column-reverse; gap: 0.25rem; padding: var(--space-m) var(--space-m) 0 0; }
-  .figures dd { margin: 0; font-size: var(--step-4); line-height: 1; }
-  .figures dt { color: var(--muted); font-size: var(--step--1); }
+  .figures > div { display: flex; flex-direction: column-reverse; gap: 0.35rem; }
+  .figures dd { margin: 0; font-size: var(--step-4); line-height: 1; color: var(--accent); font-feature-settings: 'tnum'; }
+  .figures dt { color: var(--muted); font-size: var(--step--1); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.04em; }
   .copy { color: var(--ink-2); max-width: 60ch; }
-  .cols { display: grid; gap: var(--space-l); }
+  .cols { display: grid; gap: var(--space-m); }
   @media (min-width: 56rem) { .cols { grid-template-columns: repeat(3, 1fr); } }
-  .cols article { padding-top: var(--space-m); border-top: 2px solid var(--ink); display: grid; gap: var(--space-xs); }
-  .cols p { color: var(--ink-2); }
-  .ruled { border-block: 1px solid var(--rule); }
-  .fields { display: grid; gap: var(--space-l); }
+  .cols article {
+    padding: var(--space-l);
+    background: var(--card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-l);
+    display: grid;
+    gap: var(--space-xs);
+    transition: transform 0.2s var(--ease), border-color 0.2s var(--ease);
+  }
+  .cols article:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-bright);
+  }
+  .cols h3 { font-size: var(--step-1); font-weight: 600; color: var(--ink); }
+  .cols p { color: var(--ink-2); font-size: var(--step--1); line-height: 1.5; }
+  .ruled { border-block: 1px solid var(--border-subtle); }
+  .fields { display: grid; gap: var(--space-m); }
   @media (min-width: 48rem) { .fields { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 72rem) { .fields { grid-template-columns: repeat(4, 1fr); } }
-  .fields h3 { font-size: var(--step--2); text-transform: uppercase; letter-spacing: 0.08em; color: var(--hue); margin-bottom: var(--space-s); }
+  .fields > div {
+    background: var(--card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-l);
+    padding: var(--space-m) var(--space-l);
+  }
+  .fields h3 { font-size: var(--step--2); text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: var(--space-s); }
   .fields li { font-size: var(--step--1); }
   .integration { display: grid; gap: var(--space-xl); }
   @media (min-width: 56rem) { .integration { grid-template-columns: 1fr 1fr; } }
-  .price-card { display: grid; gap: var(--space-m); padding: var(--space-l); background: var(--card); border: 1px solid var(--ink); border-radius: var(--radius-l); box-shadow: var(--shadow-plate); }
+  .price-card {
+    display: grid;
+    gap: var(--space-m);
+    padding: var(--space-xl);
+    background: linear-gradient(180deg, var(--card) 0%, rgba(13, 22, 38, 0.9) 100%);
+    border: 1px solid var(--border-bright);
+    border-radius: var(--radius-l);
+    box-shadow: 0 8px 32px rgba(0, 240, 160, 0.08);
+  }
   .price { display: flex; align-items: baseline; gap: 0.5rem; }
-  .amount { font-family: var(--font-display); font-size: var(--step-5); line-height: 1; }
+  .amount { font-family: var(--font-display); font-size: var(--step-5); line-height: 1; color: var(--ink); }
   .fine { font-size: var(--step--2); color: var(--muted); }
 </style>

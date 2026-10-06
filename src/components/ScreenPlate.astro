@@ -33,23 +33,43 @@ const { screen, caption, label, title = 'Ledgerline' } = Astro.props;
 <style>
   .plate { margin: 0; }
   .window {
-    background: var(--card);
-    border: 1px solid var(--rule);
+    background: #090d16;
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: var(--radius-l);
     overflow: hidden;
-    box-shadow: var(--shadow-plate);
+    box-shadow:
+      0 24px 60px -15px rgba(0, 0, 0, 0.95),
+      0 0 35px -5px var(--hue-glow, rgba(0, 240, 160, 0.12)),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition: box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
   }
   .chrome {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 0.55rem 0.85rem;
-    border-bottom: 1px solid var(--rule-soft);
-    background: linear-gradient(var(--card), var(--paper));
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(180deg, rgba(21, 28, 44, 0.9) 0%, rgba(13, 18, 28, 0.9) 100%);
+    backdrop-filter: blur(12px);
   }
-  .dots { display: flex; gap: 5px; }
-  .dots i { inline-size: 9px; block-size: 9px; border-radius: 50%; background: var(--rule); }
-  .title { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .dots { display: flex; gap: 6px; }
+  .dots i {
+    inline-size: 10px;
+    block-size: 10px;
+    border-radius: 50%;
+  }
+  .dots i:nth-child(1) { background: #ff5f56; box-shadow: 0 0 6px rgba(255, 95, 86, 0.4); }
+  .dots i:nth-child(2) { background: #ffbd2e; box-shadow: 0 0 6px rgba(255, 189, 46, 0.4); }
+  .dots i:nth-child(3) { background: #27c93f; box-shadow: 0 0 6px rgba(39, 201, 63, 0.4); }
+  .title {
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+  }
   figcaption {
     display: flex;
     gap: 0.75rem;
@@ -58,7 +78,16 @@ const { screen, caption, label, title = 'Ledgerline' } = Astro.props;
     font-size: var(--step--1);
     color: var(--muted);
   }
-  .label { font-size: var(--step--2); color: var(--hue, var(--accent-ink)); text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
-  :global(.surface-night) .window { border-color: var(--night-rule); }
-  :global(.surface-night) .chrome { background: var(--night-2); border-color: var(--night-rule); }
+  .label {
+    font-size: var(--step--2);
+    color: var(--hue, var(--accent));
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    white-space: nowrap;
+    padding: 0.15rem 0.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-pill);
+  }
 </style>

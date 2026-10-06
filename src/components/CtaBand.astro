@@ -33,22 +33,33 @@ const {
 </section>
 
 <style>
-  .cta { padding-block: var(--space-2xl); position: relative; overflow: hidden; }
+  .cta {
+    padding-block: var(--space-2xl);
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(0, 240, 160, 0.08), transparent 70%),
+                radial-gradient(ellipse 50% 50% at 20% 50%, rgba(56, 189, 248, 0.05), transparent 60%),
+                #070a10;
+    border-block: 1px solid var(--rule);
+  }
   .cta::before {
     content: '';
     position: absolute;
     inset: 0;
-    background-image: linear-gradient(var(--night-rule) 1px, transparent 1px), linear-gradient(90deg, var(--night-rule) 1px, transparent 1px);
-    background-size: 56px 56px;
-    mask-image: radial-gradient(ellipse at 85% 50%, black, transparent 65%);
-    opacity: 0.5;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at 75% 50%, black, transparent 70%);
+    opacity: 0.6;
     pointer-events: none;
   }
   .cta-inner { position: relative; display: grid; gap: var(--space-l); align-items: end; }
   @media (min-width: 60rem) { .cta-inner { grid-template-columns: 1.4fr 1fr; } }
   h2 { max-width: 18ch; }
-  .lede { margin-top: var(--space-s); }
+  .lede { margin-top: var(--space-s); color: var(--muted); }
   .cta-side { display: grid; gap: var(--space-s); }
-  .call { font-size: var(--step--1); color: var(--night-muted); }
-  .call a { color: var(--night-text); }
+  .call { font-size: var(--step--1); color: var(--muted); }
+  .call a { color: var(--accent); font-weight: 600; text-decoration: none; }
+  .call a:hover { color: #ffffff; }
 </style>

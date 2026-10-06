@@ -17,12 +17,12 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.fontsource(),
-      name: 'Newsreader',
+      name: 'Plus Jakarta Sans',
       cssVariable: '--font-display',
-      weights: ['300 700'],
-      styles: ['normal', 'italic'],
+      weights: ['400', '500', '600', '700', '800'],
+      styles: ['normal'],
       subsets: ['latin'],
-      fallbacks: ['Georgia', 'serif'],
+      fallbacks: ['system-ui', 'sans-serif'],
     },
     {
       provider: fontProviders.fontsource(),

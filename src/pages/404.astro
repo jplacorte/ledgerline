@@ -23,6 +23,24 @@ import { nav } from '../data/site';
 <style>
   .nf { display: grid; gap: var(--space-xl); align-items: center; min-height: 60vh; }
   @media (min-width: 60rem) { .nf { grid-template-columns: 1fr 1.4fr; } }
-  .code { font-size: clamp(6rem, 3rem + 14vw, 14rem); line-height: 0.85; color: var(--rule); letter-spacing: -0.06em; }
-  .links a { text-decoration: none; font-weight: 550; }
+  .code {
+    font-size: clamp(6rem, 3rem + 14vw, 14rem);
+    line-height: 0.85;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.6) 0%, rgba(0, 240, 160, 0.2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.06em;
+    font-weight: 800;
+    text-shadow: 0 0 60px rgba(56, 189, 248, 0.2);
+  }
+  .links {
+    background: var(--card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-l);
+    padding: var(--space-m) var(--space-l);
+  }
+  .links li { padding-block: 0.75rem; border-bottom: 1px solid var(--border-subtle); }
+  .links li:last-child { border-bottom: none; }
+  .links a { text-decoration: none; font-weight: 550; color: var(--ink); transition: color 0.2s var(--ease); }
+  .links a:hover { color: var(--accent); }
 </style>

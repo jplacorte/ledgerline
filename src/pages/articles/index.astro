@@ -58,20 +58,58 @@ const hues = Object.fromEntries(await Promise.all(posts.map(async (p) => [p.id, 
 </BaseLayout>
 
 <style>
-  .lead { display: grid; gap: var(--space-l); align-items: center; padding-bottom: var(--space-xl); border-bottom: 1px solid var(--rule); }
+  .lead {
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+    padding: var(--space-xl);
+    background: var(--card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-l);
+    transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+  }
+  .lead:hover {
+    border-color: var(--border-bright);
+    box-shadow: 0 8px 32px rgba(0, 240, 160, 0.08);
+  }
   @media (min-width: 60rem) { .lead { grid-template-columns: 1.2fr 1fr; gap: var(--space-xl); } }
-  .lead-img, .card-img { display: block; border-radius: var(--radius-l); overflow: hidden; border: 1px solid var(--rule); background: var(--night); }
-  .lead-img :global(img), .card-img :global(img) { inline-size: 100%; aspect-ratio: 16 / 9; object-fit: cover; transition: transform 0.5s var(--ease); }
+  .lead-img, .card-img {
+    display: block;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    background: #04060a;
+  }
+  .lead-img :global(img), .card-img :global(img) {
+    inline-size: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    transition: transform 0.5s var(--ease);
+  }
   .lead:hover .lead-img :global(img), .card:hover .card-img :global(img) { transform: scale(1.03); }
   .lead-body { display: grid; gap: var(--space-s); }
   .lead h2 { font-size: var(--step-3); }
-  h2 a, h3 a { text-decoration: none; color: var(--ink); }
-  h2 a:hover, h3 a:hover { color: var(--accent-ink); }
+  h2 a, h3 a { text-decoration: none; color: var(--ink); transition: color 0.2s var(--ease); }
+  h2 a:hover, h3 a:hover { color: var(--accent); }
   .meta { font-size: var(--step--2); color: var(--muted); }
-  .grid { display: grid; gap: var(--space-xl) var(--space-m); margin-top: var(--space-xl); }
+  .grid { display: grid; gap: var(--space-m); margin-top: var(--space-xl); }
   @media (min-width: 48rem) { .grid { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 72rem) { .grid { grid-template-columns: repeat(3, 1fr); } }
-  .card { display: grid; gap: var(--space-s); align-content: start; }
-  .card h3 { font-size: var(--step-2); }
-  .desc { color: var(--ink-2); font-size: var(--step--1); }
+  .card {
+    display: grid;
+    gap: var(--space-s);
+    align-content: start;
+    padding: var(--space-l);
+    background: var(--card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-l);
+    height: 100%;
+    transition: transform 0.2s var(--ease), border-color 0.2s var(--ease);
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-bright);
+  }
+  .card h3 { font-size: var(--step-1); }
+  .desc { color: var(--ink-2); font-size: var(--step--1); line-height: 1.5; }
 </style>

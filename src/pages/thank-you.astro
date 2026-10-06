@@ -33,8 +33,38 @@ import { site } from '../data/site';
 </script>
 
 <style>
-  .ty { display: grid; gap: var(--space-m); justify-items: start; max-width: 44rem; min-height: 50vh; align-content: center; }
-  .check { display: grid; place-items: center; inline-size: 3.5rem; block-size: 3.5rem; border-radius: 50%; border: 1.5px solid var(--positive); color: var(--positive); }
-  .check svg { inline-size: 1.75rem; }
-  .note { font-size: var(--step--2); color: var(--muted); padding: 0.5rem 0.75rem; background: var(--paper-2); border-radius: var(--radius); }
+  .ty {
+    display: grid;
+    gap: var(--space-m);
+    justify-items: start;
+    max-width: 44rem;
+    min-height: 55vh;
+    align-content: center;
+    padding: var(--space-xl);
+    background: linear-gradient(180deg, var(--card) 0%, rgba(13, 22, 38, 0.95) 100%);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-l);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    margin-block: var(--space-xl);
+  }
+  .check {
+    display: grid;
+    place-items: center;
+    inline-size: 4rem;
+    block-size: 4rem;
+    border-radius: 50%;
+    background: rgba(0, 240, 160, 0.1);
+    border: 1.5px solid var(--positive);
+    color: var(--positive);
+    box-shadow: 0 0 30px rgba(0, 240, 160, 0.25);
+  }
+  .check svg { inline-size: 2rem; }
+  .note {
+    font-size: var(--step--2);
+    color: var(--muted);
+    padding: 0.5rem 0.75rem;
+    background: var(--paper-2);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+  }
 </style>

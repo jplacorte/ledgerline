@@ -35,9 +35,13 @@ const points = [
 </section>
 
 <style>
+  .dbd {
+    background: #090d16;
+    border-block: 1px solid var(--rule);
+  }
   .dbd h2 { max-width: 16ch; }
-  .spec { border-top: 1px solid var(--night-rule); align-self: center; }
-  .spec > div { display: grid; grid-template-columns: 6rem 1fr; gap: var(--space-m); padding-block: 1.1rem; border-bottom: 1px solid var(--night-rule); }
-  dt { font-size: var(--step--2); text-transform: uppercase; letter-spacing: 0.08em; color: #f08a5a; padding-top: 0.2rem; }
-  dd { margin: 0; color: var(--night-text); }
+  .spec { border-top: 1px solid var(--rule); align-self: center; }
+  .spec > div { display: grid; grid-template-columns: 6.5rem 1fr; gap: var(--space-m); padding-block: 1.15rem; border-bottom: 1px solid var(--rule); align-items: baseline; }
+  dt { font-size: var(--step--2); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
+  dd { margin: 0; color: var(--ink-2); line-height: 1.5; }
 </style>

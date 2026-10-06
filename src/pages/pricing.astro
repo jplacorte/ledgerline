@@ -131,35 +131,77 @@ const promises = [
 </BaseLayout>
 
 <style>
-  .pricing { min-width: 52rem; }
-  .pricing thead th { text-align: left; font-family: var(--font-mono); font-weight: 500; font-size: var(--step--2); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); padding: 0 1rem 0.75rem 0; border-bottom: 1px solid var(--ink); }
-  .pricing tbody th, .pricing td { text-align: left; vertical-align: top; padding: var(--space-m) 1rem var(--space-m) 0; border-bottom: 1px solid var(--rule); }
+  .pricing {
+    min-width: 52rem;
+    background: rgba(14, 20, 32, 0.7);
+    backdrop-filter: blur(14px);
+    border-radius: var(--radius-l);
+  }
+  .pricing thead th {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid var(--rule);
+    background: rgba(255, 255, 255, 0.02);
+  }
+  .pricing tbody th, .pricing td {
+    text-align: left;
+    vertical-align: top;
+    padding: var(--space-m) 1.2rem;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .pricing tbody tr:hover { background: rgba(255, 255, 255, 0.025); }
   .prod { display: flex; gap: 0.85rem; text-decoration: none; color: var(--ink); }
-  .pname { display: block; font-family: var(--font-display); font-size: var(--step-2); font-weight: 400; line-height: 1.15; }
-  .pcat { display: block; font-size: var(--step--1); color: var(--muted); font-weight: 400; }
+  .pname { display: block; font-family: var(--font-display); font-size: var(--step-1); font-weight: 700; line-height: 1.2; color: #ffffff; }
+  .pcat { display: block; font-size: var(--step--2); color: var(--muted); margin-top: 0.15rem; }
   .from { display: block; font-size: var(--step--2); color: var(--muted); }
-  .big { display: block; font-size: var(--step-3); line-height: 1.1; }
-  .unit { display: block; font-size: var(--step--2); color: var(--muted); max-width: 16ch; }
+  .big { display: block; font-size: var(--step-3); font-weight: 800; line-height: 1.1; color: #ffffff; }
+  .unit { display: block; font-size: var(--step--2); color: var(--muted); max-width: 18ch; }
   .plans { display: grid; gap: 0.6rem; font-size: var(--step--1); }
-  .plans li { display: grid; grid-template-columns: 1fr auto; gap: 0 1rem; }
+  .plans li { display: grid; grid-template-columns: 1fr auto; gap: 0 1rem; color: var(--ink-2); }
   .renew { grid-column: 1 / -1; font-size: var(--step--2); color: var(--muted); }
   .acts { white-space: nowrap; }
   .acts .btn + .btn { margin-left: 0.4rem; }
 
-  .data { border-top: 1px solid var(--ink); }
+  .data { border-top: 1px solid var(--rule); }
   .data li { border-bottom: 1px solid var(--rule); }
-  .data a { display: grid; grid-template-columns: auto 1fr auto; gap: 0.25rem 1rem; align-items: center; padding: var(--space-m) 0; text-decoration: none; color: var(--ink); }
+  .data a {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.5rem 1rem;
+    align-items: center;
+    padding: var(--space-m) 0;
+    text-decoration: none;
+    color: var(--ink);
+    transition: all 0.2s var(--ease);
+  }
+  .data a:hover {
+    background: rgba(255, 255, 255, 0.03);
+    padding-inline: 1rem;
+    color: #ffffff;
+  }
   @media (min-width: 48rem) { .data a { grid-template-columns: auto 16rem 1fr auto; } }
-  .dname { font-weight: 600; }
+  .dname { font-weight: 700; color: #ffffff; }
   .dnote { color: var(--muted); font-size: var(--step--1); grid-column: 2; }
   @media (min-width: 48rem) { .dnote { grid-column: auto; } }
-  .dprice { grid-column: 3; grid-row: 1; }
+  .dprice { grid-column: 3; grid-row: 1; color: var(--accent); font-weight: 700; }
   @media (min-width: 48rem) { .dprice { grid-column: auto; grid-row: auto; } }
 
   .promises { display: grid; gap: var(--space-l); }
   @media (min-width: 48rem) { .promises { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 72rem) { .promises { grid-template-columns: repeat(4, 1fr); } }
-  .promises div { padding-top: var(--space-m); border-top: 2px solid var(--ink); }
-  .promises dt { font-family: var(--font-display); font-size: var(--step-2); }
-  .promises dd { margin: 0.5rem 0 0; color: var(--ink-2); font-size: var(--step--1); }
+  .promises div {
+    padding: var(--space-l);
+    background: rgba(14, 20, 32, 0.75);
+    border: 1px solid var(--rule);
+    border-top: 2px solid var(--accent);
+    border-radius: var(--radius-l);
+  }
+  .promises dt { font-family: var(--font-display); font-size: var(--step-1); font-weight: 700; color: #ffffff; }
+  .promises dd { margin: 0.5rem 0 0; color: var(--muted); font-size: var(--step--1); line-height: 1.5; }
 </style>
