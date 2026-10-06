@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import QuoteCard from '../components/QuoteCard.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../data/site';
+
+const values = [
+  { title: 'Make complexity understandable.', body: "Complex financial work shouldn't require unnecessary complexity to go with it. We organize your data and streamline analysis so you can focus on insight rather than mechanics." },
+  { title: 'Your expertise. Our tools.', body: 'Software should sharpen professional expertise, not substitute for it. We build tools that organize the information and streamline the analysis — then get out of the way.' },
+  { title: 'Trust is earned. Never take it for granted.', body: `A report that's right the first time. A number that holds up when someone else checks it. An ${site.stats.renewal} annual renewal rate is customers telling us the trust is still there.` },
+  { title: 'Our clients first. Every time.', body: "We'd rather lose a feature argument than lose your trust. We're interested in still being your financial intelligence partner twenty years from now — which only happens if we earn it every year in between." },
+  { title: 'Kaizen — never stop improving.', body: "Markets, technology, and professional practice never stand still, and neither do we. Every customer who renews is reminding us we're not done yet." },
+];
+
+const team = [
+  { name: 'Catherine Wells', role: 'Founder & CEO', quote: "I spent a decade as a controller and deal advisor watching good analysts drown in spreadsheets. Ledgerline exists so the numbers give you a straight answer." },
+  { name: 'Daniel Okafor', role: 'Head of customer support', quote: "Most people who call are solving a real problem with a deadline attached. I'd rather take a few extra minutes to give you the right fix than a quick one." },
+  { name: 'Mei Tanaka', role: 'Head of product quality', quote: "Before a release ships, I've tested it against the situations I know will come up. When something does go wrong, we stay with it until it's actually resolved." },
+];
+
+const timeline = [
+  { year: '2008', text: 'Ledgerline founded in Denver, Colorado, with a single fixed asset product.' },
+  { year: '2012', text: 'Ledgerline Benchmark launches for CFOs, CPAs, and credit analysts.' },
+  { year: '2016', text: 'Ledgerline Valuation brings standards-based valuation reports to the desktop.' },
+  { year: '2019', text: 'Ledgerline Deals connects valuation, structure, financing, and returns in one model.' },
+  { year: 'Today', text: `Four products built discipline-first, the Deal Index database, and a ${site.stats.renewal} renewal rate.` },
+];
+---
+
+<BaseLayout title="About" description="Ledgerline builds desktop financial software for controllers, CFOs, CPAs, valuation analysts, and M&A advisors. Founded 2008 in Denver, Colorado.">
+  <PageHero
+    crumbs={[{ label: 'Company' }, { label: 'About' }]}
+    eyebrow="About Ledgerline"
+    heading="Software built to help you *own the numbers*."
+    lede="Four products built from the ground up for controllers, CFOs, accounting teams, CPAs, valuation analysts, and M&A advisors who need serious tools, real support, and software that respects their time."
+  >
+    <dl slot="aside" class="figs">
+      <div><dt>Founded</dt><dd class="figure-num">{site.founded}</dd></div>
+      <div><dt>Customer rating</dt><dd class="figure-num">{site.stats.rating}</dd></div>
+      <div><dt>Annual renewal</dt><dd class="figure-num">{site.stats.renewal}</dd></div>
+      <div><dt>Years in business</dt><dd class="figure-num">{site.stats.years}</dd></div>
+    </dl>
+  </PageHero>
+
+  <section class="section" aria-labelledby="mission-h">
+    <div class="container split">
+      <SectionHeader id="mission-h" eyebrow="Our mission" num="01" heading="Practical software, industry knowledge, and *proven frameworks*." />
+      <div class="stack mission">
+        <p class="big">
+          Ledgerline empowers financial professionals with tools that transform financial data into confident decisions.
+        </p>
+        <p>
+          We came to this from the work itself — from years of buying, selling, and advising on transactions, and from running businesses
+          where the numbers had real consequences. We know the particular frustration of a spreadsheet that almost works, until it doesn't, at
+          the worst possible moment. That's why Ledgerline exists, and why we still take it personally when a customer is stuck.
+        </p>
+        <p class="pull">We're not trying to replace your judgement. We're trying to clear everything out of its way.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface-alt" aria-labelledby="values-h">
+    <div class="container">
+      <SectionHeader id="values-h" eyebrow="What we value" num="02" heading="These aren't framed posters. They're why Ledgerline *still looks the way it does*." />
+      <ol class="values" role="list">
+        {
+          values.map((v, i) => (
+            <li class="reveal">
+              <span class="mono vn">{String(i + 1).padStart(2, '0')}</span>
+              <h3>{v.title}</h3>
+              <p>{v.body}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="team-h">
+    <div class="container">
+      <SectionHeader id="team-h" eyebrow="The team" num="03" heading="Personally invested in why you *keep using* Ledgerline." />
+      <div class="team">
+        {
+          team.map((t) => (
+            <figure class="member">
+              <span class="monogram" aria-hidden="true">{t.name.split(' ').map((w) => w[0]).join('')}</span>
+              <figcaption>
+                <span class="tname">{t.name}</span>
+                <span class="trole mono">{t.role}</span>
+              </figcaption>
+              <blockquote><p>“{t.quote}”</p></blockquote>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface-night" aria-labelledby="time-h">
+    <div class="container split">
+      <SectionHeader id="time-h" eyebrow={`Since ${site.founded}`} num="04" heading="Built *one discipline at a time*." />
+      <ol class="timeline" role="list">
+        {
+          timeline.map((t) => (
+            <li>
+              <span class="mono tyear">{t.year}</span>
+              <span>{t.text}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section surface-alt">
+    <div class="container narrow-quote">
+      <QuoteCard size="lg" quote="The product has carried our team through a decade of closes. When we need customer service, issues are generally resolved within 24 hours." name="Rosa Delgado" role="Controller, building materials" />
+    </div>
+  </section>
+
+  <CtaBand heading="Ready to *own your numbers*?" primary={{ label: 'Explore the products', href: '/#products' }} secondary={{ label: 'Contact us', href: '/contact/' }} />
+</BaseLayout>
+
+<style>
+  .figs { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--ink); }
+  .figs div { display: flex; flex-direction: column-reverse; padding: var(--space-m) var(--space-s) var(--space-s) 0; border-bottom: 1px solid var(--rule); }
+  .figs dd { margin: 0; font-size: var(--step-4); line-height: 1; }
+  .figs dt { font-size: var(--step--1); color: var(--muted); }
+  .mission { color: var(--ink-2); max-width: 62ch; }
+  .big { font-family: var(--font-display); font-size: var(--step-2); line-height: 1.3; color: var(--ink); }
+  .pull { font-family: var(--font-display); font-style: italic; font-size: var(--step-1); color: var(--accent-ink); padding-top: var(--space-s); border-top: 1px solid var(--rule); }
+  .values { display: grid; gap: 0; border-top: 1px solid var(--ink); }
+  .values li { display: grid; gap: var(--space-xs) var(--space-l); padding-block: var(--space-l); border-bottom: 1px solid var(--rule); }
+  @media (min-width: 56rem) { .values li { grid-template-columns: 4rem minmax(0, 1fr) minmax(0, 1.3fr); align-items: baseline; } }
+  .vn { color: var(--accent-ink); }
+  .values h3 { font-size: var(--step-2); }
+  .values p { color: var(--ink-2); }
+  .team { display: grid; gap: var(--space-m); }
+  @media (min-width: 56rem) { .team { grid-template-columns: repeat(3, 1fr); } }
+  .member { display: grid; gap: var(--space-s); align-content: start; margin: 0; padding: var(--space-l); background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-l); }
+  .monogram { display: grid; place-items: center; inline-size: 3.5rem; block-size: 3.5rem; border-radius: 50%; background: var(--ink); color: var(--paper); font-family: var(--font-display); font-size: var(--step-1); font-style: italic; }
+  .tname { display: block; font-weight: 600; }
+  .trole { display: block; font-size: var(--step--2); color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+  .member blockquote { font-family: var(--font-display); font-size: var(--step-1); line-height: 1.45; color: var(--ink-2); padding-top: var(--space-s); border-top: 1px solid var(--rule); }
+  .timeline { border-top: 1px solid var(--night-rule); }
+  .timeline li { display: grid; grid-template-columns: 9rem 1fr; gap: var(--space-m); padding-block: var(--space-m); border-bottom: 1px solid var(--night-rule); }
+  .tyear { color: #f08a5a; font-size: var(--step--1); }
+  .narrow-quote { max-width: 52rem; }
+</style>

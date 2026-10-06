@@ -1,0 +1,165 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import ProductMark from '../components/ProductMark.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { buyHref, site } from '../data/site';
+
+const products = (await getCollection('products')).sort((a, b) => a.data.order - b.data.order);
+
+const data = [
+  { name: 'Deal Index', href: '/deal-index/', slug: 'deal-index', price: '$795', unit: '/ year', note: 'Standalone, or integrated with Ledgerline Deals & Ledgerline Valuation' },
+  { name: 'Peer Ratio Studies', href: '/data-offerings/#peer-ratios', slug: 'data-offerings', price: '$695', unit: '/ year', note: 'Ledgerline Deals, Ledgerline Valuation & Ledgerline Benchmark' },
+  { name: 'Main Street Comps', href: '/data-offerings/#main-street-comps', slug: 'data-offerings', price: '$819', unit: '/ year', note: 'Requires Ledgerline Deals or Ledgerline Valuation' },
+  { name: 'Industry Outlook reports', href: '/data-offerings/#industry-outlook', slug: 'data-offerings', price: 'from $80', unit: '/ report', note: 'No subscription — volume packs available' },
+];
+
+const promises = [
+  { k: 'Transparent', v: 'Every price is on this page. No sales call required to find out what something costs.' },
+  { k: 'No per-case fees', v: 'Run as many assets, analyses, valuations, or deals as you like.' },
+  { k: '30-day guarantee', v: "If a software product doesn't perform the way you need within 30 days, we refund you promptly." },
+  { k: 'Real support', v: `US-based phone, email, and chat support from people who know the discipline. ${site.hours}.` },
+];
+---
+
+<BaseLayout title="Pricing" description="Transparent pricing for Ledgerline Assets, Ledgerline Deals, Ledgerline Valuation, Ledgerline Benchmark, and Ledgerline data products. No per-case fees, 30-day money-back guarantee.">
+  <PageHero
+    crumbs={[{ label: 'Pricing' }]}
+    eyebrow="Pricing"
+    heading="Priced for the professionals *who actually use it*."
+    lede="Not for what a sales team thinks the market will bear. Every license includes onboarding, US-based support, and our 30-day money-back guarantee on software."
+  />
+
+  <section class="section">
+    <div class="container">
+      <SectionHeader eyebrow="Software" num="01" heading="Compare the products." />
+      <div class="table-wrap">
+        <table class="pricing">
+          <thead>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Price</th>
+              <th scope="col">Plans</th>
+              <th scope="col"><span class="sr-only">Actions</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              products.map((p) => (
+                <tr style={`--hue: ${p.data.hue}`}>
+                  <th scope="row">
+                    <a href={`/${p.id}/`} class="prod">
+                      <ProductMark slug={p.id} />
+                      <span>
+                        <span class="pname">{p.data.name}</span>
+                        <span class="pcat">{p.data.category}</span>
+                      </span>
+                    </a>
+                  </th>
+                  <td>
+                    <span class="from">from</span>
+                    <span class="big figure-num">{p.data.fromPrice}</span>
+                    <span class="unit">{p.data.priceNote}</span>
+                  </td>
+                  <td>
+                    <ul class="plans" role="list">
+                      {p.data.pricing.plans.map((plan) => (
+                        <li>
+                          <span>{plan.name}</span>
+                          <span class="mono">
+                            {plan.price}
+                            {plan.period ? ` ${plan.period}` : ''}
+                          </span>
+                          {plan.renewal && <span class="renew">{plan.renewal}</span>}
+                        </li>
+                      ))}
+                    </ul>
+                  </td>
+                  <td class="acts">
+                    <a class="btn btn-sm" href={buyHref(p.id)}>Buy</a>
+                    <a class="btn btn-sm btn-ghost" href={`/${p.id}/#pricing`}>Details</a>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface-alt">
+    <div class="container">
+      <SectionHeader eyebrow="Data" num="02" heading="Benchmark & transaction data." intro="Optional add-ons that integrate with the products above. Data products don't carry the 30-day software guarantee." />
+      <ul class="data" role="list">
+        {
+          data.map((d) => (
+            <li>
+              <a href={d.href}>
+                <ProductMark slug={d.slug} size="sm" />
+                <span class="dname">{d.name}</span>
+                <span class="dnote">{d.note}</span>
+                <span class="dprice mono">
+                  {d.price} <span class="muted">{d.unit}</span>
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <dl class="promises">
+        {
+          promises.map((p) => (
+            <div>
+              <dt>{p.k}</dt>
+              <dd>{p.v}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <CtaBand heading="Questions about licensing *for your team*?" body="Multi-user, site, and enterprise configurations are available. We'll scope the right license count on a quick call." primary={{ label: 'Talk to sales', href: '/contact/?reason=sales' }} secondary={{ label: 'Book a demo', href: '/book-a-demo/' }} />
+</BaseLayout>
+
+<style>
+  .pricing { min-width: 52rem; }
+  .pricing thead th { text-align: left; font-family: var(--font-mono); font-weight: 500; font-size: var(--step--2); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); padding: 0 1rem 0.75rem 0; border-bottom: 1px solid var(--ink); }
+  .pricing tbody th, .pricing td { text-align: left; vertical-align: top; padding: var(--space-m) 1rem var(--space-m) 0; border-bottom: 1px solid var(--rule); }
+  .prod { display: flex; gap: 0.85rem; text-decoration: none; color: var(--ink); }
+  .pname { display: block; font-family: var(--font-display); font-size: var(--step-2); font-weight: 400; line-height: 1.15; }
+  .pcat { display: block; font-size: var(--step--1); color: var(--muted); font-weight: 400; }
+  .from { display: block; font-size: var(--step--2); color: var(--muted); }
+  .big { display: block; font-size: var(--step-3); line-height: 1.1; }
+  .unit { display: block; font-size: var(--step--2); color: var(--muted); max-width: 16ch; }
+  .plans { display: grid; gap: 0.6rem; font-size: var(--step--1); }
+  .plans li { display: grid; grid-template-columns: 1fr auto; gap: 0 1rem; }
+  .renew { grid-column: 1 / -1; font-size: var(--step--2); color: var(--muted); }
+  .acts { white-space: nowrap; }
+  .acts .btn + .btn { margin-left: 0.4rem; }
+
+  .data { border-top: 1px solid var(--ink); }
+  .data li { border-bottom: 1px solid var(--rule); }
+  .data a { display: grid; grid-template-columns: auto 1fr auto; gap: 0.25rem 1rem; align-items: center; padding: var(--space-m) 0; text-decoration: none; color: var(--ink); }
+  @media (min-width: 48rem) { .data a { grid-template-columns: auto 16rem 1fr auto; } }
+  .dname { font-weight: 600; }
+  .dnote { color: var(--muted); font-size: var(--step--1); grid-column: 2; }
+  @media (min-width: 48rem) { .dnote { grid-column: auto; } }
+  .dprice { grid-column: 3; grid-row: 1; }
+  @media (min-width: 48rem) { .dprice { grid-column: auto; grid-row: auto; } }
+
+  .promises { display: grid; gap: var(--space-l); }
+  @media (min-width: 48rem) { .promises { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 72rem) { .promises { grid-template-columns: repeat(4, 1fr); } }
+  .promises div { padding-top: var(--space-m); border-top: 2px solid var(--ink); }
+  .promises dt { font-family: var(--font-display); font-size: var(--step-2); }
+  .promises dd { margin: 0.5rem 0 0; color: var(--ink-2); font-size: var(--step--1); }
+</style>

@@ -1,0 +1,339 @@
+---
+/**
+ * A generated, illustrative product screen filled with dummy data.
+ * Scales like an image: all sizes are in `em` off a container-query font size.
+ */
+import * as m from '../data/mock';
+import type { ScreenKind } from '../data/mock';
+
+export interface Props {
+  kind: ScreenKind;
+  /** Sidebar navigation set (see navSets in data/mock.ts). */
+  app?: keyof typeof m.navSets;
+  /** Preset for the `setup` kind. */
+  preset?: keyof typeof m.setup;
+  label?: string;
+}
+
+const { kind, app = 'assets', preset = 'asset', label } = Astro.props;
+
+const activeFor: Record<ScreenKind, string> = {
+  register: 'Asset listing',
+  books: 'Multi-book',
+  report: 'Reports',
+  grid: 'Flex View',
+  setup: preset === 'control' ? 'Asset control' : preset === 'rates' ? 'Income approach' : preset === 'company' ? 'Core data' : preset === 'deal' ? 'Selected deals' : 'Asset listing',
+  dashboard: 'Pricing',
+  statements: 'Normalization',
+  capital: 'Financing',
+  ratios: 'Ratios',
+  weights: 'Conclusion',
+  deals: 'Results',
+  stats: 'Statistics',
+};
+const nav = m.navSets[app];
+const active = nav.includes(activeFor[kind]) ? activeFor[kind] : nav[0];
+const heading = label ?? active;
+const max = Math.max(...m.bars);
+---
+
+<div class="mock" role="img" aria-label={`Illustrative ${heading} screen with sample data`}>
+  <div class="toolbar" aria-hidden="true">
+    {['New', 'Open', 'Save', 'Calculate', 'Reports', 'Export'].map((t) => <span class="tool">{t}</span>)}
+    <span class="co">{m.company}</span>
+  </div>
+  <div class="body" aria-hidden="true">
+    <ul class="side">
+      {nav.map((n) => <li class:list={{ on: n === active }}>{n}</li>)}
+    </ul>
+    <div class="main">
+      <p class="h">{heading}</p>
+
+      {
+        (kind === 'register' || kind === 'grid') && (
+          <table>
+            <thead>
+              <tr><th>ID</th><th>Description</th><th>In service</th><th class="n">Cost</th><th>Method</th><th class="n">Life</th><th class="n">Accum.</th><th class="n">NBV</th></tr>
+            </thead>
+            {kind === 'register' ? (
+              <tbody>
+                {m.assets.map((r, i) => (
+                  <tr class:list={{ sel: i === 2 }}>{r.map((c, j) => <td class:list={{ n: j === 3 || j >= 5 }}>{c}</td>)}</tr>
+                ))}
+              </tbody>
+            ) : (
+              m.groups.map((g) => (
+                <tbody>
+                  <tr class="grp"><td colspan="8">{g.name}</td></tr>
+                  {g.rows.map((r) => <tr>{r.map((c, j) => <td class:list={{ n: j === 3 || j >= 5 }}>{c}</td>)}</tr>)}
+                  <tr class="sub"><td colspan="3">Subtotal</td><td class="n">{g.total}</td><td colspan="4"></td></tr>
+                </tbody>
+              ))
+            )}
+          </table>
+        )
+      }
+
+      {
+        kind === 'books' && (
+          <table>
+            <thead><tr><th></th>{m.books.cols.map((c) => <th class="n">{c}</th>)}</tr></thead>
+            <tbody>{m.books.rows.map((r) => <tr>{r.map((c, j) => (j === 0 ? <td class="lbl">{c}</td> : <td class="n">{c}</td>))}</tr>)}</tbody>
+          </table>
+        )
+      }
+
+      {
+        kind === 'statements' && (
+          <table>
+            <thead><tr><th>$000s</th>{m.statements.years.map((y) => <th class="n">{y}</th>)}<th class="n adjh">Adj.</th></tr></thead>
+            <tbody>
+              {m.statements.rows.map((r) => (
+                <tr class:list={{ strong: r.strong, accent: r.accent }}>
+                  <td>{r.label}</td>
+                  {r.vals.map((v) => <td class="n">{v}</td>)}
+                  <td class="n adj">{r.adj ?? ''}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )
+      }
+
+      {
+        kind === 'setup' && (
+          <div class="fields">
+            {m.setup[preset].map((s) => (
+              <div class="fs">
+                <p class="fs-h">{s.section}</p>
+                {s.fields.map(([k, v]) => (
+                  <div class="f"><span>{k}</span><span class="v">{v}</span></div>
+                ))}
+              </div>
+            ))}
+          </div>
+        )
+      }
+
+      {
+        kind === 'dashboard' && (
+          <div class="dash">
+            <div class="kpis">
+              {m.kpis.map((k) => (
+                <div class="kpi"><span class="kl">{k.label}</span><span class="kv">{k.value}</span><span class="kd">{k.delta}</span></div>
+              ))}
+            </div>
+            <div class="chart">
+              <p class="ch">Projected free cash flow to equity</p>
+              <div class="bars">
+                {m.bars.map((b, i) => <span style={`--h:${(b / max) * 100}%`} class:list={{ hi: i === m.bars.length - 1 }}><i>Y{i + 1}</i></span>)}
+              </div>
+            </div>
+          </div>
+        )
+      }
+
+      {
+        kind === 'capital' && (
+          <div class="cap">
+            <div class="stackbar">{m.capital.map((c, i) => <span style={`--w:${c.pct}%; --o:${1 - i * 0.16}`} />)}</div>
+            <table>
+              <thead><tr><th>Instrument</th><th class="n">$000s</th><th class="n">Rate</th><th class="n">Term</th><th class="n">% of total</th></tr></thead>
+              <tbody>
+                {m.capital.map((c) => <tr><td>{c.name}</td><td class="n">{c.amount}</td><td class="n">{c.rate}</td><td class="n">{c.term}</td><td class="n">{c.pct}%</td></tr>)}
+                <tr class="sub"><td>Total sources</td><td class="n">25,000</td><td colspan="3" class="n ok">Fully funded ✓</td></tr>
+              </tbody>
+            </table>
+          </div>
+        )
+      }
+
+      {
+        kind === 'ratios' && (
+          <div class="rat">
+            <svg viewBox="0 0 200 80" preserveAspectRatio="none" class="line">
+              <polyline points="0,62 40,55 80,48 120,40 160,30 200,22" class="s1" />
+              <polyline points="0,58 40,56 80,54 120,52 160,50 200,47" class="s2" />
+            </svg>
+            <p class="legend"><span class="l1">Subject</span><span class="l2">Industry median</span></p>
+            <table>
+              <thead><tr><th>Ratio</th><th class="n">Subject</th><th class="n">Industry</th><th class="n">Trend</th></tr></thead>
+              <tbody>{m.ratios.map((r) => <tr><td>{r[0]}</td><td class="n">{r[1]}</td><td class="n">{r[2]}</td><td class="n tr">{r[3]}</td></tr>)}</tbody>
+            </table>
+          </div>
+        )
+      }
+
+      {
+        kind === 'weights' && (
+          <div class="wts">
+            {m.weights.map((w) => (
+              <div class="w">
+                <span>{w.method}<em>{w.approach}</em></span>
+                <span class="track"><span style={`--w:${w.weight * 2}%`} /></span>
+                <span class="n">{w.value}</span>
+                <span class="n pct">{w.weight}%</span>
+              </div>
+            ))}
+            <div class="concl"><span>Concluded enterprise equity value</span><span class="n">$24,920,000</span></div>
+          </div>
+        )
+      }
+
+      {
+        kind === 'deals' && (
+          <>
+            <div class="filters">
+              {['NAICS 3327*', 'Price $5M–$75M', 'Closed 2025–26', 'Private seller'].map((f) => <span>{f}</span>)}
+            </div>
+            <table>
+              <thead><tr><th></th><th>Closed</th><th>Target</th><th>Seller</th><th>Type</th><th class="n">$M</th><th class="n">P/EBITDA</th><th class="n">P/Rev</th></tr></thead>
+              <tbody>{m.deals.map((d, i) => <tr class:list={{ sel: i < 5 }}><td class="cb">{i < 5 ? '■' : '□'}</td>{d.map((c, j) => <td class:list={{ n: j >= 4 }}>{c}</td>)}</tr>)}</tbody>
+            </table>
+          </>
+        )
+      }
+
+      {
+        kind === 'stats' && (
+          <table>
+            <thead><tr><th>Statistic</th><th class="n">Price / EBITDA</th><th class="n">Price / Revenue</th></tr></thead>
+            <tbody>{m.stats.map((s) => <tr><td>{s[0]}</td><td class="n">{s[1]}</td><td class="n">{s[2]}</td></tr>)}</tbody>
+          </table>
+        )
+      }
+
+      {
+        kind === 'report' && (
+          <div class="doc">
+            {app === 'assets' ? (
+              <div class="page">
+                <p class="dt">Depreciation rollforward — FY2025</p>
+                <p class="ds">{m.company} · Book: GAAP · All locations</p>
+                <table>
+                  <thead><tr><th>Group</th><th class="n">Beg. NBV</th><th class="n">Adds</th><th class="n">Depr.</th><th class="n">End NBV</th></tr></thead>
+                  <tbody>
+                    <tr><td>Machinery</td><td class="n">402,180</td><td class="n">189,750</td><td class="n">(148,320)</td><td class="n">443,610</td></tr>
+                    <tr><td>Vehicles</td><td class="n">61,940</td><td class="n">—</td><td class="n">(18,410)</td><td class="n">43,530</td></tr>
+                    <tr><td>Buildings</td><td class="n">229,560</td><td class="n">—</td><td class="n">(17,770)</td><td class="n">211,790</td></tr>
+                    <tr class="sub"><td>Total</td><td class="n">693,680</td><td class="n">189,750</td><td class="n">(184,500)</td><td class="n">698,930</td></tr>
+                  </tbody>
+                </table>
+                <span class="ln" /><span class="ln short" />
+              </div>
+            ) : (
+              <div class="page">
+                <p class="dt">Valuation of {m.company}</p>
+                <p class="ds">Summary of conclusions · as of December 31, 2025</p>
+                <span class="ln" /><span class="ln" /><span class="ln short" />
+                <table>
+                  <tbody>
+                    <tr><td>Income approach</td><td class="n">$24.3M</td></tr>
+                    <tr><td>Market approach</td><td class="n">$26.2M</td></tr>
+                    <tr><td>Asset approach</td><td class="n">$15.6M</td></tr>
+                    <tr class="sub"><td>Concluded value</td><td class="n">$24.9M</td></tr>
+                  </tbody>
+                </table>
+                <span class="ln" /><span class="ln short" />
+              </div>
+            )}
+          </div>
+        )
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .mock {
+    container-type: inline-size;
+    aspect-ratio: 16 / 10;
+    display: flex;
+    flex-direction: column;
+    background: #fbfaf7;
+    color: #1e2a3c;
+    font-family: var(--font-sans);
+    overflow: hidden;
+  }
+  .toolbar, .body { font-size: clamp(6px, 1.45cqi, 12px); }
+  .toolbar { display: flex; gap: 0.4em; align-items: center; padding: 0.55em 0.8em; border-bottom: 1px solid #e3ded3; background: #f3f0e9; }
+  .tool { padding: 0.25em 0.6em; border: 1px solid #ddd7ca; border-radius: 0.3em; background: #fff; color: #5b6577; }
+  .co { margin-left: auto; font-family: var(--font-mono); color: #8a92a0; white-space: nowrap; }
+  .body { flex: 1; display: grid; grid-template-columns: 11em 1fr; min-height: 0; }
+  .side { list-style: none; margin: 0; padding: 0.6em 0; background: #0e1a2b; color: rgb(233 230 222 / 0.62); }
+  .side li { padding: 0.42em 0.9em; border-left: 2px solid transparent; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .side li.on { color: #fff; background: rgb(255 255 255 / 0.07); border-left-color: var(--hue, #e0622a); }
+  .main { padding: 0.9em 1em; overflow: hidden; display: flex; flex-direction: column; gap: 0.6em; }
+  .h { margin: 0; font-family: var(--font-display); font-size: 1.55em; line-height: 1.1; color: #0e1a2b; }
+
+  table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+  th { text-align: left; font-family: var(--font-mono); font-weight: 500; font-size: 0.82em; text-transform: uppercase; letter-spacing: 0.03em; color: #8a92a0; padding: 0.35em 0.5em; border-bottom: 1px solid #0e1a2b; white-space: nowrap; }
+  td { padding: 0.38em 0.5em; border-bottom: 1px solid #ece8df; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 14em; }
+  .n { text-align: right; font-family: var(--font-mono); }
+  tr.sel td { background: color-mix(in srgb, var(--hue, #2e5f9e) 9%, transparent); }
+  tr.grp td { font-weight: 600; background: #f1ede4; color: #0e1a2b; }
+  tr.sub td, tr.strong td { font-weight: 600; color: #0e1a2b; }
+  tr.sub td { border-top: 1px solid #0e1a2b; }
+  tr.accent td { color: var(--hue, #b3461a); }
+  .lbl { color: #5b6577; }
+  .adj, .adjh { color: #b3461a; }
+  .ok { color: #1d7a52; }
+  .cb { color: var(--hue, #2e5f9e); }
+
+  .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; }
+  .fs-h { margin: 0 0 0.4em; font-family: var(--font-mono); font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em; color: var(--hue, #b3461a); }
+  .f { display: grid; grid-template-columns: 9em 1fr; gap: 0.5em; padding: 0.3em 0; border-bottom: 1px solid #ece8df; }
+  .f span:first-child { color: #8a92a0; }
+  .v { padding: 0.15em 0.45em; background: #fff; border: 1px solid #ddd7ca; border-radius: 0.25em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  .dash { display: grid; gap: 0.8em; }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6em; }
+  .kpi { display: grid; gap: 0.15em; padding: 0.6em 0.7em; background: #fff; border: 1px solid #e3ded3; border-top: 2px solid var(--hue, #4c3f9e); border-radius: 0.3em; }
+  .kl { color: #8a92a0; font-size: 0.85em; }
+  .kv { font-family: var(--font-mono); font-size: 1.5em; color: #0e1a2b; letter-spacing: -0.03em; }
+  .kd { color: #1d7a52; font-size: 0.8em; }
+  .chart { padding: 0.6em 0.8em; background: #fff; border: 1px solid #e3ded3; border-radius: 0.3em; }
+  .ch { margin: 0 0 0.5em; color: #5b6577; }
+  .bars { display: flex; align-items: flex-end; gap: 0.8em; height: 8em; border-bottom: 1px solid #0e1a2b; }
+  .bars span { position: relative; flex: 1; height: var(--h); background: color-mix(in srgb, var(--hue, #4c3f9e) 35%, #e7e3da); border-radius: 0.2em 0.2em 0 0; }
+  .bars span.hi { background: var(--hue, #4c3f9e); }
+  .bars i { position: absolute; bottom: -1.5em; left: 50%; transform: translateX(-50%); font-style: normal; font-family: var(--font-mono); font-size: 0.8em; color: #8a92a0; }
+
+  .cap { display: grid; gap: 0.8em; }
+  .stackbar { display: flex; height: 1.6em; border-radius: 0.3em; overflow: hidden; }
+  .stackbar span { width: var(--w); background: var(--hue, #4c3f9e); opacity: var(--o); border-right: 2px solid #fbfaf7; }
+
+  .rat { display: grid; gap: 0.4em; }
+  .line { width: 100%; height: 6em; background: repeating-linear-gradient(#fff 0 1.45em, #ece8df 1.45em calc(1.45em + 1px)); border: 1px solid #e3ded3; border-radius: 0.3em; }
+  .line polyline { fill: none; stroke-width: 2; vector-effect: non-scaling-stroke; }
+  .s1 { stroke: var(--hue, #a8711c); }
+  .s2 { stroke: #8a92a0; stroke-dasharray: 4 3; }
+  .legend { margin: 0; display: flex; gap: 1.2em; color: #5b6577; }
+  .legend span::before { content: ''; display: inline-block; width: 1.4em; height: 2px; margin-right: 0.4em; vertical-align: middle; }
+  .l1::before { background: var(--hue, #a8711c); }
+  .l2::before { background: #8a92a0; }
+  .tr { color: #1d7a52; }
+
+  .wts { display: grid; gap: 0.2em; }
+  .w { display: grid; grid-template-columns: 1.6fr 1.4fr 0.6fr 0.4fr; gap: 0.8em; align-items: center; padding: 0.45em 0; border-bottom: 1px solid #ece8df; }
+  .w em { display: block; font-style: normal; font-size: 0.8em; color: #8a92a0; }
+  .track { height: 0.7em; background: #ece8df; border-radius: 1em; overflow: hidden; }
+  .track span { display: block; height: 100%; width: var(--w); background: var(--hue, #10776b); }
+  .pct { color: var(--hue, #10776b); }
+  .concl { display: flex; justify-content: space-between; margin-top: 0.4em; padding: 0.6em 0.8em; background: #0e1a2b; color: #fff; border-radius: 0.3em; font-weight: 600; }
+
+  .filters { display: flex; flex-wrap: wrap; gap: 0.4em; }
+  .filters span { padding: 0.2em 0.6em; border: 1px solid color-mix(in srgb, var(--hue, #4c3f9e) 40%, #ddd7ca); border-radius: 1em; color: var(--hue, #4c3f9e); background: #fff; }
+
+  .doc { flex: 1; display: grid; place-items: start center; padding-top: 0.3em; background: #e9e5dc; margin: -0.3em -1em -0.9em; }
+  .page { width: 70%; min-height: 100%; padding: 1.4em 1.6em; background: #fff; box-shadow: 0 0.2em 0.8em rgb(14 26 43 / 0.15); display: grid; gap: 0.55em; align-content: start; }
+  .dt { margin: 0; font-family: var(--font-display); font-size: 1.5em; color: #0e1a2b; border-bottom: 2px solid var(--hue, #10776b); padding-bottom: 0.3em; }
+  .ds { margin: 0; color: #8a92a0; }
+  .ln { display: block; height: 0.45em; background: #ece8df; border-radius: 0.2em; }
+  .ln.short { width: 60%; }
+
+  @container (max-width: 420px) {
+    .body { grid-template-columns: 1fr; }
+    .side { display: none; }
+  }
+</style>

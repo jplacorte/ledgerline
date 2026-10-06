@@ -1,0 +1,217 @@
+name: Ledgerline Deals
+order: 2
+hue: var(--p-ds)
+category: M&A planning & analysis
+forWho: For business buyers, advisors, and financial professionals
+headline: Know whether the deal makes *economic sense*.
+summary: >-
+  Ledgerline Deals integrates the analytical work every acquisition requires — screening, valuation, deal structure,
+  financing, and post-acquisition projections — in one connected system, without the time-sink of spreadsheets.
+seo:
+  title: Ledgerline Deals — M&A deal analysis & acquisition modeling software
+  description: >-
+    Screen candidates, value the business, structure and finance the deal, and project returns under new
+    ownership — one integrated system for middle-market M&A. $2,295 first year, unlimited deals.
+hero:
+  screen: { kind: dashboard, app: deals, label: Price allocation & terms }
+  alt: Ledgerline Deals Price Allocation and Terms Dashboard with preliminary return on investment metrics
+  caption: Price Allocation & Terms Dashboard — returns update as terms change
+fromPrice: $2,295
+priceNote: First year · unlimited deals & scenarios
+secondaryCta: { label: 'Talk through a deal', href: '/book-a-demo/?product=deals' }
+stats:
+  - { value: '5', label: 'stages, one connected model' }
+  - { value: '14', label: 'analytical capabilities' }
+  - { value: '8', label: 'editable Word reports' }
+  - { value: '10', label: 'equity tranches modeled' }
+
+proof:
+  heading: Trusted by deal professionals across the middle market.
+  testimonials:
+    - quote: "We cut 15 to 20 hours of modeling from every file. A valuation update that took a day now takes about two hours."
+      name: "Nate Bramwell"
+      role: "Managing Partner, M&A advisory firm"
+      tag: Speed
+    - quote: "Ledgerline Deals let our three-person team double the number of engagements we can carry at once."
+      name: "Sofia Lindqvist"
+      role: "Principal, lower middle-market advisory"
+      tag: Speed
+    - quote: "I see the whole transaction — historic, normalized, projected, priced, and post-close — without fighting Excel mechanics."
+      name: "Jordan Pike"
+      role: "Independent sponsor"
+      tag: Depth
+    - quote: "In a tough negotiation we'll keep eight or ten scenarios open at once. Every one stays connected to the same model."
+      name: "Hannah Cho"
+      role: "Senior VP, M&A advisory"
+      tag: Trust
+
+problem:
+  eyebrow: The problem
+  heading: The numbers have to work together. *They usually don't.*
+  body:
+    - >-
+      When an acquisition lands on your desk, you're still the CFO. The monthly close doesn't move. And now
+      there's a transaction on top of it: How much should we pay? What does the deal need to look like to
+      work? What does this business become under our ownership?
+    - >-
+      Most buyers start with a spreadsheet for the financials, another for the valuation, something for the
+      structure, a separate model for projections. When a diligence finding touches revenue, it ripples
+      through valuation, structure, financing, and returns — across disconnected files. Sometimes it never
+      gets traced at all. That's not a spreadsheet problem. It's a focus problem. Ledgerline Deals resolves it by
+      connecting the work.
+  compare:
+    without:
+      - A spreadsheet for financials, another for valuation, another for projections
+      - Change one assumption, update files manually
+      - Tracing a ripple across disconnected files takes hours
+      - Built from scratch every time a new deal arrives
+    with:
+      - One system covering every stage of the deal
+      - One change updates everything in real time
+      - Valuation, structure, financing, and returns always connected
+      - The analytical framework is already built
+
+capabilities:
+  eyebrow: What Ledgerline Deals covers
+  heading: One integrated system, guiding the *full acquisition*.
+  intro: Five stages, fourteen capabilities — from the first candidate you screen to the financial blueprint that documents whether the deal works under your ownership.
+  items:
+    - kicker: Stage 01 · Screening & foundation
+      title: Triage candidates and build the baseline before you price anything.
+      body:
+        - >-
+          Define your acquisition criteria — hurdle rate, strategic fit, financial thresholds, deal size — then
+          screen candidates on summary data with preliminary ROI under Buy/Sell and Buy/Hold scenarios.
+        - >-
+          Enter up to ten years of historical statements plus interim and TTM, map each normalization
+          adjustment to a specific line item, and analyze 81 ratios, common-size, DuPont ROE, Altman Z-Score,
+          and sustainable growth.
+      screen: { kind: dashboard, app: deals, label: Screening — price & ROI }
+      alt: Ledgerline Deals screening screen with price and ROI estimates
+      caption: Screening — a go/no-go read before the full commitment
+    - kicker: Stage 02 · Valuation & pricing
+      title: Establish fair market value, then translate it into a defensible maximum price.
+      body:
+        - >-
+          Income, market, and asset approaches under Revenue Ruling 59-60, USPAP, and SSVS. The Guideline
+          Pricing Tool then solves for the maximum price you can pay under multiple scenarios, with IRR,
+          payback, NPV, and investment turns updating in real time.
+      screen: { kind: statements, app: deals }
+      alt: Ledgerline Deals historic income statements with recast adjustments
+      caption: Detailed financials and recast adjustments
+    - kicker: Stage 03 · Structure & financing
+      title: Build the purchase price package and the full capital stack that funds it.
+      body:
+        - >-
+          Stock or assets; cash, notes, non-competes, earnouts, and assumed liabilities. Then senior and junior
+          debt, seller financing, mezzanine with equity kickers, revolvers, and common, preferred, and
+          convertible equity — with funding and working capital monitors updating as you go.
+      screen: { kind: capital, app: deals }
+      alt: Ledgerline Deals debt funding and capital structure screen
+      caption: Capital stack — senior debt, mezzanine, and seller financing
+    - kicker: Stage 04 · Post-acquisition blueprint
+      title: Project what the business becomes under new ownership — and what it returns.
+      body:
+        - >-
+          A second, fully linked set of three-statement projections built on your operating assumptions, deal
+          terms, and funding. IRR for up to ten equity tranches, covenant compliance, Altman Z-Score, and
+          consolidation for strategic acquirers.
+      screen: { kind: ratios, app: deals, label: Ratios vs. industry }
+      alt: Ledgerline Deals business ratios compared to industry norms
+      caption: Ratios and industry comparison across the projection period
+    - kicker: Stage 05 · Decision documents
+      title: Put the analysis in front of the people who approve, fund, and live with the deal.
+      body:
+        - >-
+          Eight fully editable Word reports — from Buy-Side Acquisition Proposal and Term Sheet to Sell-Side
+          Pitchbook and Business Valuation — generated from the same assumptions that drove every decision.
+
+steps:
+  eyebrow: Deal insight
+  heading: What surfaces when the model is connected.
+  intro: Three moments from live deals where an integrated framework changed the conversation.
+  items:
+    - title: The cash cow that wasn't
+      body: >-
+        Pre-deal projections carried historic capex forward flat. Sustainable growth analysis flagged that
+        projected revenue growth exceeded what the capital structure could support — an underinvesting growth
+        company, not a cash cow. The conversation shifted from price to value creation.
+    - title: The due diligence discovery
+      body: >-
+        Subscription revenue climbing with no matching cost increase, alongside a bump in owner distributions.
+        Diligence revealed aggressively pre-sold subscriptions whose obligations would transfer to the buyer —
+        and a material price adjustment.
+    - title: From apprehension to agreement
+      body: >-
+        A seller's attorney balked at a subordinated note. The post-acquisition model showed debt service
+        across every tranche and the cash available to service the note each year. The seller evaluated the
+        analysis, not the buyer's optimism.
+
+audience:
+  eyebrow: Who it's built for
+  heading: For the professionals responsible for making acquisitions *make financial sense*.
+  items:
+    - title: Strategic buyers
+      body: Operating companies, owner-operators, and investors making one of their most consequential decisions — with a decision structure that's already built.
+    - title: Independent sponsors & family offices
+      body: Build the investment case, model returns for each capital partner, and stress-test the capital structure.
+    - title: Advisors & intermediaries
+      body: Build the complete analytical picture before the business goes to market, and field buyer questions with answers already in the model.
+    - title: CPAs & accountants
+      body: A rigorous framework already built — normalization, deal modeling, and post-acquisition projections. You bring the judgement.
+  note:
+    title: Only need a conclusion of value?
+    body: Ledgerline Valuation is the right tool when the engagement ends in a standards-based valuation report. Ledgerline Deals includes it in full.
+    href: /valuation/
+    label: Explore Ledgerline Valuation
+
+pricing:
+  heading: One subscription. *Everything* in the system.
+  intro: No modules held back, no per-deal fees, no per-client charges. Professional association discounts available — call for details.
+  plans:
+    - name: Ledgerline Deals
+      price: $2,295
+      period: first year
+      description: Single named user. Unlimited deals and scenarios.
+      featured: true
+      features:
+        - The complete Ledgerline Deals analytical system
+        - Ledgerline Valuation — included
+        - consolidation module
+        - Eight customizable Word reports
+        - Free 5-year Industry Outlook industry report
+      renewal: $995 annual renewal
+  includes:
+    - title: Onboarding & training
+      body: A 30-minute onboarding call, a one-hour personalized training session in your first 30 days, documentation, and a video library.
+    - title: Support that knows M&A
+      body: Staff who understand both the software and the financial disciplines it serves. A methodology question gets answered, not just a software question.
+    - title: Honest about the learning curve
+      body: Ledgerline Deals requires real financial literacy — it isn't a fill-in-the-numbers tool. We'd rather tell you upfront.
+  guarantee: >-
+    Put Ledgerline Deals to work for 30 days. If it doesn't deliver the analytical foundation you need, contact us
+    and we'll refund your purchase, promptly and without argument.
+
+sample:
+  title: The approval and decision document.
+  body: Ledgerline Deals generates a complete professional acquisition report in Word — valuation, deal structure, financing, post-deal projections, and term sheet — fully editable so your narrative and judgement sit alongside the numbers.
+
+faqs:
+  - q: Does Ledgerline Deals model returns for multiple investors?
+    a: Yes. It calculates IRR for each equity participant based on their share of invested capital, entry point, and target exit year — parent company, co-investors, or a management equity stake.
+  - q: How is it different from building my own model in Excel?
+    a: A spreadsheet gives you a blank canvas. Ledgerline Deals gives you an integrated architecture — normalization, valuation, structure, financing, two-set projections, and ROI — where every input connects to every output.
+  - q: Can it handle both buy-side and sell-side work?
+    a: "Yes. Buy-side: screening, deal analysis, structure, financing, and post-acquisition projections. Sell-side: pre-market analysis, normalized earnings, valuation for pricing strategy, and a Selling Pitchbook or CIM."
+  - q: Does it integrate with third-party data?
+    a: Optionally. Peer Ratio Studies and Industry Outlook for benchmarking; Main Street Comps and Deal Index for transaction comparables. Third-party transaction data can be imported from Excel.
+  - q: Should I wait until I have a deal before buying?
+    a: Almost always no. The worst time to learn a new analytical system is under deal pressure. The buyers and advisors who use Ledgerline Deals best have it running before the deal arrives.
+  - q: What happens to my files if my subscription expires?
+    a: Ledgerline Deals stops running, but your files stay intact on your machine. Before expiry you can export analysis files to Excel. Renewing at $995/year restores full access.
+
+closing:
+  heading: Stop rebuilding the model every time.
+  body: Every deal you evaluate without an integrated framework costs you time at the start and leverage at the table.
+
+related: [valuation, benchmark]

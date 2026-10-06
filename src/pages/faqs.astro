@@ -1,0 +1,61 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const groups = (await getCollection('faqs')).sort((a, b) => a.data.order - b.data.order);
+const general = groups.filter((g) => g.data.kind === 'general');
+const byProduct = groups.filter((g) => g.data.kind === 'product');
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: groups.flatMap((g) => g.data.items.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } }))),
+};
+---
+
+<BaseLayout title="FAQs" description="Answers to common questions about Ledgerline software, pricing, licensing, installation, data, and support." jsonLd={jsonLd}>
+  <PageHero crumbs={[{ label: 'FAQs' }]} eyebrow="Help" heading="Frequently asked *questions*." lede="Straight answers about the products, pricing, installation, and support. Can't find yours? Call us — a real person picks up." />
+
+  <section class="section">
+    <div class="container layout">
+      <nav class="toc" aria-label="FAQ categories">
+        <p class="toc-h mono">Categories</p>
+        <ul role="list">
+          {general.map((g) => <li><a href={`#${g.id}`}>{g.data.title}<span class="mono">{g.data.items.length}</span></a></li>)}
+        </ul>
+        <p class="toc-h mono">By product</p>
+        <ul role="list">
+          {byProduct.map((g) => <li><a href={`#${g.id}`}>{g.data.title}<span class="mono">{g.data.items.length}</span></a></li>)}
+        </ul>
+      </nav>
+      <div class="groups">
+        {
+          groups.map((g) => (
+            <section id={g.id} aria-labelledby={`${g.id}-h`} class="group">
+              <h2 id={`${g.id}-h`}>{g.data.title}</h2>
+              <FaqList items={g.data.items} />
+            </section>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand heading="Have another *question*?" body="Talk to someone who knows both the software and the financial discipline behind it." primary={{ label: 'Contact us', href: '/contact/' }} secondary={{ label: 'Book a demo', href: '/book-a-demo/' }} />
+</BaseLayout>
+
+<style>
+  .layout { display: grid; gap: var(--space-xl); align-items: start; }
+  @media (min-width: 60rem) { .layout { grid-template-columns: 15rem 1fr; gap: var(--space-2xl); } }
+  .toc { display: grid; gap: var(--space-s); }
+  @media (min-width: 60rem) { .toc { position: sticky; top: 6rem; } }
+  .toc-h { font-size: var(--step--2); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-top: var(--space-s); }
+  .toc ul { border-top: 1px solid var(--rule); }
+  .toc a { display: flex; justify-content: space-between; gap: 1rem; padding: 0.55rem 0; border-bottom: 1px solid var(--rule); text-decoration: none; font-size: var(--step--1); }
+  .toc a .mono { color: var(--faint); font-size: var(--step--2); }
+  .groups { display: grid; gap: var(--space-2xl); }
+  .group h2 { font-size: var(--step-3); margin-bottom: var(--space-m); }
+</style>

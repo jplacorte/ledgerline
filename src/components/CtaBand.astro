@@ -1,0 +1,54 @@
+---
+import { emph } from '../lib/text';
+import { site } from '../data/site';
+
+interface Props {
+  heading: string;
+  body?: string;
+  primary?: { label: string; href: string };
+  secondary?: { label: string; href: string };
+}
+const {
+  heading,
+  body,
+  primary = { label: 'Book a demo', href: '/book-a-demo/' },
+  secondary = { label: 'Explore the products', href: '/#products' },
+} = Astro.props;
+---
+
+<section class="cta surface-night">
+  <div class="container cta-inner">
+    <div class="cta-copy">
+      <h2 set:html={emph(heading)} />
+      {body && <p class="lede">{body}</p>}
+    </div>
+    <div class="cta-side">
+      <div class="btn-row">
+        <a class="btn btn-accent" href={primary.href}>{primary.label} <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="btn btn-ghost" href={secondary.href}>{secondary.label}</a>
+      </div>
+      <p class="call">Or call a real person: <a href={site.phoneHref} class="mono">{site.phone}</a></p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta { padding-block: var(--space-2xl); position: relative; overflow: hidden; }
+  .cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(var(--night-rule) 1px, transparent 1px), linear-gradient(90deg, var(--night-rule) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at 85% 50%, black, transparent 65%);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .cta-inner { position: relative; display: grid; gap: var(--space-l); align-items: end; }
+  @media (min-width: 60rem) { .cta-inner { grid-template-columns: 1.4fr 1fr; } }
+  h2 { max-width: 18ch; }
+  .lede { margin-top: var(--space-s); }
+  .cta-side { display: grid; gap: var(--space-s); }
+  .call { font-size: var(--step--1); color: var(--night-muted); }
+  .call a { color: var(--night-text); }
+</style>

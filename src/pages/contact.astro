@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { nav, site } from '../data/site';
+
+const reasons = [
+  { value: 'sales', label: 'Sales & pricing' },
+  { value: 'support', label: 'Technical support' },
+  { value: 'renewal', label: 'Renewal / upgrade' },
+  { value: 'training', label: 'Training & onboarding' },
+  { value: 'sample', label: 'Request a sample report' },
+  { value: 'other', label: 'Something else' },
+];
+const products = [
+  ...nav.products.map((p) => ({ value: p.href.replaceAll('/', ''), label: p.label })),
+  { value: 'deal-index', label: 'Deal Index' },
+  { value: 'peer-ratios', label: 'Peer Ratio Studies' },
+  { value: 'main-street-comps', label: 'Main Street Comps' },
+  { value: 'industry-outlook', label: 'Industry Outlook reports' },
+  { value: 'unsure', label: 'Not sure yet' },
+];
+---
+
+<BaseLayout title="Contact sales & support" description={`Talk to a real financial software expert. Call ${site.phone} or send us a message — we reply within one business day.`}>
+  <PageHero
+    crumbs={[{ label: 'Contact' }]}
+    eyebrow="Get in touch"
+    heading="Talk to a *real* financial expert."
+    lede="Evaluating the software, need a demo, or have a support question? Tell us what you're trying to solve and we'll point you in the right direction."
+  />
+
+  <section class="section">
+    <div class="container contact-grid">
+      <form class="form card" data-lead-form data-endpoint={site.formEndpoint} data-next="/thank-you/?type=message" action={site.formEndpoint ?? '/thank-you/'} method="post">
+        <div>
+          <h2 class="form-h">Send us a message</h2>
+          <p class="muted">We'll get back to you within one business day.</p>
+        </div>
+        <input type="hidden" name="form" value="contact" />
+        <div class="form-row">
+          <div class="field">
+            <label for="first">First name <span class="req" aria-hidden="true">*</span></label>
+            <input class="input" id="first" name="firstName" autocomplete="given-name" required />
+          </div>
+          <div class="field">
+            <label for="last">Last name <span class="req" aria-hidden="true">*</span></label>
+            <input class="input" id="last" name="lastName" autocomplete="family-name" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="email">Work email <span class="req" aria-hidden="true">*</span></label>
+            <input class="input" id="email" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input class="input" id="phone" name="phone" type="tel" autocomplete="tel" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="company">Company / firm</label>
+          <input class="input" id="company" name="company" autocomplete="organization" />
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="reason">Reason for contact <span class="req" aria-hidden="true">*</span></label>
+            <select class="input" id="reason" name="reason" required>
+              <option value="">Select one…</option>
+              {reasons.map((r) => <option value={r.value}>{r.label}</option>)}
+            </select>
+          </div>
+          <div class="field">
+            <label for="product">Product of interest</label>
+            <select class="input" id="product" name="product">
+              <option value="">Select a product…</option>
+              {products.map((p) => <option value={p.value}>{p.label}</option>)}
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="message">What are you trying to solve? <span class="req" aria-hidden="true">*</span></label>
+          <textarea class="input" id="message" name="message" required></textarea>
+        </div>
+        <div class="submit-row">
+          <button class="btn btn-accent" type="submit">Send message <span class="arrow" aria-hidden="true">→</span></button>
+          <p class="form-status" data-form-status role="status"></p>
+        </div>
+        <p class="form-fine">By submitting, you agree to be contacted about your request. We never share your information.</p>
+      </form>
+
+      <aside class="direct">
+        <h2 class="eyebrow">Reach us directly</h2>
+        <dl>
+          <div><dt>Phone</dt><dd><a href={site.phoneHref} class="big mono">{site.phone}</a><span class="muted">Toll-free, business hours</span></dd></div>
+          <div><dt>Support</dt><dd><a href={`mailto:${site.email.support}`}>{site.email.support}</a></dd></div>
+          <div><dt>Sales</dt><dd><a href={`mailto:${site.email.sales}`}>{site.email.sales}</a></dd></div>
+          <div><dt>Hours</dt><dd>{site.hours}</dd></div>
+          <div><dt>Office</dt><dd>{site.location}, United States</dd></div>
+        </dl>
+        <p class="human">You'll reach a real person who knows the software and the discipline behind it — <em>not a script.</em></p>
+        <div class="demo-box">
+          <h3>Prefer to see it first?</h3>
+          <p class="muted">Book a 30-minute personal demo tailored to the product you're evaluating.</p>
+          <a class="btn btn-sm" href="/book-a-demo/">Book a demo <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import '../scripts/forms';
+</script>
+
+<style>
+  .contact-grid { display: grid; gap: var(--space-xl); align-items: start; }
+  @media (min-width: 60rem) { .contact-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); } }
+  .card { padding: var(--space-l); background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-l); box-shadow: var(--shadow-plate); }
+  .form-h { font-size: var(--step-3); }
+  .submit-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-m); }
+  .direct dl { margin-top: var(--space-m); border-top: 1px solid var(--ink); }
+  .direct dl > div { display: grid; grid-template-columns: 6rem 1fr; gap: var(--space-s); padding-block: 1rem; border-bottom: 1px solid var(--rule); }
+  .direct dt { font-family: var(--font-mono); font-size: var(--step--2); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); padding-top: 0.2rem; }
+  .direct dd { margin: 0; display: grid; }
+  .big { font-size: var(--step-2); text-decoration: none; }
+  .human { margin-top: var(--space-m); font-family: var(--font-display); font-size: var(--step-1); }
+  .human em { color: var(--accent-ink); }
+  .demo-box { display: grid; gap: var(--space-xs); justify-items: start; margin-top: var(--space-l); padding: var(--space-m); background: var(--paper-2); border-radius: var(--radius-l); }
+  .demo-box h3 { font-size: var(--step-1); }
+</style>

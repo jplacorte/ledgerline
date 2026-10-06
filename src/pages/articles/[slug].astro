@@ -1,0 +1,149 @@
+---
+import { getCollection, getEntry, render, type CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductMark from '../../components/ProductMark.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { buyHref, site } from '../../data/site';
+import { formatMonth, plain } from '../../lib/text';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+const product = post.data.product ? await getEntry(post.data.product) : undefined;
+const toc = headings.filter((h) => h.depth === 2);
+const others = (await getCollection('posts', ({ id, data }) => id !== post.id && !data.draft)).slice(0, 3);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+  author: { '@type': 'Organization', name: post.data.author },
+  publisher: { '@type': 'Organization', name: site.name },
+  mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).href,
+};
+---
+
+<BaseLayout title={post.data.title} description={post.data.description} jsonLd={jsonLd} hue={product?.data.hue}>
+  <article>
+    <header class="post-hero">
+      <div class="container">
+        <Breadcrumbs items={[{ label: 'Articles', href: '/articles/' }, { label: post.data.category }]} />
+        <div class="post-head">
+          <p class="tag"><span class="dot"></span>{post.data.category}</p>
+          <h1>{post.data.title}</h1>
+          <p class="lede">{post.data.description}</p>
+          <p class="meta mono">{post.data.author} · {formatMonth(post.data.pubDate)} · {post.data.readingMinutes} min read</p>
+        </div>
+        <figure class="cover">
+          <Image src={post.data.cover} alt={post.data.coverAlt} widths={[720, 1080, 1440]} sizes="(min-width: 72rem) 1100px, 100vw" loading="eager" fetchpriority="high" />
+        </figure>
+      </div>
+    </header>
+
+    <div class="container body-grid">
+      <aside class="rail">
+        {
+          toc.length > 0 && (
+            <nav aria-label="In this article" class="toc">
+              <p class="mono toc-h">In this article</p>
+              <ol role="list">
+                {toc.map((h) => (
+                  <li>
+                    <a href={`#${h.slug}`}>{h.text}</a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          )
+        }
+      </aside>
+      <div class="prose">
+        <Content />
+      </div>
+    </div>
+  </article>
+
+  {
+    product && (
+      <section class="section-tight">
+        <div class="container">
+          <aside class="product-cta" style={`--hue: ${product.data.hue}`}>
+            <ProductMark slug={product.id} size="lg" />
+            <div>
+              <p class="mono kicker">Put it into practice</p>
+              <h2>{product.data.name}</h2>
+              <p>{plain(product.data.headline)} From {product.data.fromPrice}, with a 30-day money-back guarantee.</p>
+            </div>
+            <div class="btn-row">
+              <a class="btn" href={`/${product.id}/`}>Explore {product.data.name}</a>
+              <a class="btn btn-ghost" href={`/book-a-demo/?product=${product.id}`}>Book a demo</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="section surface-alt" aria-labelledby="more-h">
+    <div class="container">
+      <h2 id="more-h" class="eyebrow">Keep reading</h2>
+      <ul class="more" role="list">
+        {
+          others.map((o) => (
+            <li>
+              <a href={`/articles/${o.id}/`}>
+                <span class="tag">{o.data.category}</span>
+                <span class="more-title">{o.data.title}</span>
+                <span class="meta mono">{o.data.readingMinutes} min read</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <CtaBand heading="See it with *your own data*." body="Book a personal demo and bring the question you most want answered." primary={product ? { label: `Book a ${product.data.name} demo`, href: `/book-a-demo/?product=${product.id}` } : undefined} secondary={product ? { label: `Buy ${product.data.name}`, href: buyHref(product.id) } : undefined} />
+</BaseLayout>
+
+<style>
+  .post-hero { padding-block: var(--space-l) var(--space-xl); }
+  .post-head { display: grid; gap: var(--space-m); max-width: 52rem; margin-top: var(--space-xl); }
+  .post-head h1 { font-size: clamp(2.2rem, 1.5rem + 2.8vw, 3.9rem); }
+  .meta { font-size: var(--step--2); color: var(--muted); }
+  .tag .dot { background: var(--hue, var(--accent)); }
+  .cover { margin: var(--space-xl) 0 0; border-radius: var(--radius-l); overflow: hidden; border: 1px solid var(--rule); background: var(--night); }
+  .cover :global(img) { inline-size: 100%; }
+  .body-grid { display: grid; gap: var(--space-xl); padding-block: var(--space-xl) var(--space-2xl); }
+  @media (min-width: 64rem) { .body-grid { grid-template-columns: 16rem minmax(0, 1fr); gap: var(--space-2xl); } }
+  .toc { position: sticky; top: 6rem; }
+  .toc-h { font-size: var(--step--2); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: var(--space-s); }
+  .toc ol { border-left: 1px solid var(--rule); display: grid; gap: 0.1rem; }
+  .toc a { display: block; padding: 0.35rem 0 0.35rem 0.85rem; font-size: var(--step--1); line-height: 1.35; color: var(--muted); text-decoration: none; border-left: 2px solid transparent; margin-left: -1px; }
+  .toc a:hover { color: var(--ink); border-left-color: var(--hue, var(--accent)); }
+  @media (max-width: 63.99rem) { .rail { display: none; } }
+  .prose :global(h2) { scroll-margin-top: 6rem; }
+  .product-cta { display: grid; gap: var(--space-m); align-items: center; padding: var(--space-l); background: var(--card); border: 1px solid var(--rule); border-top: 3px solid var(--hue); border-radius: var(--radius-l); }
+  @media (min-width: 56rem) { .product-cta { grid-template-columns: auto 1fr auto; } }
+  .product-cta h2 { font-size: var(--step-3); }
+  .product-cta p { color: var(--ink-2); }
+  .kicker { font-size: var(--step--2); text-transform: uppercase; letter-spacing: 0.06em; color: var(--hue); }
+  .more { display: grid; gap: var(--space-m); margin-top: var(--space-m); }
+  @media (min-width: 56rem) { .more { grid-template-columns: repeat(3, 1fr); } }
+  .more a { display: grid; gap: var(--space-xs); block-size: 100%; padding: var(--space-m); background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-l); text-decoration: none; color: var(--ink); }
+  .more a:hover { border-color: var(--ink); color: var(--ink); }
+  .more-title { font-family: var(--font-display); font-size: var(--step-1); line-height: 1.25; }
+</style>

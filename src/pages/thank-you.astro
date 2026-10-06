@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout title="Thank you" noindex>
+  <section class="section">
+    <div class="container ty">
+      <span class="check" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg>
+      </span>
+      <p class="eyebrow">Received</p>
+      <h1 data-heading>Thank you — <em>we'll be in touch.</em></h1>
+      <p class="lede" data-body>
+        A Ledgerline specialist will reply within one business day. If it's urgent, call us at <a href={site.phoneHref}>{site.phone}</a>.
+      </p>
+      <div class="btn-row">
+        <a class="btn" href="/">Back to home</a>
+        <a class="btn btn-ghost" href="/faqs/">Browse FAQs</a>
+      </div>
+      {!site.formEndpoint && <p class="note mono">Demo mode — set PUBLIC_FORM_ENDPOINT to deliver form submissions.</p>}
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  if (new URLSearchParams(location.search).get('type') === 'demo') {
+    const h = document.querySelector('[data-heading]');
+    const b = document.querySelector('[data-body]');
+    if (h) h.innerHTML = 'Your demo request is <em>in.</em>';
+    if (b) b.textContent = "We'll confirm a time by email within one business day, with a calendar invite for a 30-minute live session.";
+  }
+</script>
+
+<style>
+  .ty { display: grid; gap: var(--space-m); justify-items: start; max-width: 44rem; min-height: 50vh; align-content: center; }
+  .check { display: grid; place-items: center; inline-size: 3.5rem; block-size: 3.5rem; border-radius: 50%; border: 1.5px solid var(--positive); color: var(--positive); }
+  .check svg { inline-size: 1.75rem; }
+  .note { font-size: var(--step--2); color: var(--muted); padding: 0.5rem 0.75rem; background: var(--paper-2); border-radius: var(--radius); }
+</style>

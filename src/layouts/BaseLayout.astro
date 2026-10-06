@@ -1,0 +1,92 @@
+---
+import { Font } from 'astro:assets';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Absolute or root-relative path to a social share image. */
+  image?: string;
+  /** Structured data objects rendered as JSON-LD. */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  noindex?: boolean;
+  /** Product hue for accents on product pages, e.g. "var(--p-fap)". */
+  hue?: string;
+}
+
+const { title, description = site.description, image = '/og.png', jsonLd, noindex = false, hue } = Astro.props;
+
+const fullTitle = title ? `${title} | ${site.name}` : `${site.name} — Financial software for consequential business decisions`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image, Astro.site);
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.name,
+  url: Astro.site?.href,
+  logo: new URL('/favicon.svg', Astro.site).href,
+  foundingDate: String(site.founded),
+  telephone: site.phone,
+  email: site.email.support,
+  address: { '@type': 'PostalAddress', addressLocality: 'Denver', addressRegion: 'CO', addressCountry: 'US' },
+};
+const schemas = [organization, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [])];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#f6f4ef" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <Font cssVariable="--font-display" preload />
+    <Font cssVariable="--font-sans" preload />
+    <Font cssVariable="--font-mono" />
+
+    {schemas.map((schema) => <script type="application/ld+json" set:html={JSON.stringify(schema)} />)}
+  </head>
+  <body style={hue ? `--hue: ${hue}` : undefined}>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .skip-link {
+    position: absolute;
+    left: var(--gutter);
+    top: 0.5rem;
+    z-index: 100;
+    padding: 0.6rem 1rem;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: var(--radius);
+    transform: translateY(-200%);
+    transition: transform 0.2s var(--ease);
+  }
+  .skip-link:focus { transform: none; }
+  main:focus { outline: none; }
+</style>

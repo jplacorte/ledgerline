@@ -1,0 +1,249 @@
+name: Ledgerline Assets
+order: 1
+hue: var(--p-fap)
+category: Fixed asset accounting
+forWho: For controllers, CFOs, and accountants at small and mid-sized organizations
+headline: Fixed asset accounting and depreciation, *done right*.
+summary: >-
+  Depreciation calculated correctly across your financial, tax, and four other books. Audit-friendly
+  reports ready when you need them. Without the spreadsheet headaches or the enterprise price tag.
+seo:
+  title: Ledgerline Assets — Fixed asset accounting & depreciation software
+  description: >-
+    Multi-book depreciation (GAAP, tax, AMT, ACE, state), 81 methods, 24 built-in reports, and full asset
+    lifecycle tracking. Desktop fixed asset software from $499 with a 30-day money-back guarantee.
+hero:
+  screen: { kind: register, app: assets }
+  alt: Ledgerline Assets asset listing grid showing asset IDs, cost, method, and accumulated depreciation by group
+  caption: Asset listing — every asset, every book, in one register
+fromPrice: $499
+priceNote: Single license · unlimited companies & assets
+stats:
+  - { value: '6', label: 'simultaneous books' }
+  - { value: '81', label: 'depreciation methods' }
+  - { value: '24', label: 'built-in reports' }
+  - { value: '4.5/5', label: 'average rating, 300+ reviews' }
+
+proof:
+  heading: What financial professionals say when they stop worrying about their fixed asset numbers.
+  testimonials:
+    - quote: "We replaced a far more expensive ERP module with Ledgerline Assets. It's the best fixed asset system I've worked in."
+      name: "Dana Whitfield"
+      role: "Controller, regional healthcare group"
+      tag: Value
+    - quote: "Month-end depreciation used to take me a full day. Now it's a report I run before lunch — and year-end is even better."
+      name: "Marcus Oyelaran"
+      role: "Controller, office supply distributor"
+      tag: Results
+    - quote: "When I call, a real person who knows fixed asset accounting picks up. Every time."
+      name: "Priya Natarajan"
+      role: "Owner, cold-storage logistics"
+      tag: Support
+    - quote: "Our old vendor kept upselling modules we never needed. Ledgerline does exactly the job, at a fraction of the cost."
+      name: "Tom Kessler"
+      role: "CFO, specialty foods manufacturer"
+      tag: Value
+    - quote: "Twelve years on Ledgerline Assets and our auditors have never had to wait on a schedule."
+      name: "Elena Ruiz"
+      role: "CEO, industrial machinery"
+      tag: Trust
+    - quote: "Support is the reason we renew. Questions get answered the same day, usually within the hour."
+      name: "Grant Holloway"
+      role: "VP Finance, regional transportation group"
+      tag: Support
+
+problem:
+  eyebrow: Why teams switch
+  heading: Spreadsheets cost you time. Overpriced systems cost you money.
+  body:
+    - >-
+      If you manage fixed assets in spreadsheets, Ledgerline Assets turns multiple worksheets into a single
+      source of truth. Formula maintenance becomes depreciation calculated automatically, the scramble to
+      assemble reports becomes audit-friendly reports on demand, and the annual rebuild becomes data that
+      stays organized and searchable from day one.
+    - >-
+      If you're already on another system, the reasons people come to us are familiar: prices that rise
+      every renewal, modules nobody asked for, complexity that demands more training than the work
+      warrants, or a vendor that stopped feeling like a partner. If your current system exports to Excel,
+      the Data Import Wizard brings your records across in a single structured import.
+  compare:
+    without:
+      - Multiple worksheets, multiple versions
+      - Formulas that break when the asset base grows
+      - Reports assembled by hand every close
+      - Renewal prices that climb every cycle
+    with:
+      - One register for every asset and every book
+      - Depreciation calculated automatically per book
+      - 24 reports and unlimited custom views on demand
+      - Priced for the work, from $499
+  quote:
+    quote: We were paying enterprise prices for what is, at heart, asset accounting and depreciation.
+    name: Corinne Abbott
+    role: CFO, agricultural cooperative — on why they switched
+
+capabilities:
+  eyebrow: See it work
+  heading: The accounting and depreciation capability your organization *actually needs*.
+  intro: >-
+    No limit on the number of assets you track. No limit on the number of companies or entities you manage.
+    One system for your fixed asset accounting and management.
+  items:
+    - kicker: Depreciation
+      title: Calculate depreciation correctly across up to six books at once.
+      body:
+        - >-
+          Financial (GAAP), tax, AMT, ACE, state, and other — from a single set of inputs. 81 methods
+          cover the full range of US tax and financial reporting, with half-year, mid-month, and
+          mid-quarter conventions applied correctly per asset, plus bonus depreciation and Section 179.
+        - >-
+          Each book is independent: the same asset can carry a different cost, method, life, convention,
+          business-use percentage, and Section 179 treatment per book. Luxury auto limits and listed
+          property rules are applied, so vehicle depreciation is never overcalculated.
+      figure: { value: '81', label: 'depreciation methods' }
+      screen: { kind: books, app: assets }
+      alt: Multi-book screen with depreciation variables for six sets of books
+      caption: Multi-book — set depreciation variables for up to six books
+    - kicker: Standard report library
+      title: The reports your auditors, tax preparer, and leadership need — ready before they ask.
+      body:
+        - >-
+          Monthly and annual depreciation, acquisitions, disposals, gain and loss, journal entries, net book
+          value, rollforward, projections, CIP, Form 4562, Form 4797, AMT, personal property tax, UBIA for
+          Section 199A, and more.
+        - Every report runs with options for book, period, sorting, subtotals, and filters — and exports to Excel, PDF, or Word in one step.
+      figure: { value: '24', label: 'built-in reports' }
+      screen: { kind: report, app: assets }
+      alt: Report library print preview of a depreciation report
+      caption: Report library — print preview of a standard depreciation report
+    - kicker: Flex View
+      title: Your asset data, organized exactly the way you want to see it.
+      body:
+        - >-
+          A dynamic, searchable, sortable grid with your entire asset list at your fingertips. Choose the
+          fields, add subtotals, sort and filter in seconds. Over 30 preset views ship out of the box; create
+          as many custom views as your work requires.
+        - Every view exports to Excel in one step — the fastest way to build a custom report without writing a formula.
+      figure: { value: '30+', label: 'preset views, unlimited custom' }
+      screen: { kind: grid, app: assets }
+      alt: Flex View grid with grouping, subtotals, and filters applied
+      caption: Flex View — sortable, filterable, exportable
+    - kicker: Accounting classification
+      title: Set it up right once. Calculations, entries, and reports follow.
+      body:
+        - Assign each asset its structure and the right calculations, journal entries, and reports follow automatically.
+      bullets:
+        - Group/category, location, and department
+        - GL accounts for assets, expense, accumulated depreciation, and CIP
+        - Tax class, useful life, and method — MACRS, ACRS, bonus, Section 179
+        - Half-year, mid-quarter, mid-month, or full-month convention
+        - 15 user-defined fields — 5 each for text, date, and numeric
+      screen: { kind: setup, app: assets, preset: asset, label: General asset data }
+      alt: General Asset Data screen with classification and tax detail
+      caption: General asset data — identification and tax detail
+    - kicker: Beyond the schedule
+      title: Track every asset you own, whether you depreciate it or not.
+      body:
+        - >-
+          Land doesn't depreciate. Assets below your capitalization threshold get expensed. Track them all in
+          the same system, with the same structure — and they flow into the personal property tax report, so
+          your filing reflects everything you own.
+        - >-
+          Assets acquired under capital or finance leases are tracked and depreciated at their capitalized
+          value. Ledgerline Assets is not a lease accounting solution.
+      screen: { kind: setup, app: assets, preset: control }
+      alt: Asset Control screen with custodian, location, and warranty detail
+      caption: Asset control — custodian, condition, warranty, and attachments
+
+steps:
+  eyebrow: The asset lifecycle
+  heading: From the day an asset enters your books to the day it leaves.
+  intro: >-
+    Fixed assets don't just sit on a balance sheet. They're acquired, sometimes built from scratch, managed
+    through their useful life, and eventually disposed.
+  items:
+    - title: Construction in progress
+      body: >-
+        Track capital project costs from the first invoice through completion, then convert the project
+        into one or more capitalized assets ready to depreciate.
+    - title: Physical asset management
+      body: >-
+        Custodian, location, and condition for inventories; warranty and service coverage; and a file
+        cabinet for invoices, purchase orders, and images attached to each asset record.
+    - title: Disposals
+      body: >-
+        Calculate gain or loss and generate journal entries across every book. Dispose of a group at once, or
+        split an asset into a disposed part and a remaining part that keeps depreciating.
+    - title: Getting your data in
+      body: >-
+        The Data Import Wizard and an included Excel template bring your records across. A 30-minute
+        one-on-one onboarding session and a 15-video Quick Start library handle the rest.
+
+audience:
+  eyebrow: Who it's for
+  heading: Worth a hard look if…
+  items:
+    - title: You own the fixed asset numbers
+      body: You're a controller, CFO, or accountant at a small or mid-sized business, nonprofit, or government organization.
+    - title: You've outgrown the spreadsheet
+      body: Your records live in spreadsheets you've outgrown — or in a system costing more than it should.
+    - title: You need tax and book, done correctly
+      body: You want depreciation right across tax and financial books, without a system built for a company ten times your size.
+    - title: You need reports people rely on
+      body: Management and auditors need reports they can trust, available when you need them, without scrambling.
+
+pricing:
+  heading: Ledgerline Assets costs less and *does more*.
+  intro: Every license includes unlimited companies and assets, onboarding, and US-based support.
+  plans:
+    - name: Single License
+      price: $499
+      description: One user. Unlimited companies. Unlimited assets.
+      features:
+        - Full software — depreciation, reporting & asset management
+        - 15-video Quick Start library and user guide
+        - 30-min onboarding with a specialist who knows the accounting
+        - US-based phone, email & chat support
+      renewal: $249/yr to renew, including each year's tax law update
+    - name: Site License
+      price: $599
+      description: Up to 7 users, one location. Unlimited companies & assets.
+      featured: true
+      features:
+        - Everything in Single License, for up to 7 users
+        - Install on as many machines as you need
+        - RDS, Terminal Server & Citrix deployments
+        - 30-min personalized onboarding session
+      renewal: $349/yr to renew, including each year's tax law update
+    - name: Enterprise License
+      price: Custom
+      description: Multiple locations, larger teams, configuration that fits your organization.
+      cta: quote
+      features:
+        - Licensing configured for your team size and locations
+        - All training and onboarding resources
+        - US-based phone, email & chat support
+      renewal: Renewal included in your quote
+  guarantee: >-
+    Use Ledgerline Assets with your real asset data for 30 days. If you can't centralize your records, run
+    depreciation, and generate the reports you need, request a full refund.
+
+faqs:
+  - q: How many assets and companies can I track?
+    a: There's no preset limit. Single and Site licenses both include unlimited assets and unlimited companies or entities, each with their own complete records. Ledgerline Assets does not consolidate across entities.
+  - q: Does it support both tax and GAAP depreciation?
+    a: Yes. It calculates depreciation across up to six books simultaneously — financial (GAAP), tax, AMT, ACE, state, and others — independently configured per asset, from a single set of inputs.
+  - q: Can I import my existing asset data?
+    a: Yes. The Data Import Wizard guides you through importing from Excel, and an included template shows you exactly how to prepare your data. Asset templates and a quick-add form speed up manual entry.
+  - q: Does Ledgerline Assets connect to my accounting system?
+    a: It's a standalone system. It generates journal entries you post into your accounting system, keeping you in control of what hits your general ledger. There's no direct sync with accounting platforms.
+  - q: What does the annual renewal include?
+    a: A new version each January reflecting current tax law changes and program improvements, plus continued US-based support. Single License renewal is $249; Site License renewal is $349.
+  - q: What systems does it run on?
+    a: Windows 11 and 10, 32- and 64-bit. Mac users can run it with Parallels or a similar emulator. Site License deployments support RDS, Terminal Server, and Citrix.
+
+closing:
+  heading: Ready to own your fixed asset numbers?
+  body: You've seen what Ledgerline Assets does, what it costs, and what other financial professionals say about it. Buy with the 30-day guarantee, or book a demo and bring your hardest question.
+
+related: [benchmark, valuation]

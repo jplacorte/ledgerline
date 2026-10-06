@@ -1,0 +1,47 @@
+---
+/** Small square glyph identifying a product — color-coded by product hue. */
+interface Props {
+  slug: string;
+  size?: 'sm' | 'md' | 'lg';
+}
+const { slug, size = 'md' } = Astro.props;
+
+const marks: Record<string, { hue: string; path: string }> = {
+  'fixed-assets': { hue: 'var(--p-fap)', path: 'M4 9.5 12 5l8 4.5M6 10v7M10 10v7M14 10v7M18 10v7M4 19.5h16' },
+  deals: { hue: 'var(--p-ds)', path: 'M12 4a8 8 0 1 0 8 8h-8zM14.5 2.8v6.7h6.7A7 7 0 0 0 14.5 2.8z' },
+  'valuation': { hue: 'var(--p-bvs)', path: 'M5 19V12M10 19V6M15 19v-9M20 19V9M3 20h18' },
+  'benchmark': { hue: 'var(--p-bp)', path: 'M4 17l5-5 4 3 7-8M15 7h5v5' },
+  'deal-index': { hue: 'var(--p-ds)', path: 'M4 8h16v11H4zM9 8V6a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 6v2M4 13h16' },
+  'data-offerings': { hue: 'var(--p-data)', path: 'M5 6c0-1.4 3.1-2.5 7-2.5s7 1.1 7 2.5-3.1 2.5-7 2.5S5 7.4 5 6zM5 6v6c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12v6c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-6' },
+};
+const mark = marks[slug] ?? marks['data-offerings'];
+---
+
+<span class:list={['mark', size]} style={`--mark-hue: ${mark.hue}`} aria-hidden="true">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d={mark.path}></path>
+  </svg>
+</span>
+
+<style>
+  .mark {
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    color: var(--mark-hue);
+    background: color-mix(in srgb, var(--mark-hue) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--mark-hue) 28%, transparent);
+    border-radius: 7px;
+  }
+  .sm { inline-size: 1.75rem; block-size: 1.75rem; }
+  .sm svg { inline-size: 1rem; }
+  .md { inline-size: 2.25rem; block-size: 2.25rem; }
+  .md svg { inline-size: 1.25rem; }
+  .lg { inline-size: 3rem; block-size: 3rem; border-radius: 10px; }
+  .lg svg { inline-size: 1.6rem; }
+  :global(.surface-night) .mark {
+    color: color-mix(in srgb, var(--mark-hue) 45%, white);
+    background: color-mix(in srgb, var(--mark-hue) 22%, transparent);
+    border-color: color-mix(in srgb, var(--mark-hue) 50%, transparent);
+  }
+</style>

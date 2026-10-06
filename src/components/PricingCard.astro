@@ -1,0 +1,81 @@
+---
+import { buyHref } from '../data/site';
+
+interface Props {
+  productSlug: string;
+  plan: {
+    name: string;
+    price: string;
+    period?: string;
+    description: string;
+    features: string[];
+    renewal?: string;
+    featured: boolean;
+    cta: 'buy' | 'quote';
+  };
+}
+const { productSlug, plan } = Astro.props;
+const isNumeric = plan.price.startsWith('$');
+---
+
+<article class:list={['plan', { featured: plan.featured }]}>
+  {plan.featured && <p class="flag mono">Most chosen</p>}
+  <h3>{plan.name}</h3>
+  <p class="price">
+    <span class:list={['amount', { figure: isNumeric }]}>{plan.price}</span>
+    {plan.period && <span class="period">{plan.period}</span>}
+  </p>
+  <p class="desc">{plan.description}</p>
+  <ul class="checks">
+    {plan.features.map((f) => <li>{f}</li>)}
+  </ul>
+  {plan.renewal && <p class="renewal mono">{plan.renewal}</p>}
+  <div class="actions">
+    {
+      plan.cta === 'buy' ? (
+        <a class:list={['btn', plan.featured ? 'btn-accent' : '']} href={buyHref(productSlug)}>
+          Buy now <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      ) : (
+        <a class="btn" href={`/contact/?reason=sales&product=${productSlug}`}>
+          Request a quote <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      )
+    }
+    <a class="btn btn-ghost" href={`/book-a-demo/?product=${productSlug}`}>Book a demo</a>
+  </div>
+</article>
+
+<style>
+  .plan {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    padding: var(--space-l) var(--space-m) var(--space-m);
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-l);
+  }
+  .plan.featured { border-color: var(--ink); box-shadow: var(--shadow-plate); }
+  .flag {
+    position: absolute;
+    top: -0.7rem;
+    left: var(--space-m);
+    padding: 0.2rem 0.6rem;
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 3px;
+  }
+  h3 { font-family: var(--font-sans); font-size: var(--step-0); font-weight: 600; }
+  .price { display: flex; align-items: baseline; gap: 0.5rem; padding-bottom: var(--space-s); border-bottom: 1px solid var(--rule); }
+  .amount { font-family: var(--font-display); font-size: var(--step-4); line-height: 1; letter-spacing: -0.03em; }
+  .period { color: var(--muted); font-size: var(--step--1); }
+  .desc { color: var(--ink-2); font-size: var(--step--1); }
+  .checks { font-size: var(--step--1); }
+  .renewal { font-size: var(--step--2); color: var(--muted); padding: 0.6rem 0.75rem; background: var(--paper); border-radius: var(--radius); }
+  .actions { display: grid; gap: 0.5rem; margin-top: auto; padding-top: var(--space-s); }
+</style>

@@ -1,0 +1,78 @@
+---
+import Wordmark from './Wordmark.astro';
+import { nav, site } from '../data/site';
+
+const year = new Date().getFullYear();
+const columns = {
+  Software: nav.products,
+  Data: nav.data,
+  ...nav.footer,
+};
+---
+
+<footer class="site-footer surface-night">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" aria-label={`${site.name} home`} class="brand-link"><Wordmark tone="light" /></a>
+        <p class="footer-tag">{site.tagline}</p>
+        <dl class="footer-contact">
+          <div><dt>Sales &amp; support</dt><dd><a href={site.phoneHref} class="mono">{site.phone}</a></dd></div>
+          <div><dt>Email</dt><dd><a href={`mailto:${site.email.support}`}>{site.email.support}</a></dd></div>
+          <div><dt>Hours</dt><dd>{site.hours}</dd></div>
+        </dl>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        {
+          Object.entries(columns).map(([heading, links]) => (
+            <div>
+              <h2 class="col-head mono">{heading}</h2>
+              <ul role="list">
+                {links.map((link) => (
+                  <li><a href={link.href}>{link.label}</a></li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>© {year} {site.name}. Trusted by financial professionals since {site.founded}.</p>
+      <p class="mono">Desktop by design · {site.location}</p>
+    </div>
+    <p class="demo-note">{site.demoNotice}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer { padding-block: var(--space-2xl) var(--space-l); font-size: var(--step--1); }
+  .footer-top {
+    display: grid;
+    gap: var(--space-xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--night-rule);
+  }
+  @media (min-width: 60rem) { .footer-top { grid-template-columns: 1fr 2fr; } }
+  .brand-link { text-decoration: none; color: var(--night-text); }
+  .footer-tag { font-family: var(--font-display); font-style: italic; font-size: var(--step-2); margin-top: var(--space-m); color: var(--night-text); }
+  .footer-contact { margin-top: var(--space-l); display: grid; gap: 0.75rem; }
+  .footer-contact dt { font-family: var(--font-mono); font-size: var(--step--2); text-transform: uppercase; letter-spacing: 0.08em; color: var(--night-muted); }
+  .footer-contact dd { margin: 0.1rem 0 0; }
+  .footer-nav { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-l) var(--space-m); }
+  @media (min-width: 40rem) { .footer-nav { grid-template-columns: repeat(4, 1fr); } }
+  .col-head { font-size: var(--step--2); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--night-muted); margin-bottom: var(--space-s); }
+  .footer-nav ul { display: grid; gap: 0.6rem; }
+  a { color: var(--night-text); text-decoration: none; }
+  a:hover { color: #f08a5a; }
+  .demo-note { margin-top: var(--space-s); font-size: var(--step--2); color: var(--night-muted); opacity: 0.8; }
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-s);
+    padding-top: var(--space-m);
+    color: var(--night-muted);
+    font-size: var(--step--2);
+  }
+</style>

@@ -1,0 +1,188 @@
+name: Ledgerline Valuation
+order: 3
+hue: var(--p-bvs)
+category: Business valuation
+forWho: For CPAs, valuation analysts, and advisors
+headline: A standards-based workflow that *amplifies your judgement*.
+summary: >-
+  Reach and present a supportable conclusion of business value. Built around Revenue Ruling 59-60, USPAP, and SSVS.
+seo:
+  title: Ledgerline Valuation — Valuation software for CPAs
+  description: >-
+    Normalize financials, build projections, apply income, market, and asset approaches, and generate a
+    standards-based valuation report in Word. $795/year with unlimited engagements.
+hero:
+  screen: { kind: report, app: valuation, label: Report }
+  alt: Ledgerline Valuation Shareholder-Level and Per-Share Valuation screen
+  caption: Shareholder-level value — discounts applied in the correct sequence
+fromPrice: $795
+priceNote: Per year · unlimited engagements
+stats:
+  - { value: '4', label: 'stages, engagement to report' }
+  - { value: '3', label: 'approaches to value' }
+  - { value: '10', label: 'years of history & projections' }
+  - { value: '59-60', label: 'Rev. Rul. · USPAP · SSVS built in' }
+
+proof:
+  heading: CPAs, ABVs, CVAs, and ASAs use Ledgerline Valuation to reach a supportable conclusion — and deliver the report that documents it.
+  testimonials:
+    - quote: "Ledgerline Valuation saves me roughly 30 hours per engagement compared with building it in Excel and Word."
+      name: "Michael Torres, CPA/ABV"
+      role: "Partner, regional CPA firm"
+      tag: Speed
+    - quote: "Every number is traceable. I can follow a calculation from input to conclusion without guessing at a black box."
+      name: "Rachel Ostrander, CPA"
+      role: "Valuation Manager, advisory practice"
+      tag: Trust
+    - quote: "The reports come out clean and readable. My first engagement in the software was finished in days, not weeks."
+      name: "Kevin Malloy, CVA"
+      role: "Principal, independent valuation firm"
+      tag: Speed
+    - quote: "A real alternative to spreadsheets for normalizing, projecting, and applying methods — and support actually knows valuation."
+      name: "Aisha Rahman, CPA, CVA"
+      role: "Director, accounting & advisory firm"
+      tag: Support
+
+problem:
+  eyebrow: The problem
+  heading: Valuation demands judgement. The tool should *amplify it*, not distract.
+  body:
+    - >-
+      Revenue Ruling 59-60 requires judgement, not a formula. What it doesn't account for is how much of
+      that judgement gets crowded out by the mechanics of the tool — building workbooks, chasing broken
+      formulas, and rebuilding the report in Word when the analysis is done.
+    - >-
+      The costlier distraction is cognitive. Instead of asking "Is this the right discount rate?" or "Which
+      methods deserve the greatest weight?", the tool forces "Why doesn't this total tie?" and "Which version
+      of this file is current?" Ledgerline Valuation handles the mechanics so your bandwidth goes back to the judgement calls.
+  compare:
+    without:
+      - Why doesn't this total tie?
+      - Which cell reference drives this number?
+      - Did I overwrite that formula?
+      - Which version of this file is current?
+    with:
+      - Is this the right discount rate?
+      - Does management's projection make sense?
+      - Are these adjustments economically justified?
+      - Which methods deserve the greatest weight?
+
+capabilities:
+  eyebrow: The engagement, in four stages
+  heading: Each stage builds on the last — *foundation to report*.
+  intro: The analytical foundation informs the methods. The indications inform the conclusion. The conclusion is what the report documents.
+  items:
+    - kicker: Stage 01 · Analytical foundation
+      title: Organize, normalize, analyze, and project.
+      body:
+        - >-
+          Up to ten years of history plus interim and trailing-twelve-month data. Line-by-line normalization on
+          both the income statement and balance sheet, each adjustment documented with a note.
+        - >-
+          Ratios, common-size, cash flow, working capital, DuPont ROE, sustainable growth, and Altman Z-Score —
+          benchmarked against Industry Outlook or Peer Ratio. Projections run up to ten years, with two years of monthly
+          detail.
+      screen: { kind: statements, app: valuation }
+      alt: Ledgerline Valuation historic income statements with normalization adjustments
+      caption: Normalization adjustments across every period
+    - kicker: Stage 02 · Indications of value
+      title: Income, market, and asset approaches — all reaching enterprise equity value.
+      body:
+        - Every indication reaches the same level of value before reconciliation, so they can be meaningfully compared.
+      bullets:
+        - Capitalization of earnings, excess earnings, DCF, and discounted future earnings
+        - Build-up, CAPM, and iterated WACC rate development
+        - Main Street Comps, Deal Index, and guideline public companies
+        - Net asset value and liquidation value with a dedicated intangibles screen
+      screen: { kind: setup, app: valuation, preset: rates }
+      alt: Ledgerline Valuation discount and capitalization rate options for the income approach
+      caption: Rate development for the income approach
+    - kicker: Stage 03 · Conclusion of value
+      title: Weight the indications, test the value, resolve to the shareholder level.
+      body:
+        - >-
+          Assign weights with payback, ROI, R-squared, and coefficient of variation to inform each choice. A
+          test of value checks whether a hypothetical buyer could finance the deal at your conclusion. Then
+          apply DLOM, DLOC, or control premiums in the correct sequence, down to value per share.
+      screen: { kind: weights, app: valuation }
+      alt: Ledgerline Valuation Enterprise Equity Value conclusion screen with weighted indications
+      caption: Weighted indications become your conclusion
+    - kicker: Stage 04 · The report
+      title: Your methodology. Your conclusions. Your fully editable report.
+      body:
+        - >-
+          A context-sensitive report that assembles only the sections your engagement used — structured around
+          USPAP, SSVS, and Revenue Ruling 59-60 for valuation engagements, and SSVS for calculation engagements.
+          Fully editable in Word, with prompts that guide your narrative and never appear in the delivered document.
+      alt: Standards-based valuation report open in Microsoft Word
+      caption: Report builder output, fully editable in Word
+
+steps:
+  eyebrow: The Guardrails advantage
+  heading: Discipline built into the platform, not left to memory.
+  intro: Structural assists that handle the tracking work a spreadsheet leaves entirely to the practitioner.
+  items:
+    - title: Income approach discipline
+      body: Ledgerline Valuation enforces the match between benefit stream and discount or capitalization rate. If they don't correspond, a conversion adjustment is required before the method produces an indication.
+    - title: Market multiple integrity
+      body: Price multiples are calculated from the financial data you enter, not quoted from the data source — because quoted multiples from transaction databases aren't always correct.
+    - title: Equity value conversion
+      body: Every Market Value of Invested Capital indication is converted to equity by deducting debt and preferred stock, consistently, for every method.
+
+audience:
+  eyebrow: Engagement types
+  heading: Built for valuations that have to *hold up*.
+  items:
+    - title: Tax & estate
+      body: Estate and gift tax, charitable contributions, and property tax — where documentation carries weight with the IRS and courts.
+    - title: Litigation & disputes
+      body: Shareholder disputes, dissenting interests, marital dissolution, and damages — where an opposing expert will test your conclusion.
+    - title: Planning & advisory
+      body: Buy-sell agreements, exit planning, ownership transition, and what a business is worth.
+    - title: Corporate & financial decisions
+      body: Sale, merger, divestiture, financing, recapitalization, and ESOP feasibility and ongoing valuations.
+  note:
+    title: Work centered on M&A?
+    body: If your work goes past the conclusion of value and into the deal itself, Ledgerline Deals includes Ledgerline Valuation in full plus structure, financing, and returns.
+    href: /deals/
+    label: Learn about Ledgerline Deals
+
+pricing:
+  heading: Own the platform. *Own the work.*
+  intro: A single annual subscription gives you the full Ledgerline Valuation platform. Three or more users? Call for multi-user pricing.
+  plans:
+    - name: Ledgerline Valuation
+      price: $795
+      period: first year
+      description: Single user. Unlimited engagements.
+      featured: true
+      features:
+        - Report Builder — standards-based report in Word
+        - One complimentary Industry Outlook 5-year industry report ($140 value)
+        - Onboarding call with a valuation-savvy specialist
+        - Twelve-video step-by-step training
+        - US-based phone, email & live chat support
+      renewal: $595 annual renewal
+  guarantee: >-
+    Use Ledgerline Valuation on an actual engagement during your first 30 days. If it doesn't
+    perform as described, contact us for a full refund.
+
+sample:
+  title: See what a standards-based valuation report looks like.
+  body: Ledgerline Valuation generates a complete valuation report in Word, structured around USPAP, SSVS, and Revenue Ruling 59-60 — the document you'll deliver to clients.
+
+faqs:
+  - q: I already do valuations in spreadsheets. Why switch?
+    a: Ledgerline Valuation can replace your spreadsheet workflow or supplement it. Look at what it does across normalization, projections, the three approaches, and the report builder, and decide whether it belongs alongside or in place of what you use today.
+  - q: How difficult is it to get my financial data in?
+    a: Enter data directly or import from a spreadsheet. Import requires aligning accounts with Ledgerline Valuation's chart of accounts so the analytical formulas work correctly — a deliberate choice that keeps outputs reliable. Support can walk you through it before you buy.
+  - q: Does Ledgerline Valuation make the decisions for me?
+    a: No. Ledgerline Valuation provides structure, calculations, and documented methodology. You decide which methods to apply, how to weight them, and what the numbers mean. Every calculation is traceable.
+  - q: Will it handle my kind of engagement?
+    a: Ledgerline Valuation is built around Revenue Ruling 59-60, USPAP, and SSVS — the standards that govern estate and gift tax, litigation, ESOP, buy-sell, and advisory engagements.
+
+closing:
+  heading: The judgement, as always, *is yours*.
+  body: Think of Ledgerline Valuation the way an architect thinks of CAD — not something that makes the professional decisions, but the environment that keeps every element connected so you can focus on the judgements that form a supportable conclusion.
+
+related: [deals, benchmark]

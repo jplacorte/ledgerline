@@ -1,0 +1,172 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import ProductMark from '../components/ProductMark.astro';
+import { site } from '../data/site';
+import { plain } from '../lib/text';
+
+const products = (await getCollection('products')).sort((a, b) => a.data.order - b.data.order);
+const expect = [
+  { k: '30 min', v: 'A live video walkthrough, tailored to the product and the work you do.' },
+  { k: 'Your data', v: 'Bring your hardest question — or your own numbers. We know the discipline, not just the software.' },
+  { k: 'No pressure', v: 'Pricing is public. The demo is for deciding whether it fits, not for negotiating.' },
+];
+---
+
+<BaseLayout title="Book a demo" description="Book a 30-minute personal demo of Ledgerline Assets, Ledgerline Deals, Ledgerline Valuation, or Ledgerline Benchmark with a Ledgerline specialist.">
+  <PageHero
+    crumbs={[{ label: 'Book a demo' }]}
+    eyebrow="Personal demo"
+    heading="See it with *your kind of numbers*."
+    lede="Pick the product, suggest a time, and a Ledgerline specialist will confirm a 30-minute live session."
+  />
+
+  <section class="section">
+    <div class="container demo-grid">
+      <form class="form" data-lead-form data-endpoint={site.formEndpoint} data-next="/thank-you/?type=demo" action={site.formEndpoint ?? '/thank-you/'} method="post">
+        <input type="hidden" name="form" value="demo" />
+
+        <fieldset class="step">
+          <legend><span class="mono">01</span> What would you like to see?</legend>
+          <div class="choices">
+            {
+              products.map((p, i) => (
+                <label class="choice" style={`--hue: ${p.data.hue}`}>
+                  <input type="radio" name="product" value={p.id} required={i === 0} checked={i === 0} />
+                  <ProductMark slug={p.id} />
+                  <span>
+                    <span class="c-name">{p.data.name}</span>
+                    <span class="c-desc">{p.data.category}</span>
+                  </span>
+                </label>
+              ))
+            }
+          </div>
+        </fieldset>
+
+        <fieldset class="step">
+          <legend><span class="mono">02</span> When works for you?</legend>
+          <div class="form-row">
+            <div class="field">
+              <label for="date">Preferred date</label>
+              <input class="input" type="date" id="date" name="preferredDate" data-min-today />
+            </div>
+            <div class="field">
+              <label for="window">Time window <span class="hint">(Mountain Time)</span></label>
+              <select class="input" id="window" name="timeWindow">
+                <option>Morning (8:00 – 11:30)</option>
+                <option>Midday (11:30 – 2:00)</option>
+                <option>Afternoon (2:00 – 5:00)</option>
+                <option>Flexible</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="step">
+          <legend><span class="mono">03</span> Who should we expect?</legend>
+          <div class="form-row">
+            <div class="field">
+              <label for="name">Full name <span class="req" aria-hidden="true">*</span></label>
+              <input class="input" id="name" name="name" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="email">Work email <span class="req" aria-hidden="true">*</span></label>
+              <input class="input" id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="company">Company / firm</label>
+              <input class="input" id="company" name="company" autocomplete="organization" />
+            </div>
+            <div class="field">
+              <label for="role">Your role</label>
+              <input class="input" id="role" name="role" autocomplete="organization-title" placeholder="e.g. Controller, CVA, M&A advisor" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="notes">Anything we should prepare?</label>
+            <textarea class="input" id="notes" name="notes" placeholder="Your current tools, the deadline you're working to, the question you most want answered…"></textarea>
+          </div>
+        </fieldset>
+
+        <div class="submit-row">
+          <button class="btn btn-accent" type="submit">Request my demo <span class="arrow" aria-hidden="true">→</span></button>
+          <p class="form-status" data-form-status role="status"></p>
+        </div>
+      </form>
+
+      <aside class="expect">
+        <h2 class="eyebrow">What to expect</h2>
+        <dl>
+          {
+            expect.map((e) => (
+              <div>
+                <dt>{e.k}</dt>
+                <dd>{e.v}</dd>
+              </div>
+            ))
+          }
+        </dl>
+        <div class="selected" aria-hidden="true">
+          {
+            products.map((p) => (
+              <p data-for={p.id} style={`--hue: ${p.data.hue}`}>
+                <span class="mono">You'll see</span>
+                <span class="s-name">{p.data.name}</span>
+                <span class="s-line">{plain(p.data.headline)}</span>
+              </p>
+            ))
+          }
+        </div>
+        <p class="muted call">Rather talk now? <a href={site.phoneHref}>{site.phone}</a></p>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import '../scripts/forms';
+
+  const date = document.querySelector<HTMLInputElement>('[data-min-today]');
+  if (date) date.min = new Date().toISOString().slice(0, 10);
+
+  const form = document.querySelector<HTMLFormElement>('form[data-lead-form]');
+  const sync = () => {
+    const value = (form?.elements.namedItem('product') as RadioNodeList | null)?.value;
+    document.querySelectorAll<HTMLElement>('.selected [data-for]').forEach((el) => el.toggleAttribute('data-active', el.dataset.for === value));
+  };
+  form?.addEventListener('change', sync);
+  sync();
+</script>
+
+<style>
+  .demo-grid { display: grid; gap: var(--space-xl); align-items: start; }
+  @media (min-width: 60rem) { .demo-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); } }
+  .step { border: 0; padding: 0 0 var(--space-l); margin: 0; border-bottom: 1px solid var(--rule); display: grid; gap: var(--space-m); }
+  legend { font-family: var(--font-display); font-size: var(--step-2); padding: 0; margin-bottom: var(--space-m); }
+  legend .mono { font-size: var(--step--1); color: var(--accent-ink); margin-right: 0.5rem; vertical-align: middle; }
+  .choices { display: grid; gap: var(--space-s); }
+  @media (min-width: 40rem) { .choices { grid-template-columns: 1fr 1fr; } }
+  .choice { position: relative; display: flex; gap: 0.85rem; align-items: center; padding: 1rem; background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-l); cursor: pointer; transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease); }
+  .choice:hover { border-color: var(--faint); }
+  .choice input { position: absolute; opacity: 0; pointer-events: none; }
+  .choice:has(input:checked) { border-color: var(--hue); box-shadow: 0 0 0 1px var(--hue), var(--shadow-plate); }
+  .choice:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .c-name { display: block; font-weight: 600; }
+  .c-desc { display: block; font-size: var(--step--2); color: var(--muted); }
+  .submit-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-m); }
+  .expect { position: sticky; top: 6rem; display: grid; gap: var(--space-m); }
+  .expect dl { border-top: 1px solid var(--ink); }
+  .expect dl > div { padding-block: 1rem; border-bottom: 1px solid var(--rule); }
+  .expect dt { font-family: var(--font-display); font-size: var(--step-1); }
+  .expect dd { margin: 0.25rem 0 0; color: var(--ink-2); font-size: var(--step--1); }
+  .selected p { display: none; padding: var(--space-m); border-left: 3px solid var(--hue); background: var(--card); border-radius: 0 var(--radius) var(--radius) 0; }
+  .selected p[data-active] { display: grid; gap: 0.25rem; }
+  .selected .mono { font-size: var(--step--2); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+  .s-name { font-family: var(--font-display); font-size: var(--step-2); }
+  .s-line { color: var(--ink-2); font-size: var(--step--1); }
+  .call { font-size: var(--step--1); }
+</style>

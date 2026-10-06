@@ -1,0 +1,43 @@
+---
+interface Props {
+  product?: string;
+}
+const { product = 'Every Ledgerline product' } = Astro.props;
+const points = [
+  { k: 'OS', v: 'Windows 11 & 10 · installs in minutes · under 150 MB · no database engine required' },
+  { k: 'Data', v: 'Stored locally, on a network folder, or in OneDrive / Google Drive — never on our servers' },
+  { k: 'Teams', v: 'Multi-user deployments on RDS, Terminal Server, and Citrix' },
+  { k: 'Updates', v: 'Delivered automatically in the background — no add-ins, no integration dependencies' },
+];
+---
+
+<section class="section surface-night dbd" aria-labelledby="dbd-h">
+  <div class="container split">
+    <div>
+      <p class="eyebrow">Built the way you work</p>
+      <h2 id="dbd-h" class="mt-s">Desktop by design. <em>Professional by choice.</em></h2>
+      <p class="lede mt-m">
+        {product} is a desktop application — a deliberate choice. Your financial data is sensitive. It belongs on your
+        system, under your control, not on a third-party cloud server you don't manage and can't audit.
+      </p>
+    </div>
+    <dl class="spec">
+      {
+        points.map((p) => (
+          <div>
+            <dt class="mono">{p.k}</dt>
+            <dd>{p.v}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<style>
+  .dbd h2 { max-width: 16ch; }
+  .spec { border-top: 1px solid var(--night-rule); align-self: center; }
+  .spec > div { display: grid; grid-template-columns: 6rem 1fr; gap: var(--space-m); padding-block: 1.1rem; border-bottom: 1px solid var(--night-rule); }
+  dt { font-size: var(--step--2); text-transform: uppercase; letter-spacing: 0.08em; color: #f08a5a; padding-top: 0.2rem; }
+  dd { margin: 0; color: var(--night-text); }
+</style>

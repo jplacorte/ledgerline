@@ -1,0 +1,43 @@
+---
+/**
+ * Ledgerline logo: an "L" whose foot is the orange bottom line, with ledger rows ruled beside the stem.
+ * The same geometry is used in public/favicon.svg and scripts/og-image.mjs.
+ */
+interface Props {
+  tone?: 'ink' | 'light';
+}
+const { tone = 'ink' } = Astro.props;
+---
+
+<span class:list={['wordmark', tone]}>
+  <span class="glyph" aria-hidden="true">
+    <svg viewBox="0 0 64 64">
+      <rect class="tile" width="64" height="64" rx="14"></rect>
+      <rect class="stem" x="16" y="13" width="7" height="31" rx="1"></rect>
+      <rect class="row" x="28" y="16" width="20" height="2.5" rx="1.25" opacity="0.9"></rect>
+      <rect class="row" x="28" y="24" width="16" height="2.5" rx="1.25" opacity="0.65"></rect>
+      <rect class="row" x="28" y="32" width="12" height="2.5" rx="1.25" opacity="0.4"></rect>
+      <rect class="base" x="16" y="44" width="32" height="7" rx="1"></rect>
+    </svg>
+  </span>
+  <span class="name">Ledger<em>line</em></span>
+</span>
+
+<style>
+  .wordmark { display: inline-flex; align-items: center; gap: 0.6rem; }
+  .glyph svg { inline-size: 1.9rem; block-size: 1.9rem; }
+  .tile { fill: var(--ink); }
+  .stem, .row { fill: var(--paper); }
+  .base { fill: var(--accent); }
+  .name {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .name em { font-style: italic; font-weight: 400; color: var(--accent-ink); }
+  .light .tile { fill: var(--paper); }
+  .light .stem, .light .row { fill: var(--night); }
+  .light .name em { color: #f08a5a; }
+</style>

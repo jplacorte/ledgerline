@@ -1,0 +1,35 @@
+---
+import { emph } from '../lib/text';
+
+interface Props {
+  eyebrow?: string;
+  num?: string;
+  heading: string;
+  intro?: string;
+  align?: 'start' | 'center';
+  level?: 'h1' | 'h2';
+  id?: string;
+}
+const { eyebrow, num, heading, intro, align = 'start', level: Tag = 'h2', id } = Astro.props;
+---
+
+<header class:list={['section-header', align]}>
+  {
+    eyebrow && (
+      <p class="eyebrow">
+        {num && <span class="num">§ {num}</span>}
+        {eyebrow}
+      </p>
+    )
+  }
+  <Tag id={id} set:html={emph(heading)} />
+  {intro && <p class="lede">{intro}</p>}
+  <slot />
+</header>
+
+<style>
+  .section-header { display: grid; gap: var(--space-s); max-width: 46rem; margin-bottom: var(--space-xl); }
+  .section-header.center { margin-inline: auto; text-align: center; justify-items: center; }
+  .section-header h2 { max-width: 22ch; }
+  .center h2 { max-width: 24ch; }
+</style>

@@ -1,0 +1,422 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import MockScreen from '../components/MockScreen.astro';
+import type { Props as MockProps } from '../components/MockScreen.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProductMark from '../components/ProductMark.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import QuoteCard from '../components/QuoteCard.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../data/site';
+
+const products = (await getCollection('products')).sort((a, b) => a.data.order - b.data.order);
+
+const pitch: Record<string, { who: string; line: string; body: string }> = {
+  'fixed-assets': {
+    who: 'For small and mid-sized businesses and organizations',
+    line: 'Control your fixed asset data. Accurate depreciation. Audit-ready reporting.',
+    body: 'Track every asset through its full lifecycle and calculate depreciation for financial, tax, and four other books — with 24 built-in reports and a Flex View that slices data the way your work requires.',
+  },
+  deals: {
+    who: 'For business buyers, advisors, and M&A professionals',
+    line: 'From the initial screen to the final blueprint, know whether the deal makes economic sense.',
+    body: 'Financial analysis, valuation, deal pricing, structure, and financing woven into one system — through to a free cash flow and ROI analysis built on your assumptions.',
+  },
+  'valuation': {
+    who: 'For professionals who prepare valuations',
+    line: 'Prepare authoritative business valuation reports and appraisals.',
+    body: 'A rigorous framework for normalizing financials and applying the income, market, and asset approaches — generating a standards-based report under Rev. Ruling 59-60, USPAP, and SSVS.',
+  },
+  'benchmark': {
+    who: 'For CFOs, controllers, CPAs, and credit professionals',
+    line: 'Dig deep into financial statement data. Extract what the numbers are really saying.',
+    body: 'Ratio analysis across eight categories, common-size and trend analysis, plus four advanced models covering real returns, sustainable growth, distress risk, and employee ROI.',
+  },
+};
+
+const roles = [
+  { who: 'Accounting teams', text: 'The books close reliably and on time, with a single source of truth they can report from in any form they need.' },
+  { who: 'Buyers & M&A advisors', text: 'Shorter deal cycles, terms that clear the hurdle rate, and negotiation from a position of strength.' },
+  { who: 'Financial analysts', text: 'A deeper view of performance, position, and trends — and how the business looks from every seat at the table.' },
+  { who: 'Valuators', text: 'Attention on the critical assumptions that drive a conclusion of value, not on managing spreadsheets.' },
+];
+
+const reports = [
+  { title: 'Fixed Asset Register Report', product: 'fixed-assets', name: 'Ledgerline Assets', detail: 'Depreciation schedules, journal entries, and audit-ready reports across every book.', format: 'Excel · PDF' },
+  { title: 'Financial Benchmark Analysis', product: 'benchmark', name: 'Ledgerline Benchmark', detail: '80+ ratios, cash flows, industry benchmarks, and your findings.', format: 'Word' },
+  { title: 'Business Valuation Report', product: 'valuation', name: 'Ledgerline Valuation', detail: 'A standards-based conclusion of value under USPAP, SSVS, and Rev. Ruling 59-60.', format: 'Word' },
+  { title: 'Acquisition Decision Report', product: 'deals', name: 'Ledgerline Deals', detail: 'Valuation, structure, financing, projections, and term sheet in one document.', format: 'Word' },
+];
+
+const fit = [
+  { area: 'Fixed assets', need: 'I need to control my fixed asset data and reporting.', slug: 'fixed-assets', name: 'Ledgerline Assets' },
+  { area: 'M&A', need: 'I need to know if this acquisition makes economic sense.', slug: 'deals', name: 'Ledgerline Deals' },
+  { area: 'Financial analysis', need: 'I need deeper insight into financial performance.', slug: 'benchmark', name: 'Ledgerline Benchmark' },
+  { area: 'Business valuation', need: 'I need to prepare a defensible valuation conclusion.', slug: 'valuation', name: 'Ledgerline Valuation' },
+];
+
+const quotes = [
+  { quote: 'Ledgerline became the system our whole close runs through. Fifteen years in, we still haven\'t found a reason to switch.', name: 'Ingrid Solberg', role: 'Partner, consulting practice' },
+  { quote: 'When we do need help, the issue is usually resolved the same day — by someone who understands the accounting, not just the software.', name: 'Derek Amos', role: 'Controller, oil & gas services' },
+  { quote: 'From demo to go-live was easier than I expected. The onboarding session alone saved us a week.', name: 'Paul Ventura', role: 'Controller, hospitality group' },
+];
+
+const general = await getEntry('faqs', 'general');
+const homeFaqs = [
+  ...(general?.data.items.filter((i) => i.q.includes('cloud') || i.q.includes('Who uses')) ?? []),
+  { q: 'Do I need multiple products to get value from Ledgerline?', a: 'No. Each product is built for a specific financial discipline and works fully on its own. Most customers use one product for the work they do most, and add another only if their work expands into a different discipline.' },
+  { q: 'What kind of support do you provide?', a: `US-based support by phone, chat, and email, ${site.hours}, from a real person who understands both the software and the financial discipline behind it.` },
+  { q: "What if Ledgerline isn't the right fit?", a: "We're glad to demo or answer questions before you decide. And if a software product doesn't perform the way you need within 30 days, we'll promptly refund your money. The guarantee doesn't apply to data products — Peer Ratio, Main Street Comps, Deal Index, and Industry Outlook." },
+  { q: 'What size of company is Ledgerline right for?', a: 'Solo practitioners through organizations with over 1,000 employees. Each product is developed around the discipline, not the headcount.' },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: homeFaqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<BaseLayout jsonLd={jsonLd}>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">For CFOs, controllers, CPAs, valuators &amp; business buyers</p>
+        <h1>Financial software for <em>consequential</em> business decisions.</h1>
+        <p class="lede">
+          Whether you're managing fixed assets, analyzing a company's financial position, determining what a business is worth, or
+          evaluating an acquisition, Ledgerline turns your numbers into clear, actionable insight.
+        </p>
+        <div class="btn-row hero-actions">
+          <a class="btn btn-accent" href="#products">Find your product <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="/book-a-demo/">Book a demo</a>
+        </div>
+        <ul class="trust" role="list">
+          <li><span class="stars" aria-hidden="true">★★★★★</span> <b>{site.stats.rating}/5</b> · {site.stats.reviews} verified reviews</li>
+          <li><b>Since {site.founded}</b> · {site.stats.years} years of focus</li>
+          <li><b>US-based</b> support from real experts</li>
+        </ul>
+      </div>
+
+      <div class="index-card" aria-labelledby="index-h">
+        <div class="index-head">
+          <p id="index-h" class="mono">Index of products</p>
+          <p class="mono muted">Own the numbers. Create value.</p>
+        </div>
+        <ol class="index" role="list">
+          {
+            products.map((p, i) => (
+              <li>
+                <a href={`/${p.id}/`} style={`--hue: ${p.data.hue}`}>
+                  <span class="ix-n mono">{String(i + 1).padStart(2, '0')}</span>
+                  <ProductMark slug={p.id} size="sm" />
+                  <span class="ix-body">
+                    <span class="ix-name">{p.data.name}</span>
+                    <span class="ix-cat">{p.data.category}</span>
+                  </span>
+                  <span class="ix-price mono">
+                    <span class="muted">from</span> {p.data.fromPrice}
+                  </span>
+                  <span class="ix-arrow" aria-hidden="true">→</span>
+                </a>
+              </li>
+            ))
+          }
+        </ol>
+        <div class="index-foot">
+          <a href="/deal-index/" class="mono">+ Deal Index transaction database</a>
+          <a href="/data-offerings/" class="mono">+ Benchmark &amp; transaction data</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem -->
+  <section class="section surface-card ruled" aria-labelledby="problem-h">
+    <div class="container split">
+      <SectionHeader id="problem-h" eyebrow="Why Ledgerline" num="01" heading="If you don't own the numbers, *value-creating decisions* become harder to make." />
+      <div class="problem-copy">
+        <p class="dropcap">
+          Getting the numbers together for a consequential decision is rarely as simple as it should be. The spreadsheet gets you partway
+          there — until the formulas multiply, the versions pile up, and maintaining it becomes the work instead of doing the work.
+        </p>
+        <p>
+          Other solutions can be just as frustrating: overbuilt platforms priced for organizations three times your size, or software built
+          for a different discipline. A valuation tool pressed into service for deal analysis. A general accounting module standing in for
+          fixed asset management. A ratio template doing the work of a comprehensive benchmark.
+        </p>
+        <p class="pull">That is why Ledgerline exists.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="section" id="products" aria-labelledby="products-h">
+    <div class="container">
+      <SectionHeader
+        id="products-h"
+        eyebrow="The products"
+        num="02"
+        heading="Find the right system *for your work*."
+        intro="Pricing is transparent on every product page — no sales call required. If you'd rather talk it through, a real person is ready by phone, email, or chat."
+      />
+      <div class="products">
+        {
+          products.map((p) => (
+            <article class="product reveal" style={`--hue: ${p.data.hue}`}>
+              <a href={`/${p.id}/`} class="product-link" aria-label={`${p.data.name} — learn more`} />
+              <div class="product-shot">
+                <MockScreen {...(p.data.hero.screen as MockProps)} />
+              </div>
+              <div class="product-body">
+                <p class="product-top">
+                  <ProductMark slug={p.id} />
+                  <span class="tag">{pitch[p.id].who}</span>
+                </p>
+                <h3>{p.data.name}</h3>
+                <p class="product-line">{pitch[p.id].line}</p>
+                <p class="product-text">{pitch[p.id].body}</p>
+                <p class="product-foot">
+                  <span class="mono">from {p.data.fromPrice}</span>
+                  <span class="text-link">Explore {p.data.name} <span aria-hidden="true">→</span></span>
+                </p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Roles -->
+  <section class="section surface-night" aria-labelledby="roles-h">
+    <div class="container">
+      <SectionHeader id="roles-h" eyebrow="Why it matters" num="03" heading="What does it mean to *own the numbers*?" intro="The answer looks different depending on the work in front of you." />
+      <ul class="roles" role="list">
+        {
+          roles.map((r, i) => (
+            <li>
+              <span class="mono role-n">{String(i + 1).padStart(2, '0')}</span>
+              <h3>{r.who}</h3>
+              <p>{r.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Philosophy + reports -->
+  <section class="section" aria-labelledby="philo-h">
+    <div class="container">
+      <div class="split philo">
+        <SectionHeader id="philo-h" eyebrow="Our philosophy" num="04" heading="Software should support financial judgement. *Not replace it.*" />
+        <div class="stack philo-copy">
+          <p>
+            Founded in {site.founded}, Ledgerline has spent {site.stats.years} years building financial software for controllers, CFOs, CPAs, business
+            valuators, and M&amp;A advisors who face real analytical and reporting challenges every day.
+          </p>
+          <p>
+            Every product was built for a specific financial discipline from the ground up — designed for the work professionals actually do,
+            whether solo or on a small team carrying the financial responsibility for a much larger organization. That philosophy shapes every
+            decision we make, including where your data lives.
+          </p>
+          <a class="text-link" href="/about/">About Ledgerline <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+
+      <div class="reports-head">
+        <h3>Built around the deliverable.</h3>
+        <p class="muted">Reports for the consumer of the information — structured, professional, and editable.</p>
+      </div>
+      <ul class="reports" role="list">
+        {
+          reports.map((r) => (
+            <li>
+              <a href={`/${r.product}/`} class="doc reveal">
+                <span class="doc-brand mono">{site.name}</span>
+                <ProductMark slug={r.product} size="sm" />
+                <span class="doc-title">{r.title}</span>
+                <span class="doc-lines" aria-hidden="true"><i /><i /><i /><i /></span>
+                <span class="doc-detail">{r.detail}</span>
+                <span class="doc-foot mono">
+                  <span>{r.name}</span>
+                  <span>{r.format}</span>
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Proof -->
+  <section class="section surface-alt" aria-labelledby="proof-h">
+    <div class="container">
+      <div class="proof-top">
+        <SectionHeader id="proof-h" eyebrow="Customers" num="05" heading={`Trusted by financial professionals *since ${site.founded}*.`} />
+        <dl class="proof-stats">
+          <div><dt>Customer rating</dt><dd class="figure-num">{site.stats.rating}</dd></div>
+          <div><dt>Annual renewal rate</dt><dd class="figure-num">{site.stats.renewal}</dd></div>
+          <div><dt>Years in business</dt><dd class="figure-num">{site.stats.years}</dd></div>
+        </dl>
+      </div>
+      <div class="quotes">
+        {quotes.map((q) => <QuoteCard {...q} />)}
+      </div>
+      <p class="mt-l"><a class="text-link" href="/customers/">More from our customers <span aria-hidden="true">→</span></a></p>
+    </div>
+  </section>
+
+  <!-- Fit finder -->
+  <section class="section" aria-labelledby="fit-h">
+    <div class="container">
+      <SectionHeader id="fit-h" eyebrow="Get started" num="06" heading="Tell us what you're *trying to solve*." intro="We'll point you in the right direction." />
+      <ul class="fit" role="list">
+        {
+          fit.map((f) => (
+            <li>
+              <a href={`/${f.slug}/`}>
+                <span class="fit-area mono">{f.area}</span>
+                <span class="fit-need">“{f.need}”</span>
+                <span class="fit-prod">
+                  <ProductMark slug={f.slug} size="sm" /> {f.name} <span aria-hidden="true">→</span>
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <aside class="unsure">
+        <p><b>Not sure where to start?</b> Talk to a real person who knows the software and the discipline behind it.</p>
+        <div class="btn-row">
+          <a class="btn btn-sm" href="/contact/">Ask a question</a>
+          <a class="btn btn-sm btn-ghost" href={site.phoneHref}>Call {site.phone}</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section surface-alt" aria-labelledby="faq-h">
+    <div class="container split">
+      <SectionHeader id="faq-h" eyebrow="FAQ" num="07" heading="Frequently asked *questions*.">
+        <a class="text-link" href="/faqs/">See all FAQs <span aria-hidden="true">→</span></a>
+      </SectionHeader>
+      <FaqList items={homeFaqs} name="home-faq" />
+    </div>
+  </section>
+
+  <CtaBand heading="See Ledgerline *in action*." body="Book a personal demo and we'll show you the right tool for the way you work." />
+</BaseLayout>
+
+<style>
+  .hero { padding-block: var(--space-xl) var(--space-2xl); position: relative; }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(var(--rule-soft) 1px, transparent 1px), linear-gradient(90deg, var(--rule-soft) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: linear-gradient(to bottom, black, transparent 85%);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  .hero-grid { position: relative; display: grid; gap: var(--space-xl); align-items: center; }
+  @media (min-width: 64rem) { .hero-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--space-2xl); } }
+  .hero h1 { margin-top: var(--space-m); max-width: 13ch; }
+  .hero .lede { margin-top: var(--space-m); }
+  .hero-actions { margin-top: var(--space-l); }
+  .trust { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-top: var(--space-l); padding: var(--space-s) 0 0; border-top: 1px solid var(--rule); list-style: none; font-size: var(--step--1); color: var(--muted); }
+  .trust b { color: var(--ink); font-weight: 600; }
+  .stars { color: var(--accent); letter-spacing: 1px; }
+
+  .index-card { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-l); box-shadow: var(--shadow-plate); overflow: hidden; }
+  .index-head { display: flex; justify-content: space-between; gap: 1rem; padding: 0.9rem 1.25rem; border-bottom: 1px solid var(--ink); font-size: var(--step--2); text-transform: uppercase; letter-spacing: 0.06em; }
+  .index-head .muted { text-transform: none; letter-spacing: 0; }
+  @media (max-width: 30rem) { .index-head .muted { display: none; } }
+  .index li + li { border-top: 1px solid var(--rule-soft); }
+  .index a { display: grid; grid-template-columns: auto auto 1fr auto auto; gap: 0.85rem; align-items: center; padding: 1.1rem 1.25rem; text-decoration: none; color: var(--ink); transition: background 0.2s var(--ease); }
+  .index a:hover { background: var(--paper); color: var(--ink); }
+  .ix-n { font-size: var(--step--2); color: var(--faint); }
+  .ix-name { display: block; font-family: var(--font-display); font-size: var(--step-1); line-height: 1.2; }
+  .ix-cat { display: block; font-size: var(--step--2); color: var(--muted); }
+  .ix-price { font-size: var(--step--1); white-space: nowrap; }
+  .ix-arrow { color: var(--hue); transition: transform 0.2s var(--ease); }
+  .index a:hover .ix-arrow { transform: translateX(3px); }
+  @media (max-width: 30rem) { .index a { grid-template-columns: auto 1fr auto; } .ix-n, .ix-arrow { display: none; } }
+  .index-foot { display: grid; gap: 0.35rem; padding: 0.9rem 1.25rem; background: var(--paper); border-top: 1px solid var(--rule); font-size: var(--step--2); }
+  .index-foot a { color: var(--muted); text-decoration: none; }
+  .index-foot a:hover { color: var(--accent-ink); }
+
+  .ruled { border-block: 1px solid var(--rule); }
+  .problem-copy { display: grid; gap: var(--space-s); color: var(--ink-2); font-size: var(--step-0); max-width: 60ch; align-self: end; }
+  .dropcap::first-letter { float: left; font-family: var(--font-display); font-size: 3.6em; line-height: 0.85; padding: 0.08em 0.1em 0 0; color: var(--accent); }
+  .pull { font-family: var(--font-display); font-style: italic; font-size: var(--step-2); color: var(--ink); padding-top: var(--space-s); border-top: 1px solid var(--rule); }
+
+  .products { display: grid; gap: var(--space-m); }
+  @media (min-width: 56rem) { .products { grid-template-columns: repeat(2, 1fr); } }
+  .product { position: relative; display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-l); overflow: hidden; transition: border-color 0.25s var(--ease), transform 0.25s var(--ease); }
+  .product:hover { border-color: var(--hue); transform: translateY(-3px); }
+  .product-link { position: absolute; inset: 0; z-index: 2; border-radius: inherit; }
+  .product-shot { aspect-ratio: 16 / 8; overflow: hidden; background: var(--paper-2); border-bottom: 1px solid var(--rule); border-top: 3px solid var(--hue); }
+  .product-shot :global(.mock) { transform-origin: top left; transition: transform 0.6s var(--ease); }
+  .product:hover .product-shot :global(.mock) { transform: scale(1.03); }
+  .product-body { display: flex; flex-direction: column; gap: var(--space-s); padding: var(--space-l); flex: 1; }
+  .product-top { display: flex; align-items: center; gap: 0.75rem; }
+  .product h3 { font-size: var(--step-3); }
+  .product h3 sup { font-size: 0.4em; opacity: 0.5; }
+  .product-line { font-family: var(--font-display); font-style: italic; font-size: var(--step-1); line-height: 1.35; color: var(--ink); }
+  .product-text { color: var(--ink-2); font-size: var(--step--1); }
+  .product-foot { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: auto; padding-top: var(--space-s); border-top: 1px solid var(--rule); font-size: var(--step--1); }
+  .product .text-link { color: var(--hue); }
+
+  .roles { display: grid; border-top: 1px solid var(--night-rule); }
+  @media (min-width: 48rem) { .roles { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 72rem) { .roles { grid-template-columns: repeat(4, 1fr); } }
+  .roles li { display: grid; gap: var(--space-xs); align-content: start; padding: var(--space-l) var(--space-m) var(--space-l) 0; border-bottom: 1px solid var(--night-rule); }
+  @media (min-width: 72rem) { .roles li + li { padding-left: var(--space-m); border-left: 1px solid var(--night-rule); } .roles li { border-bottom: 0; } }
+  .role-n { color: #f08a5a; font-size: var(--step--1); }
+  .roles h3 { font-size: var(--step-2); }
+  .roles p { color: var(--night-muted); }
+
+  .philo-copy { color: var(--ink-2); max-width: 60ch; }
+  .reports-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: var(--space-s); margin-top: var(--space-2xl); padding-bottom: var(--space-s); border-bottom: 1px solid var(--ink); }
+  .reports-head h3 { font-size: var(--step-3); }
+  .reports { display: grid; gap: var(--space-m); margin-top: var(--space-l); }
+  @media (min-width: 40rem) { .reports { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 72rem) { .reports { grid-template-columns: repeat(4, 1fr); } }
+  .doc { display: flex; flex-direction: column; gap: 0.85rem; block-size: 100%; min-block-size: 22rem; padding: 1.4rem; background: var(--card); border: 1px solid var(--rule); border-radius: 4px; box-shadow: 0 1px 0 var(--rule), 6px 6px 0 -1px var(--paper), 6px 6px 0 0 var(--rule); text-decoration: none; color: var(--ink); transition: transform 0.25s var(--ease); }
+  .doc:hover { transform: translateY(-4px) rotate(-0.5deg); color: var(--ink); }
+  .doc-brand { font-size: 0.7rem; color: var(--muted); }
+  .doc-title { font-family: var(--font-display); font-size: var(--step-2); line-height: 1.1; }
+  .doc-lines { display: grid; gap: 6px; }
+  .doc-lines i { display: block; block-size: 5px; background: var(--paper-2); border-radius: 2px; }
+  .doc-lines i:nth-child(2n) { inline-size: 75%; }
+  .doc-detail { font-size: var(--step--1); color: var(--ink-2); }
+  .doc-foot { display: flex; justify-content: space-between; gap: 0.5rem; margin-top: auto; padding-top: 0.75rem; border-top: 1px solid var(--rule); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+
+  .proof-top { display: grid; gap: var(--space-l); align-items: end; margin-bottom: var(--space-xl); }
+  .proof-top :global(.section-header) { margin-bottom: 0; }
+  @media (min-width: 60rem) { .proof-top { grid-template-columns: 1fr auto; } }
+  .proof-stats { display: flex; gap: var(--space-l); }
+  .proof-stats div { display: flex; flex-direction: column-reverse; padding-left: var(--space-m); border-left: 1px solid var(--rule); }
+  .proof-stats dd { margin: 0; font-size: var(--step-4); line-height: 1; }
+  .proof-stats dt { font-size: var(--step--2); color: var(--muted); margin-top: 0.35rem; }
+  .quotes { display: grid; gap: var(--space-m); }
+  @media (min-width: 56rem) { .quotes { grid-template-columns: repeat(3, 1fr); } }
+
+  .fit { border-top: 1px solid var(--ink); }
+  .fit li { border-bottom: 1px solid var(--rule); }
+  .fit a { display: grid; gap: 0.5rem; padding: var(--space-m) 0; text-decoration: none; color: var(--ink); transition: padding 0.25s var(--ease), background 0.25s var(--ease); }
+  @media (min-width: 56rem) { .fit a { grid-template-columns: 12rem 1fr auto; align-items: center; gap: var(--space-l); } }
+  .fit a:hover { background: var(--card); padding-inline: var(--space-m); color: var(--ink); }
+  .fit-area { font-size: var(--step--2); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+  .fit-need { font-family: var(--font-display); font-size: var(--step-2); line-height: 1.2; }
+  .fit-prod { display: inline-flex; align-items: center; gap: 0.6rem; font-weight: 550; font-size: var(--step--1); white-space: nowrap; }
+  .unsure { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-m); margin-top: var(--space-l); padding: var(--space-m) var(--space-l); background: var(--paper-2); border-radius: var(--radius-l); }
+  .unsure p { color: var(--ink-2); }
+</style>

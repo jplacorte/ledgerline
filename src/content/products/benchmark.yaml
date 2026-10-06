@@ -1,0 +1,184 @@
+name: Ledgerline Benchmark
+order: 4
+hue: var(--p-bp)
+category: Financial statement analysis
+forWho: For CFOs and finance teams, CPAs, and credit analysts
+headline: Unlock the story hidden inside *financial statement data*.
+summary: >-
+  Ledgerline Benchmark takes financial statement data through a structured, multi-layered analysis that surfaces
+  what the numbers reveal about performance, risk, growth capacity, and financial health — without the
+  spreadsheet. A Practitioner Edition adds normalization for assignments that require it.
+seo:
+  title: Ledgerline Benchmark — Financial statement analysis & industry benchmarking software
+  description: >-
+    80+ ratios in eight categories, common-size statements, DuPont ROE, sustainable growth, Altman Z-Score,
+    and industry benchmarks — packaged in an editable Word report. From $399/year.
+hero:
+  screen: { kind: ratios, app: benchmark }
+  alt: Ledgerline Benchmark employee headcount and cost analysis across five years
+  caption: Employee metrics & ROI — returns on total employment costs
+fromPrice: $399
+priceNote: Per year · single user, Standard edition
+stats:
+  - { value: '80+', label: 'ratios in eight categories' }
+  - { value: '5', label: 'levels of analysis' }
+  - { value: '4', label: 'advanced analytical models' }
+  - { value: '34', label: 'charts in the report' }
+
+proof:
+  heading: Same data. Same methodology. *Three perspectives.*
+  testimonials:
+    - quote: "I walk into board meetings with trends, ratios, and peer comparisons already done. The conversation is about decisions, not data."
+      name: "Laura Brennan"
+      role: "Controller, energy services"
+      tag: Results
+    - quote: "It surfaces the questions I'd want answered before a credit decision reaches committee."
+      name: "Owen Fairbanks"
+      role: "Senior Credit Analyst, community bank"
+      tag: Trust
+    - quote: "Our tax clients now get an advisory conversation with their return. Benchmark made that possible."
+      name: "Melissa Grant, CPA"
+      role: "Partner, CPA practice"
+      tag: Results
+
+problem:
+  eyebrow: The problem
+  heading: The full story is there. It takes *more than one year* to read it.
+  body:
+    - >-
+      A single year of financial statements is a snapshot. To get a fuller picture you need multiple years,
+      read as a series. The spreadsheet is the natural tool for that work — and it will surface only what it
+      was designed to surface, and nothing more.
+    - >-
+      A structured, comprehensive analysis reveals a more complete picture: performance trends, risk
+      indicators, growth capacity, capital structure dynamics, and industry comparisons. Ledgerline Benchmark exists
+      for that purpose — less noise, more signal.
+
+capabilities:
+  eyebrow: The depth of the analysis
+  heading: Five levels, built sequentially from raw data to a *complete picture*.
+  intro: Once your data is entered or imported, Ledgerline Benchmark does the heavy lifting — and the methodology is explained throughout, so the analysis stands on its own.
+  items:
+    - kicker: Level 01 · Earnings, cash flow & working capital
+      title: The measures the statements don't show directly.
+      body:
+        - >-
+          Free cash flow to equity and invested capital, an earnings summary from net income through EBITDA,
+          net and operating working capital, and complete cash flow statements — the measures that reveal
+          whether the business generates real economic value, not just accounting income.
+      screen: { kind: statements, app: benchmark, label: Earnings & cash flow }
+      alt: Ledgerline Benchmark setup information screen with company and industry detail
+      caption: Setup — company profile, NAICS and SIC classification
+    - kicker: Level 02 · Ratio analysis
+      title: Over 80 ratios across eight categories.
+      body:
+        - Every ratio is explained in context, so readers understand what it measures and why it matters.
+      bullets:
+        - Revenues & margins · Profitability · Operating efficiency
+        - Working capital · Liquidity · Debt coverage
+        - Leverage & capitalization · Returns on total employment costs
+      figure: { value: '80+', label: 'business ratios' }
+    - kicker: Level 03 · Common-size statements
+      title: Vertical, horizontal, and multi-year — on every line item.
+      body:
+        - Vertical analysis tracks relationships between line items; horizontal analysis tracks the direction and pace of change; multi-year summaries surface trends in margins, cost structure, and composition.
+    - kicker: Level 04 · Advanced models
+      title: Four models that reach where ratios can't.
+      body:
+        - Each addresses a dimension of performance standard ratio analysis doesn't answer.
+      bullets:
+        - Sustainable Growth — can profitability fund the growth rate?
+        - DuPont ROE — margins, asset utilization, or leverage?
+        - Altman Z-Score — credit stability and distress risk
+        - Employee Metrics & ROI — returns on investment in people
+    - kicker: Level 05 · Industry benchmarking
+      title: A direct comparison to peers.
+      body:
+        - Compare against Industry Outlook Reports and Peer Ratio Studies , separately and as a combined average — or enter benchmark data manually from any source.
+
+questions:
+  heading: The questions that matter. *The analysis to answer them.*
+  intro: A Ledgerline Benchmark analysis puts these — and many more — on the table.
+  items:
+    - Is the business growing, or just getting bigger?
+    - It shows a profit — but how much is available for reinvestment or distribution?
+    - Where is cash actually being generated, and where is it going?
+    - Is working capital keeping pace with the demands placed on it?
+    - Can this business finance its own growth, or will it need outside capital?
+    - Is financial strength improving over time, or quietly eroding?
+    - Are there early warning signals of stress that deserve attention now?
+    - How does this business compare to what its peers are actually doing?
+
+steps:
+  eyebrow: Practitioner Edition
+  heading: When the statements don't reflect what the business is actually doing.
+  intro: >-
+    For privately held businesses, owner compensation, personal expenses, non-recurring items, and
+    related-party transactions distort the picture. The Practitioner Edition adds normalization.
+  items:
+    - title: Line-by-line adjustments
+      body: Adjust any line item in the income statement or balance sheet, with a note documenting the rationale for each.
+    - title: No manual propagation
+      body: Adjustments flow through the full five-level analysis automatically — historic and adjusted run side by side.
+    - title: Two professional reports
+      body: A Financial Analysis Report and an Adjusted Financial Analysis Report, both editable in Word.
+
+audience:
+  eyebrow: Who uses Ledgerline Benchmark
+  heading: One analytical system for the analysts whose work *informs decisions*.
+  items:
+    - title: CFOs & finance teams
+      body: Put the full picture on the table at the management meeting, board presentation, and planning cycle — and see your business through a lender's lens before the financing package goes out.
+    - title: CPAs in public practice
+      body: Turn the completion of tax work into the opening of an advisory conversation, grounded in rigorous analysis from an objective outside perspective.
+    - title: Credit & lending professionals
+      body: Surface the signal that sharpens terms, strengthens a covenant, or raises the question before the decision reaches committee.
+
+pricing:
+  heading: Greater clarity. *Without the spreadsheet.*
+  intro: A structured, repeatable system — the same depth every time, ready to present under your name.
+  plans:
+    - name: Standard
+      price: $399
+      period: per year
+      description: The full five-level analysis and Financial Analysis Report.
+      features:
+        - Full five-level analysis
+        - Financial Analysis Report in Word
+        - One complimentary Industry Outlook 5-year report ($140 value)
+        - Onboarding call & US-based support
+      renewal: Multi-user (up to 5) — $895/year
+    - name: Practitioner Edition
+      price: $599
+      period: per year
+      description: Everything in Standard, plus normalization and adjusted analysis.
+      featured: true
+      features:
+        - Everything in Standard
+        - Adjusted statement analysis
+        - Adjusted Financial Analysis Report
+        - Historic vs. adjusted, side by side
+      renewal: Multi-user pricing on request
+  guarantee: >-
+    Ledgerline Benchmark comes with a 30-day money-back guarantee. If it isn't the right fit for your work, contact
+    us within 30 days of purchase for a full refund.
+
+sample:
+  title: See a complete financial analysis before you commit.
+  body: Organized from summary to detail, the report presents the full analytical picture — with 34 charts — without the impenetrable wall of numbers that comes from spreadsheet printouts.
+
+faqs:
+  - q: How do I get my financial data into Ledgerline Benchmark?
+    a: Enter data directly or import from a spreadsheet. Import requires mapping accounts to Ledgerline Benchmark's chart of accounts so calculations work correctly — a deliberate choice that keeps the analysis consistent.
+  - q: Can multiple people in my firm use it?
+    a: Ledgerline Benchmark is licensed to named users. Multi-user subscriptions cover up to 5 users for Standard; contact us for Practitioner Edition multi-user pricing. Analysis files can be shared with other active subscribers.
+  - q: What's the difference between Industry Outlook and Peer Ratio?
+    a: Peer Ratio Studies is an annual subscription covering all industries, searchable inside Ledgerline Benchmark. Industry Outlook 5-year reports are bought individually or in packs. Call us and we'll help you pick.
+  - q: Does it run on Mac?
+    a: Ledgerline Benchmark runs on Windows 10 or later. Mac users can run it with Parallels or a similar emulator.
+
+closing:
+  heading: Spreadsheets demand your time *before they give you anything*.
+  body: Ledgerline Benchmark starts delivering from the moment your data is in.
+
+related: [valuation, fixed-assets]

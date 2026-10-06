@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { nav } from '../data/site';
+---
+
+<BaseLayout title="Page not found" noindex>
+  <section class="section">
+    <div class="container nf">
+      <p class="code figure-num" aria-hidden="true">404</p>
+      <div class="stack">
+        <p class="eyebrow">Page not found</p>
+        <h1>This number <em>doesn't tie out.</em></h1>
+        <p class="lede">The page you're looking for has moved or never existed. Try one of these instead.</p>
+        <ul class="ruled-list links" role="list">
+          {nav.products.map((l) => <li><a href={l.href}>{l.label}<span class="muted"> — {l.description}</span></a></li>)}
+          <li><a href="/contact/">Contact us<span class="muted"> — a real person picks up</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .nf { display: grid; gap: var(--space-xl); align-items: center; min-height: 60vh; }
+  @media (min-width: 60rem) { .nf { grid-template-columns: 1fr 1.4fr; } }
+  .code { font-size: clamp(6rem, 3rem + 14vw, 14rem); line-height: 0.85; color: var(--rule); letter-spacing: -0.06em; }
+  .links a { text-decoration: none; font-weight: 550; }
+</style>

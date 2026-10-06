@@ -1,0 +1,39 @@
+---
+interface Props {
+  items: { label: string; href?: string }[];
+}
+const { items } = Astro.props;
+const all = [{ label: 'Home', href: '/' }, ...items];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: all.map((item, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: item.label,
+    ...(item.href ? { item: new URL(item.href, Astro.site).href } : {}),
+  })),
+};
+---
+
+<nav aria-label="Breadcrumb" class="crumbs">
+  <ol role="list">
+    {
+      all.map((item, i) => (
+        <li>
+          {item.href && i < all.length - 1 ? <a href={item.href}>{item.label}</a> : <span aria-current="page">{item.label}</span>}
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+<style>
+  ol { display: flex; flex-wrap: wrap; gap: 0.5rem; font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: 0.02em; color: var(--muted); }
+  li + li::before { content: '/'; margin-right: 0.5rem; opacity: 0.5; }
+  a { color: var(--muted); text-decoration: none; }
+  a:hover { color: var(--accent-ink); }
+  [aria-current] { color: var(--ink); }
+  :global(.surface-night) [aria-current] { color: var(--night-text); }
+</style>

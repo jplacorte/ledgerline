@@ -1,0 +1,174 @@
+- id: general
+  title: General
+  kind: general
+  order: 1
+  items:
+    - q: What is Ledgerline?
+      a: Ledgerline builds desktop financial software for professionals — a suite covering fixed asset accounting, financial analysis, business valuation, and M&A. Each product is built for one discipline from the ground up, so the software fits the work instead of the other way around.
+    - q: Who uses Ledgerline?
+      a: Controllers, CFOs, and accounting teams; CPAs and financial analysts; business valuation professionals; and M&A advisors and business buyers — primarily at small and mid-market businesses and the firms that serve them.
+    - q: Is Ledgerline cloud-based or desktop?
+      a: Desktop by design. Your data lives on your own system, under your control — no third-party cloud server holding your files. Updates are delivered automatically in the background so you're always current.
+    - q: How long has Ledgerline been around?
+      a: Since 2008. Many customers have relied on the same products for more than a decade.
+- id: products-features
+  title: Products & features
+  kind: general
+  order: 2
+  items:
+    - q: Which product is right for me?
+      a: It depends on the job. Ledgerline Assets for asset accounting and depreciation; Ledgerline Benchmark for financial analysis; Ledgerline Valuation for valuation reports; Ledgerline Deals for acquisitions and M&A. Not sure? Tell us what you're solving and we'll point you to the right fit.
+    - q: Does each product generate a finished report?
+      a: Yes. Every product produces a client-ready deliverable — audit-ready schedules, benchmark analyses, valuation conclusions, and acquisition reports — formatted and generated in Word and Excel. No reformatting, no rebuilding.
+    - q: Can Ledgerline Assets handle multiple sets of books?
+      a: Yes — up to six sets of books (Book, Tax, AMT, State, and more), each with its own depreciation variables, all kept in sync from a single asset record.
+    - q: Can I import data from spreadsheets?
+      a: Yes. The products support importing existing data so you can move off spreadsheets and make-do systems without starting from scratch. Our support team can help you plan the migration.
+- id: pricing-licensing
+  title: Pricing & licensing
+  kind: general
+  order: 3
+  items:
+    - q: How is Ledgerline priced?
+      a: Predictable licensing with no per-case pricing — your cost never penalizes your productivity or growth. Single-user and multi-user licenses are available. Current prices are published on every product page and on the pricing page.
+    - q: Is there a per-case or per-report charge?
+      a: No. Run as many assets, analyses, valuations, or deals as you like — the license doesn't charge you by the case or by the report.
+    - q: Do you offer multi-user licenses?
+      a: Yes. Both single-user and multi-user options are available so a team can work from the same source of truth. Talk to us about the right configuration for your firm.
+    - q: How do renewals and upgrades work?
+      a: Renewals keep you current with updates and support. Upgrades and reactivations are handled quickly by our team — reach out and we'll take care of it.
+- id: install-data
+  title: Install & data
+  kind: general
+  order: 4
+  items:
+    - q: How long does installation take?
+      a: Minutes. Download, install, and get to work — with automatic updates delivered in the background so you stay current without manual effort.
+    - q: Where is my data stored?
+      a: On your own system. Your data stays yours — there's no third-party cloud server holding your files, which keeps you in control of security, backups, and access.
+    - q: What are the system requirements?
+      a: Ledgerline products run on standard Windows desktops and networks. For current version-specific requirements, contact support and we'll confirm compatibility for your environment.
+- id: support-training
+  title: Support & training
+  kind: general
+  order: 5
+  items:
+    - q: What kind of support is included?
+      a: World-class support from real people who know both the software and the financial discipline behind it. Most issues raised to customer service are resolved quickly — often within a day.
+    - q: Do you offer training or tutorials?
+      a: Yes — product tutorials and training walkthroughs are available for each product to help you and your team get up to speed. Ask us and we'll point you to the right resources.
+    - q: How do I reach a real person?
+      a: Call 800-555-0142 or use the contact form. You'll reach someone with deep knowledge of the software — not a script.
+- id: fixed-assets
+  title: Ledgerline Assets
+  kind: product
+  order: 6
+  items:
+    - q: What is Ledgerline Assets?
+      a: A complete fixed asset accounting and depreciation management system for businesses, nonprofits, government organizations, and financial professionals. It manages the full asset lifecycle from acquisition through disposal.
+    - q: How many assets can I track?
+      a: There's no preset limit. Single and Site licenses both include unlimited asset tracking.
+    - q: Can I manage multiple companies?
+      a: Yes. Both Single and Site licenses include unlimited companies or entities, each with their own complete records. Ledgerline Assets does not consolidate across entities.
+    - q: Does it support both tax and GAAP depreciation?
+      a: Yes. It calculates depreciation across up to six simultaneous books, financial (GAAP), tax, AMT, ACE, state, and others, independently configured per asset, all from a single set of inputs.
+    - q: Can I import my existing asset data?
+      a: Yes. The Data Import Wizard guides you through importing from Excel, and an included template shows you exactly how to prepare your data. For assets added individually, asset templates accelerate manual entry.
+    - q: What reports are included?
+      a: 24 built-in reports covering depreciation, acquisitions, disposals, gain & loss, journal entries, net book value, rollforward, projections, CIP, Form 4562, Form 4797, AMT, personal property tax, UBIA for Section 199A, and more. Every report exports to Excel, PDF, or Word.
+    - q: Does Ledgerline Assets connect to my accounting system?
+      a: It's a standalone system. It generates journal entries you post directly into your accounting system, keeping you in control of what hits your general ledger. There's no direct integration or sync with accounting platforms.
+    - q: Is my data stored in the cloud?
+      a: Ledgerline Assets is a desktop application. Your data is stored on your workstation, network, or cloud drive of your choice, such as OneDrive or Google Drive, under your control. It's not stored on a third-party server managed by Ledgerline.
+    - q: What training and support are included?
+      a: Every subscription includes a 15-video Quick Start library, a comprehensive user guide, and a 30-minute personalized onboarding session. Ongoing US-based support is available by phone, email, and chat during business hours.
+    - q: What does the annual renewal include?
+      a: Each January, active subscribers receive a new version reflecting current-year tax law changes and new features. Renewal is $249 for Single License and $349 for Site License. Maintenance updates download automatically when you elect that option.
+    - q: Is there a money-back guarantee?
+      a: Yes. Use Ledgerline Assets with your real asset data for 30 days. If you're not satisfied, request a full refund. We're confident in what Ledgerline Assets does.
+    - q: What systems does it run on?
+      a: Ledgerline Assets runs on Windows 11 and 10, both 32-bit and 64-bit. Mac users can run it using Parallels or a similar Windows emulator. No server installation is required for most networks.
+    - q: Can I run Ledgerline Assets on a Mac?
+      a: Mac users can run Ledgerline Assets using Parallels or a similar Windows emulator.
+    - q: Does Ledgerline Assets support multi-user deployments on RDS, Terminal Server or Citrix?
+      a: Yes. Site License deployments support Windows Remote Desktop Server (RDS), Terminal Server, and Citrix for centralized deployment. Install on as many machines as you need and call for registration codes, up to 7 users.
+- id: benchmark
+  title: Ledgerline Benchmark
+  kind: product
+  order: 7
+  items:
+    - q: How difficult is it to get my financial data into Ledgerline Benchmark?
+      a: 'You can enter financial statement data directly into the program or import it from a spreadsheet. Direct entry is straightforward, Ledgerline Benchmark guides you through the process. Import requires some mapping and organization: accounts need to be aligned with Ledgerline Benchmark''s underlying chart of accounts so the analytical formulas work correctly. This is a deliberate design choice. Account alignment discipline ensures the analytical framework produces reliable, consistent outputs. If you have questions about entering or importing data from a specific accounting setup, our technical support team can walk you through the process before you buy.'
+    - q: Does Ledgerline Benchmark run on Mac?
+      a: Ledgerline Benchmark runs on Windows 10 or later. Mac users can run it using a Windows emulator such as Parallels.
+    - q: Can multiple people in my firm use it?
+      a: Subscriptions are per user. Multi-user subscriptions are available for up to 5 users for Ledgerline Benchmark Standard. Contact us for Practitioner Edition multi-user pricing.
+    - q: Can I share analysis files with colleagues?
+      a: Yes. Analysis files can be shared with other Ledgerline Benchmark subscribers inside or outside your firm. Recipients must have an active subscription to open and work with the files. Files can be stored and accessed from the cloud, making it straightforward to share across your team or with external collaborators who are active subscribers.
+    - q: What is the difference between Industry Outlook and Peer Ratio, and which one is right for my work?
+      a: Peer Ratio Studies provides access to a comprehensive database of industry financial data derived from commercial bank borrower statements, searchable directly inside Ledgerline Benchmark. Your subscription covers all industries in the database. Industry Outlook 5-Year Industry Financial Data Reports are purchased on a per-report or volume-pack basis and do not require a Ledgerline Benchmark subscription. The right choice depends on the nature and frequency of your work. Call us at 800-555-0142 and we will help you find the best fit.
+    - q: Are the industry databases included with my subscription?
+      a: Both Peer Ratio and Industry Outlook are optional add-ons available separately through Ledgerline. Every new Ledgerline Benchmark subscription includes one complimentary Industry Outlook 5-Year Industry Financial Data Report for an industry and sales size of your choice, a $140 value, at no additional cost.
+    - q: Is my data secure and what happens if my subscription expires?
+      a: Ledgerline Benchmark is desktop-based. Your data stays on your system, with no third-party cloud server. If your subscription expires, your analysis files remain intact on your machine. You will not be able to open or work with them until renewed, but the files are not deleted and are not held by Ledgerline.
+- id: valuation
+  title: Ledgerline Valuation
+  kind: product
+  order: 8
+  items:
+    - q: I already do business valuations in spreadsheets and it works well enough.
+      a: Spreadsheets are capable tools and a reasonable place to start. Ledgerline Valuation can serve as a full replacement for your spreadsheet workflow or as a supplement to it, depending on what fits your practice. We would invite you to look at what Ledgerline Valuation does across normalization, projections, the three approaches, and the report builder, and decide for yourself whether it is worth adding alongside or in place of what you use today.
+    - q: How difficult is it to get my financial data into Ledgerline Valuation?
+      a: 'You can enter financial statement data directly into the program or import it from a spreadsheet. Direct entry is straightforward, Ledgerline Valuation guides you through the process. Import requires some mapping and organization: accounts need to be aligned with Ledgerline Valuation''s underlying chart of accounts so the analytical formulas work correctly. This is a deliberate design choice. Account alignment discipline ensures the analytical framework produces reliable, consistent outputs. If you have questions about entering or importing data from a specific accounting setup, our technical support team can walk you through the process before you buy.'
+    - q: What happens if I need help after I purchase?
+      a: You reach a real person who understands both Ledgerline Valuation and the valuation work behind it. Not a ticket system, not a script reader. Phone, email, and live chat during business hours, 8:00 AM to 5:00 PM Mountain Time, at 800-555-0142. The same support that has kept Ledgerline customers coming back since 2008.
+    - q: Does Ledgerline Valuation make the decisions for me, or am I still in control?
+      a: 'Ledgerline Valuation provides the structure, calculations, and documented methodology. You provide the professional judgement: which methods to apply, how to weight them, what assumptions to use, what the numbers actually mean for the business in front of you. Every calculation is documented and traceable, so you can see how a number was derived, not just what the number is. And the report Ledgerline Valuation generates is a starting point, not a finished product, fully editable so you can add your own narrative, observations, and conclusions. No two Ledgerline Valuation reports look alike, because no two engagements are alike.'
+    - q: Will Ledgerline Valuation actually handle my kind of engagement?
+      a: Maybe your work is estate and gift tax, litigation, ESOP, or buy-sell, and you are not sure a single platform covers all of it. Ledgerline Valuation is built around Revenue Ruling 59-60, USPAP, and SSVS, the standards that govern that exact range of engagement types, and the use cases described above map directly to them.
+    - q: What if Ledgerline Valuation is not right for me after I buy?
+      a: Use Ledgerline Valuation on an actual engagement during your first 30 days. If it does not perform as described, contact us for a full refund.
+- id: deals
+  title: Ledgerline Deals
+  kind: product
+  order: 9
+  items:
+    - q: Does Ledgerline Deals model returns for multiple investors at different levels?
+      a: Yes. Ledgerline Deals calculates the internal rate of return for each individual equity participant, modeling returns by investor group based on their percentage of invested capital, entry point, and target exit year. If your deal involves a parent company, co-investors, or a management equity stake, Ledgerline Deals models the return profile for each participant separately.
+    - q: How is Ledgerline Deals different from building my own model in Excel?
+      a: A spreadsheet gives you a blank canvas. Ledgerline Deals gives you a complete, integrated analytical architecture, normalization, valuation, deal structure, financing, two-set projections, and ROI, where every input connects to every output in one system. Building a comparable framework from scratch in Excel requires hundreds of hours and still produces a fraction of the integrated capacity Ledgerline Deals provides.
+    - q: Do I need to be a CPA, MBA, or financial expert to use Ledgerline Deals?
+      a: 'Ledgerline Deals requires a fair degree of financial literacy. It is built for professionals who want to go deep into the economics of a deal and understand what the numbers are actually telling them. What you need is solid financial fundamentals: the ability to read and interpret financial statements, understand deal concepts, and apply analytical judgement to what the model reveals.'
+    - q: I am concerned about the learning curve. What if I am not sure I can use it?
+      a: The learning curve is real, and we would rather tell you that upfront than let you discover it mid-deal. Every subscription includes a 30-minute onboarding call, a one-hour personalized training session within your first 30 days, a training video library, detailed documentation, and access to technical support staff who understand both the software and the financial disciplines it serves.
+    - q: Should I wait until I have a deal before buying?
+      a: Almost always no. The worst time to learn a new analytical system is when you are already under deal pressure. The advisors and buyers who use Ledgerline Deals most effectively have it running and understand what it does before the deal arrives. At $2,295 for a full year, Ledgerline Deals is the analytical infrastructure that helps you win the deal, execute it rigorously, and be ready for the next one.
+    - q: Can Ledgerline Deals handle both buy-side and sell-side transactions?
+      a: Yes. On the buy side it handles target screening, deal analysis, structure, financing, and post-acquisition projections. On the sell side it supports pre-market financial analysis, normalized earnings documentation, valuation as a basis for pricing strategy, and generation of a professional Selling Pitchbook or CIM.
+    - q: Are there integrations with third-party data sources?
+      a: Yes. Ledgerline Deals integrates with several optional third-party data sources, particularly useful for advisors and intermediaries handling multiple engagements. Peer Ratio Studies provides industry benchmarking and financial ratio data. Main Street Comps provides small business transaction comparables. These are optional additions to the core system, priced separately.
+    - q: I have heard concerns about valuation software being a black box. How transparent is Ledgerline Deals?
+      a: Ledgerline Deals is not a black box. The methodology is documented, the calculations are transparent, and every assumption is visible and user-controlled. You can see exactly how every output was derived and trace every result back to its inputs.
+    - q: Does Ledgerline provide consulting services or advisory support on specific deals?
+      a: No. Ledgerline develops and supports analytical software. Ledgerline Deals is a professional tool, not a consulting service. For deal-specific advisory support, legal counsel, tax guidance, or professional due diligence services, work with the qualified advisors appropriate to your engagement.
+    - q: Does Ledgerline Deals support multiple users on one subscription?
+      a: Ledgerline Deals is licensed per named user. Each person who works in the system needs their own subscription. There is no shared-seat or floating-license option at this time. Each subscriber gets full access to the complete system, including Ledgerline Valuation and all reporting capability.
+    - q: What happens to my files if my subscription expires?
+      a: When your subscription expires, Ledgerline Deals stops running, but your files remain intact on your machine. Before your subscription expires, you can export your analysis files to Excel. Renewing your subscription at $995 per year continues your full access, files, updates, and support without interruption.
+- id: data-offerings
+  title: Data offerings
+  kind: product
+  order: 10
+  items:
+    - q: Do Peer Ratio and Main Street Comps work with all Ledgerline products?
+      a: Peer Ratio Studies works with Ledgerline Deals, Ledgerline Valuation, and both editions of Ledgerline Benchmark. Main Street Comps requires either Ledgerline Deals or Ledgerline Valuation. Neither is available on a standalone basis.
+    - q: Do Industry Outlook reports require a Ledgerline product?
+      a: No. Industry Outlook reports are sold individually and delivered by email. The 5-Year Industry Data Report integrates directly with Ledgerline Deals, Ledgerline Valuation, and Ledgerline Benchmark, but you do not need any Ledgerline software to purchase or use one.
+    - q: How current is the data?
+      a: Peer Ratio Studies includes current-year data plus five years of history per industry, updated annually. Main Street Comps was updated quarterly and covers the trailing ten years. All Industry Outlook reports are kept current.
+    - q: What is the Peer Ratio Right to Incorporate license, and do I need one?
+      a: If you use Peer Ratio data for internal analysis only — your own decision-making, inside your Ledgerline software — no additional license is required. If you deliver Peer Ratio data in a published report to a third party (a valuation report to a client, a business plan for a lender, etc.), Peer Ratio requires a Right to Incorporate license at $140/year. Ledgerline collects the fee and handles the agreement. Call 800-555-0142 to add it to your order.
+    - q: Does Main Street Comps require a separate license to use data in client reports?
+      a: No. Your Main Street Comps subscription covers all uses, including client-facing valuation reports and business plans. No additional license required.
+    - q: Is there a money-back guarantee on data products?
+      a: Data products do not carry the same 30-day guarantee as our software. If you have a concern about a data purchase, contact us — we handle these situations on a case-by-case basis and stand behind what we sell.

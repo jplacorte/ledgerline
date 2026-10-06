@@ -1,0 +1,203 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import ScreenPlate from '../components/ScreenPlate.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { buyHref } from '../data/site';
+
+const audiences = [
+  { title: 'M&A advisors & business brokers', body: 'Know what comparable transactions look like before you bring a deal to market or advise a client on price — a comp set that makes your position credible.' },
+  { title: 'Valuation professionals', body: 'Build a comp set from actual completed deals — not asking prices or rumored multiples. Filter by industry, size, structure, and date.' },
+  { title: 'Business buyers & corp dev', body: 'See what buyers paid for similar businesses — the multiples, the terms, the structure — and negotiate from a grounded view of value.' },
+];
+
+const filters = [
+  'Industry (SIC code) and keywords',
+  'Transaction price range',
+  'Closing date',
+  'Private and/or public seller',
+  'Asset and/or stock transaction type',
+  "Seller's revenue, net income, and operating cash flow",
+  "Seller's total assets and total equity",
+];
+
+const fields = [
+  { title: 'Transaction', items: ['Transaction price', 'Closing date and SIC code', 'Asset or stock sale', 'Private, public, or subsidiary seller', 'Transaction terms'] },
+  { title: 'Buyer', items: ['Buyer name and address', 'Telephone number', 'Executive handling the transaction'] },
+  { title: 'Seller', items: ['Seller name and description', 'Total assets and total equity', 'Revenue, net income, and operating cash flow'] },
+  { title: 'Pricing ratios', items: ['Price / Earnings', 'Price / Operating cash flow', 'Price / Revenue', 'Price / Assets', 'Price / EBITDA', "Price / Stockholders' equity"] },
+];
+
+const faqs = [
+  { q: 'What kinds of transactions are in Deal Index?', a: 'More than 12,000 completed mid-market M&A transactions where at least one party — buyer or seller — is a private company. About 50% are under $25 million. All data is derived from SEC filings.' },
+  { q: 'How often is the database updated?', a: 'Monthly, with new transactions.' },
+  { q: 'Do I need Ledgerline Deals or Ledgerline Valuation?', a: 'No. Deal Index is available standalone at $795/year. If you own Ledgerline Deals or Ledgerline Valuation, it integrates directly into both — and you receive standalone access at no additional charge.' },
+  { q: 'How is it different from enterprise M&A databases?', a: 'Enterprise databases are built and priced for institutional users. Deal Index focuses on the sub-$25 million range those databases underserve, at a price independent advisors can justify.' },
+  { q: 'Is there a money-back guarantee?', a: 'Deal Index does not carry the 30-day guarantee that applies to Ledgerline software. If you have a concern about your purchase, contact us — we handle these case by case and stand behind what we sell.' },
+];
+---
+
+<BaseLayout
+  title="Deal Index — Mid-market M&A transaction database"
+  description="12,000+ completed mid-market M&A transactions sourced from SEC filings, updated monthly. Search comps, review pricing ratios, and estimate value. $795/year."
+  hue="var(--p-ds)"
+>
+  <PageHero
+    crumbs={[{ label: 'Data', href: '/data-offerings/' }, { label: 'Deal Index' }]}
+    eyebrow="For advisors, valuators & business buyers"
+    heading="Real M&A transactions. *The details that matter.*"
+    lede="Deal Index is a proprietary database of completed mid-market transactions — built for the people who need to know what deals actually look like before they make their move."
+  >
+    <div class="btn-row">
+      <a class="btn btn-accent" href={buyHref('deal-index')}>Subscribe — $795/yr <span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn-ghost" href="/contact/?reason=sales&product=deal-index">Talk to sales</a>
+    </div>
+    <ScreenPlate slot="aside" screen={{ kind: 'deals', app: 'index', label: 'Search results' }} caption="Multi-criteria search across 12,000+ deals" label="Fig. 1" title="Deal Index — Search" />
+  </PageHero>
+
+  <section class="section-tight">
+    <div class="container">
+      <dl class="figures">
+        <div><dt>completed transactions</dt><dd class="figure-num">12,000+</dd></div>
+        <div><dt>of deals under $25M</dt><dd class="figure-num">50%</dd></div>
+        <div><dt>sourced data</dt><dd class="figure-num">SEC</dd></div>
+        <div><dt>database updates</dt><dd class="figure-num">Monthly</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section surface-alt" aria-labelledby="about-h">
+    <div class="container split">
+      <SectionHeader id="about-h" eyebrow="What it is" num="01" heading="The mid-market M&A database *built on SEC data*." />
+      <div class="stack copy">
+        <p>
+          Deal Index focuses on the segment enterprise databases underserve — transactions where at least one party is private, with half
+          under $25 million in value. That's precisely where independent advisors, valuators, and buyers need reliable comparables and have
+          historically had few places to find them.
+        </p>
+        <p>
+          Data is derived primarily from SEC filings, which require adherence to GAAP — so the numbers are audited or audit-quality figures,
+          not self-reported estimates. The Deal Index team curates and updates it monthly.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="who-h">
+    <div class="container">
+      <SectionHeader id="who-h" eyebrow="Who it's for" num="02" heading="For people who need to know what deals *actually look like*." />
+      <div class="cols">
+        {
+          audiences.map((a) => (
+            <article>
+              <h3>{a.title}</h3>
+              <p>{a.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface-card ruled" aria-labelledby="search-h">
+    <div class="container split">
+      <div>
+        <SectionHeader id="search-h" eyebrow="Search" num="03" heading="Find the transactions that *match your deal*." intro="Filter across criteria simultaneously to build a comp set that reflects your specific deal — not a broad industry average." />
+        <ul class="checks">{filters.map((f) => <li>{f}</li>)}</ul>
+      </div>
+      <ScreenPlate screen={{ kind: 'setup', app: 'index', preset: 'deal', label: 'Transaction detail' }} caption="A single transaction record" label="Fig. 2" title="Deal Index — Transaction" />
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="fields-h">
+    <div class="container">
+      <SectionHeader id="fields-h" eyebrow="What's in the database" num="04" heading="Every transaction. *Every detail that matters.*" />
+      <div class="fields">
+        {
+          fields.map((f) => (
+            <div>
+              <h3 class="mono">{f.title}</h3>
+              <ul class="ruled-list">{f.items.map((i) => <li>{i}</li>)}</ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface-night" aria-labelledby="int-h">
+    <div class="container">
+      <SectionHeader id="int-h" eyebrow="Standalone or integrated" num="05" heading="Powerful on its own. *Better inside Ledgerline Deals and Ledgerline Valuation.*" />
+      <div class="integration">
+        <div class="stack">
+          <h3>Standalone</h3>
+          <p class="muted">Search, select comparables, exclude outliers, and apply multiples to the company you're evaluating for a thumbnail estimate of value. Stock and asset deals are separated automatically.</p>
+          <ScreenPlate screen={{ kind: 'weights', app: 'index', label: 'Thumbnail value' }} caption="Thumbnail value estimate" label="Fig. 3" title="Deal Index — Valuation" />
+        </div>
+        <div class="stack">
+          <h3>Industry Outlookted</h3>
+          <p class="muted">Inside Ledgerline Deals and Ledgerline Valuation, with central tendency, R-squared, standard deviation, and distribution statistics to support your multiple selection.</p>
+          <ScreenPlate screen={{ kind: 'stats', app: 'index' }} caption="Statistics for selected transactions" label="Fig. 4" title="Deal Index — Statistics" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface-alt" id="pricing" aria-labelledby="price-h">
+    <div class="container split">
+      <SectionHeader id="price-h" eyebrow="Pricing" num="06" heading="Enterprise-quality M&A data. *Independent advisor pricing.*" intro="No per-search or per-transaction fees." />
+      <div class="price-card">
+        <p class="mono muted">Deal Index · Single user</p>
+        <p class="price"><span class="amount">$795</span> <span class="muted">/ year</span></p>
+        <ul class="checks">
+          <li>Full access to 12,000+ completed transactions</li>
+          <li>Monthly updates with new transactions</li>
+          <li>Search, comp selection & thumbnail value estimates</li>
+          <li>Industry Outlooktion with Ledgerline Deals and Ledgerline Valuation</li>
+          <li>Ledgerline Deals & Ledgerline Valuation owners get standalone access free</li>
+        </ul>
+        <div class="btn-row">
+          <a class="btn btn-accent" href={buyHref('deal-index')}>Subscribe <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="/contact/?reason=sales&product=deal-index">Talk to sales</a>
+        </div>
+        <p class="fine">Data products don't carry the 30-day software guarantee. Questions? Call us — we stand behind what we sell.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="faq-h">
+    <div class="container split">
+      <SectionHeader id="faq-h" eyebrow="FAQ" heading="Quick answers about *Deal Index*." />
+      <FaqList items={faqs} name="dd-faq" />
+    </div>
+  </section>
+
+  <CtaBand heading="Know what deals look like *before you move*." body="We'll walk you through search, transaction detail, and how Deal Index works inside Ledgerline Deals and Ledgerline Valuation." primary={{ label: 'Talk to sales', href: '/contact/?reason=sales&product=deal-index' }} secondary={{ label: 'Explore Ledgerline Deals', href: '/deals/' }} />
+</BaseLayout>
+
+<style>
+  .figures { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--ink); }
+  @media (min-width: 48rem) { .figures { grid-template-columns: repeat(4, 1fr); } }
+  .figures > div { display: flex; flex-direction: column-reverse; gap: 0.25rem; padding: var(--space-m) var(--space-m) 0 0; }
+  .figures dd { margin: 0; font-size: var(--step-4); line-height: 1; }
+  .figures dt { color: var(--muted); font-size: var(--step--1); }
+  .copy { color: var(--ink-2); max-width: 60ch; }
+  .cols { display: grid; gap: var(--space-l); }
+  @media (min-width: 56rem) { .cols { grid-template-columns: repeat(3, 1fr); } }
+  .cols article { padding-top: var(--space-m); border-top: 2px solid var(--ink); display: grid; gap: var(--space-xs); }
+  .cols p { color: var(--ink-2); }
+  .ruled { border-block: 1px solid var(--rule); }
+  .fields { display: grid; gap: var(--space-l); }
+  @media (min-width: 48rem) { .fields { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 72rem) { .fields { grid-template-columns: repeat(4, 1fr); } }
+  .fields h3 { font-size: var(--step--2); text-transform: uppercase; letter-spacing: 0.08em; color: var(--hue); margin-bottom: var(--space-s); }
+  .fields li { font-size: var(--step--1); }
+  .integration { display: grid; gap: var(--space-xl); }
+  @media (min-width: 56rem) { .integration { grid-template-columns: 1fr 1fr; } }
+  .price-card { display: grid; gap: var(--space-m); padding: var(--space-l); background: var(--card); border: 1px solid var(--ink); border-radius: var(--radius-l); box-shadow: var(--shadow-plate); }
+  .price { display: flex; align-items: baseline; gap: 0.5rem; }
+  .amount { font-family: var(--font-display); font-size: var(--step-5); line-height: 1; }
+  .fine { font-size: var(--step--2); color: var(--muted); }
+</style>

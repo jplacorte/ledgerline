@@ -1,0 +1,64 @@
+---
+import MockScreen from './MockScreen.astro';
+import type { Props as MockProps } from './MockScreen.astro';
+
+interface Props {
+  screen: MockProps;
+  caption?: string;
+  /** e.g. "Fig. 2" */
+  label?: string;
+  title?: string;
+}
+const { screen, caption, label, title = 'Ledgerline' } = Astro.props;
+---
+
+<figure class="plate">
+  <div class="window">
+    <div class="chrome" aria-hidden="true">
+      <span class="dots"><i></i><i></i><i></i></span>
+      <span class="title mono">{title}</span>
+    </div>
+    <MockScreen {...screen} />
+  </div>
+  {
+    caption && (
+      <figcaption>
+        {label && <span class="label mono">{label}</span>}
+        <span>{caption}</span>
+      </figcaption>
+    )
+  }
+</figure>
+
+<style>
+  .plate { margin: 0; }
+  .window {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-l);
+    overflow: hidden;
+    box-shadow: var(--shadow-plate);
+  }
+  .chrome {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.55rem 0.85rem;
+    border-bottom: 1px solid var(--rule-soft);
+    background: linear-gradient(var(--card), var(--paper));
+  }
+  .dots { display: flex; gap: 5px; }
+  .dots i { inline-size: 9px; block-size: 9px; border-radius: 50%; background: var(--rule); }
+  .title { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  figcaption {
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+    margin-top: 0.85rem;
+    font-size: var(--step--1);
+    color: var(--muted);
+  }
+  .label { font-size: var(--step--2); color: var(--hue, var(--accent-ink)); text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
+  :global(.surface-night) .window { border-color: var(--night-rule); }
+  :global(.surface-night) .chrome { background: var(--night-2); border-color: var(--night-rule); }
+</style>

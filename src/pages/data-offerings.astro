@@ -1,0 +1,261 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { buyHref, site } from '../data/site';
+
+const outlookReports = [
+  {
+    name: 'Five Year Industry Report',
+    price: '$140',
+    format: '8 pages · PDF or XML',
+    body: 'Five years of financial data for an industry and sales size — 60+ ratios, growth, income statement and balance sheet in $ and %, and cash flow. Imports directly into Ledgerline Deals, Ledgerline Valuation, and Ledgerline Benchmark.',
+    items: ['60+ key financial ratios', 'Income statement & balance sheet in $ and %', 'Industry growth and cash flow'],
+  },
+  {
+    name: 'Industry Growth Outlook',
+    price: '$80',
+    format: '2 pages · PDF or Excel',
+    body: 'Five years of historic and projected growth rates plus GDP and inflation forecasts — for testing the sustainability of sales growth assumptions.',
+    items: ['5 years historical revenue growth', '5 years forecast revenue growth', 'GDP and inflation forecasts'],
+  },
+  {
+    name: 'Executive Compensation',
+    price: '$80',
+    format: '1 page · PDF or Excel',
+    body: 'Officer compensation for 900+ industries and 13 sales-size ranges — for normalizing owner compensation or budgeting officer pay.',
+    items: ['900+ industries, 13 size ranges', 'Supports owner comp normalization', 'Officer pay budgeting'],
+  },
+];
+
+const packs = [
+  { pack: '5-pack', per: '$100', total: '$500' },
+  { pack: '10-pack', per: '$90', total: '$900' },
+  { pack: '20-pack', per: '$75', total: '$1,500' },
+];
+
+const compat = [
+  { name: 'Peer Ratio', ds: true, bvs: true, bp: true, standalone: false },
+  { name: 'Main Street Comps', ds: true, bvs: true, bp: false, standalone: false },
+  { name: 'Industry Outlook', ds: true, bvs: true, bp: true, standalone: true },
+  { name: 'Deal Index', ds: true, bvs: true, bp: false, standalone: true },
+];
+
+const faqs = [
+  { q: 'Do Peer Ratio and Main Street Comps work with all Ledgerline products?', a: 'Peer Ratio works with Ledgerline Deals, Ledgerline Valuation, and both editions of Ledgerline Benchmark. Main Street Comps requires Ledgerline Deals or Ledgerline Valuation. Neither is available standalone.' },
+  { q: 'Do Industry Outlook reports require a Ledgerline product?', a: 'No. Industry Outlook reports are sold individually and delivered by email. The 5-Year report integrates with Ledgerline Deals, Ledgerline Valuation, and Ledgerline Benchmark, but no Ledgerline software is required to buy or use one.' },
+  { q: 'What is the Peer Ratio Right to Incorporate license?', a: `Internal use needs no extra license. If you deliver Peer Ratio data in a published report to a third party, Peer Ratio requires a Right to Incorporate license at $140/year. Ledgerline collects the fee and handles the agreement — call ${site.phone}.` },
+  { q: 'How current is the data?', a: 'Peer Ratio includes current-year data plus five years of history, updated annually. Main Street Comps was updated quarterly and covers the trailing ten years. Industry Outlook reports are kept current.' },
+  { q: 'Is there a money-back guarantee on data products?', a: "Data products don't carry the 30-day software guarantee. If you have a concern about a data purchase, contact us — we handle these case by case." },
+];
+---
+
+<BaseLayout
+  title="Data Offerings — Industry benchmarks & transaction data"
+  description="Peer Ratio Studies, Main Street Comps, and Industry Outlook industry reports — benchmarking and transaction data that integrates with Ledgerline Deals, Ledgerline Valuation, and Ledgerline Benchmark."
+  hue="var(--p-data)"
+>
+  <PageHero
+    crumbs={[{ label: 'Data' }]}
+    eyebrow="Benchmarking & transaction data"
+    heading="Data that *strengthens* your analysis."
+    lede="Optional industry benchmarks and transaction data that integrate with the Ledgerline products you already use."
+  >
+    <nav class="jump" aria-label="On this page">
+      <a href="#peer-ratios"><span class="mono">01</span> Peer Ratio Studies <span class="muted mono">$695/yr</span></a>
+      <a href="#main-street-comps"><span class="mono">02</span> Main Street Comps <span class="muted mono">$819/yr</span></a>
+      <a href="#industry-outlook"><span class="mono">03</span> Industry Outlook reports <span class="muted mono">from $80</span></a>
+      <a href="/deal-index/"><span class="mono">04</span> Deal Index <span class="muted mono">$795/yr</span></a>
+    </nav>
+    <dl slot="aside" class="hero-figs">
+      <div><dt>Industries benchmarked</dt><dd class="figure-num">600+</dd></div>
+      <div><dt>Small business transactions</dt><dd class="figure-num">15,000+</dd></div>
+      <div><dt>Industries in Industry Outlook</dt><dd class="figure-num">900+</dd></div>
+      <div><dt>Organized by</dt><dd class="figure-num">NAICS</dd></div>
+    </dl>
+  </PageHero>
+
+  <section class="section surface-alt" id="peer-ratios" aria-labelledby="ps-h">
+    <div class="container split">
+      <div>
+        <SectionHeader id="ps-h" eyebrow="Industry benchmarking" num="01" heading="Peer Ratio Studies" intro="The leading source of performance statistics for small and mid-size businesses." />
+        <div class="stack copy">
+          <p>
+            Derived directly from financial statements of borrowers at member commercial banks — not surveys, not self-reported figures. That
+            provenance matters when your conclusions go in front of a client, a lender, or a court.
+          </p>
+          <aside class="callout">
+            <h3>Citing Peer Ratio data in a client report?</h3>
+            <p>A Right to Incorporate license ($140/year) is required for published work provided to a third party. Internal use needs no extra license. Ledgerline handles the paperwork.</p>
+          </aside>
+        </div>
+      </div>
+      <div class="offer">
+        <p class="offer-price"><span class="amount">$695</span> <span class="muted">/ year</span></p>
+        <ul class="checks">
+          <li>Ratios and common-size statements for 600+ industries</li>
+          <li>From ~150,000 statements of privately held businesses</li>
+          <li>NAICS codes, sorted by sales and asset size</li>
+          <li>Current year plus 5 years of history</li>
+          <li>Businesses under $250M in total assets</li>
+        </ul>
+        <p class="works mono">Works with Ledgerline Deals · Ledgerline Valuation · Ledgerline Benchmark</p>
+        <a class="btn" href="/contact/?reason=sales&product=peer-ratios">Talk to sales <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="main-street-comps" aria-labelledby="bc-h">
+    <div class="container split">
+      <div>
+        <SectionHeader id="bc-h" eyebrow="Transaction comparables" num="02" heading="What did businesses like this one *actually sell for*?" />
+        <div class="stack copy">
+          <p>
+            Main Street Comps gives you comparable sales data on more than 15,000 real small business transactions — what they sold for, at what
+            multiple, and under what terms. With an average selling price around $340,000, it's built for the lower end of the market where
+            reliable comps are hardest to find. Coverage spans the trailing ten years.
+          </p>
+          <div class="two-lists">
+            <div>
+              <h3 class="mono">Multiples</h3>
+              <ul class="ruled-list">
+                <li>Sale price / annual gross sales</li>
+                <li>Sale price / SDE</li>
+                <li>SDE / annual gross sales</li>
+                <li>Rent / annual gross sales</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="mono">Search by</h3>
+              <ul class="ruled-list">
+                <li>SIC or NAICS code</li>
+                <li>Date of sale</li>
+                <li>Annual gross sales & SDE</li>
+                <li>Keyword, across every field</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="offer">
+        <p class="mono muted">Updated quarterly</p>
+        <p class="offer-price"><span class="amount">$819</span> <span class="muted">/ year</span></p>
+        <ul class="checks">
+          <li>15,000+ small business transactions</li>
+          <li>Sale & asking price, terms, percent down</li>
+          <li>FF&amp;E, inventory, and geography</li>
+          <li>Covers all uses, including client reports</li>
+        </ul>
+        <p class="works mono">Requires Ledgerline Deals or Ledgerline Valuation</p>
+        <a class="btn" href="/contact/?reason=sales&product=main-street-comps">Talk to sales <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface-card ruled" id="industry-outlook" aria-labelledby="in-h">
+    <div class="container">
+      <SectionHeader id="in-h" eyebrow="Industry Outlook reports" num="03" heading="Individual industry reports. *Buy only what you need.*" intro="Sold individually or in discounted packs and delivered by email. No subscription, and no Ledgerline software required." />
+      <div class="reports">
+        {
+          outlookReports.map((r) => (
+            <article class="report">
+              <p class="mono muted">{r.format}</p>
+              <h3>{r.name}</h3>
+              <p class="report-price figure-num">{r.price}<span class="muted"> / report</span></p>
+              <p class="report-body">{r.body}</p>
+              <ul class="checks">{r.items.map((i) => <li>{i}</li>)}</ul>
+              <a class="btn btn-ghost btn-sm" href={buyHref('industry-outlook')}>Order report</a>
+            </article>
+          ))
+        }
+      </div>
+      <div class="packs">
+        <table>
+          <caption>Volume pricing — applies to all three report types</caption>
+          <thead><tr><th scope="col">Pack</th><th scope="col">Per report</th><th scope="col">Total</th></tr></thead>
+          <tbody>
+            {packs.map((p) => <tr><th scope="row">{p.pack}</th><td>{p.per}</td><td>{p.total}</td></tr>)}
+          </tbody>
+        </table>
+        <p class="muted">More than 20 reports? Call <a href={site.phoneHref}>{site.phone}</a> for a volume quote.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="compat-h">
+    <div class="container">
+      <SectionHeader id="compat-h" eyebrow="Compatibility" num="04" heading="What works with *what*." />
+      <div class="table-wrap">
+        <table class="compat">
+          <thead>
+            <tr><th scope="col">Data source</th><th scope="col">Ledgerline Deals</th><th scope="col">Ledgerline Valuation</th><th scope="col">Ledgerline Benchmark</th><th scope="col">Standalone</th></tr>
+          </thead>
+          <tbody>
+            {
+              compat.map((c) => (
+                <tr>
+                  <th scope="row">{c.name}</th>
+                  {[c.ds, c.bvs, c.bp, c.standalone].map((v) => (
+                    <td class:list={[v ? 'yes' : 'no']}>{v ? '✓' : '—'}<span class="sr-only">{v ? 'Yes' : 'No'}</span></td>
+                  ))}
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface-alt" aria-labelledby="faq-h">
+    <div class="container split">
+      <SectionHeader id="faq-h" eyebrow="FAQ" heading="Quick answers about *data offerings*." />
+      <FaqList items={faqs} name="data-faq" />
+    </div>
+  </section>
+
+  <CtaBand heading="Compare against the real market *before you commit to a number*." body="We'll walk you through Peer Ratio, Main Street Comps, and which Industry Outlook reports fit your next engagement." primary={{ label: 'Talk to sales', href: '/contact/?reason=sales' }} secondary={{ label: 'See Ledgerline Valuation', href: '/valuation/' }} />
+</BaseLayout>
+
+<style>
+  .jump { display: grid; inline-size: 100%; max-width: 34rem; border-top: 1px solid var(--rule); margin-top: var(--space-s); }
+  .jump a { display: grid; grid-template-columns: 2rem 1fr auto; gap: 0.5rem; padding: 0.75rem 0; border-bottom: 1px solid var(--rule); text-decoration: none; font-weight: 500; }
+  .jump .mono { font-size: var(--step--1); }
+  .hero-figs { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--ink); }
+  .hero-figs div { display: flex; flex-direction: column-reverse; padding: var(--space-m) var(--space-s) var(--space-s) 0; border-bottom: 1px solid var(--rule); }
+  .hero-figs dd { margin: 0; font-size: var(--step-4); line-height: 1; }
+  .hero-figs dt { font-size: var(--step--1); color: var(--muted); }
+  .copy { color: var(--ink-2); max-width: 60ch; }
+  .callout { padding: var(--space-m); border-left: 3px solid var(--accent); background: var(--card); }
+  .callout h3 { font-family: var(--font-sans); font-weight: 600; font-size: var(--step-0); }
+  .callout p { font-size: var(--step--1); margin-top: 0.35rem; }
+  .offer { display: grid; gap: var(--space-m); align-content: start; padding: var(--space-l); background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-l); box-shadow: var(--shadow-plate); }
+  .offer-price { display: flex; align-items: baseline; gap: 0.4rem; }
+  .amount { font-family: var(--font-display); font-size: var(--step-5); line-height: 1; }
+  .works { font-size: var(--step--2); color: var(--muted); padding: 0.6rem 0.75rem; background: var(--paper); border-radius: var(--radius); }
+  .two-lists { display: grid; gap: var(--space-m); grid-template-columns: 1fr 1fr; margin-top: var(--space-m); }
+  .two-lists h3 { font-size: var(--step--2); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.5rem; }
+  .two-lists li { font-size: var(--step--1); }
+  .ruled { border-block: 1px solid var(--rule); }
+  .reports { display: grid; gap: var(--space-m); }
+  @media (min-width: 56rem) { .reports { grid-template-columns: repeat(3, 1fr); } }
+  .report { display: flex; flex-direction: column; gap: var(--space-s); padding: var(--space-l); background: var(--paper); border: 1px solid var(--rule); border-radius: var(--radius-l); }
+  .report .mono { font-size: var(--step--2); }
+  .report-price { font-size: var(--step-3); }
+  .report-price .muted { font-size: var(--step--1); font-family: var(--font-sans); }
+  .report-body { font-size: var(--step--1); color: var(--ink-2); }
+  .report .checks { font-size: var(--step--1); }
+  .report .btn { margin-top: auto; align-self: flex-start; }
+  .packs { display: grid; gap: var(--space-s); margin-top: var(--space-xl); max-width: 36rem; }
+  table caption { text-align: left; font-family: var(--font-mono); font-size: var(--step--2); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); padding-bottom: 0.75rem; }
+  .packs th, .packs td, .compat th, .compat td { text-align: left; padding: 0.75rem 1rem 0.75rem 0; border-bottom: 1px solid var(--rule); }
+  .packs thead th, .compat thead th { font-family: var(--font-mono); font-weight: 500; font-size: var(--step--2); text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); border-bottom: 1px solid var(--ink); }
+  .packs td { font-family: var(--font-mono); }
+  .compat { min-width: 36rem; }
+  .compat tbody th { font-weight: 600; }
+  .compat td { font-family: var(--font-mono); }
+  .yes { color: var(--positive); }
+  .no { color: var(--faint); }
+</style>
